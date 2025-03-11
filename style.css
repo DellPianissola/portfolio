@@ -1,40 +1,57 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    box-sizing: border-box;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Efeito hover */
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
+/* Seções ocupando a tela inteira */
 section {
-    padding: 20px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 20px;
+}
+
+/* Fundo e cores */
+#home {
+    background: #1e1e1e;
+    color: white;
+    flex-direction: column;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 20px;
+}
+
+#tecnologias {
+    background: #f5f5f5;
+}
+
+.tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tech-list span {
+    background: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+#projetos {
+    background: #ddd;
 }
 
 .projeto {
@@ -45,4 +62,18 @@ section {
     max-width: 400px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#contato {
+    background: #1e1e1e;
+    color: white;
+}
+
+a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
