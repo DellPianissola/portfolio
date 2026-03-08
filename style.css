@@ -5,19 +5,114 @@
     box-sizing: border-box;
 }
 
+/* Acessibilidade: oculto visualmente mas lido por leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 116, 168, 0.9);
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00bcd4;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#dark-mode-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
 header {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-top: 60px;
 }
 
 h1 {
-    font-size: 7rem;
-    display: flex;
-    width: 70%;
+    font-size: 4rem;
+    animation: fadeIn 2s;
+}
+
+.typing {
+    font-size: 1.5rem;
+    border-right: 2px solid;
+    animation: blink 1s infinite;
+    min-height: 2rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes blink {
+    0%, 50% { border-color: transparent; }
+    51%, 100% { border-color: white; }
 }
 
 .inner-header {
@@ -25,23 +120,37 @@ h1 {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    height: 20%;
     margin-left: 7%;
     margin-right: 10%;
     font-size: 2rem;
+    gap: 40px;
 }
 
 #profile {
+    position: relative;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.waves {
-    position: relative;
+.wave-container {
+    position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
+    width: 100%;
+}
+
+.wave-back {
+    z-index: 0;
+}
+
+.wave-front {
+    z-index: 2;
+}
+
+.waves {
+    display: block;
     width: 200%;
 }
 
@@ -57,7 +166,6 @@ h1 {
     animation: moveWave 5s 0.7s ease-in-out infinite alternate;
 }
 
-
 @keyframes moveWave {
     from {
         transform: translateX(0);
@@ -67,35 +175,37 @@ h1 {
     }
 }
 
-
-/* Fundo e cores */
 #home {
     background: #87CEEB;
     color: white;
 }
 
 .profile-pic {
-    width: 400px;
-    height: 400px;
+    position: relative;
+    z-index: 1;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     border: 3px solid white;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
 }
 
 main {
     background: linear-gradient(to bottom, #00BFFF, #001A33);
 }
 
-/* Seções ocupando a tela inteira */
 section {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-#tecnologias {
-    /* background: #00BFFF; */
+    padding: 20px;
 }
 
 .tech-list {
@@ -112,15 +222,11 @@ section {
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 1.2em;
+    transition: background 0.3s;
 }
 
-#historico {
-    /* background: #0077BE; */
-    color: white;
-}
-
-#projetos {
-    /* background: #003F88; */
+.tech-list span:hover {
+    background: #00bcd4;
 }
 
 .projeto {
@@ -131,11 +237,59 @@ section {
     max-width: 400px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.projeto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    display: inline-block;
+    background: #0074A8;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #009ACD;
 }
 
 #contato {
-    /* background: #001A33; */
     color: white;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+#contact-form input, #contact-form textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+#contact-form button {
+    background: #0074A8;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#contact-form button:hover {
+    background: #009ACD;
 }
 
 a {
@@ -145,4 +299,97 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+footer {
+    background: #001A33;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+footer a {
+    color: #00bcd4;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+.dark-mode #home {
+    background: #1e3a5f;
+}
+
+.dark-mode main {
+    background: linear-gradient(to bottom, #1e3a5f, #0d1b2a);
+}
+
+.dark-mode .projeto {
+    background: #333;
+    color: white;
+}
+
+.dark-mode nav {
+    background: rgba(30, 58, 95, 0.9);
+}
+
+.dark-mode footer {
+    background: #0d1b2a;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        white-space: normal;
+    }
+
+    .no-wrap {
+        white-space: normal;
+    }
+
+    .inner-header {
+        flex-direction: column;
+        align-items: center;
+        margin: 0 5%;
+        gap: 20px;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        right: 10px;
+        background: rgba(0, 116, 168, 0.95);
+        padding: 10px;
+        border-radius: 8px;
+        display: none;
+    }
+
+    nav ul.open {
+        display: flex;
+    }
+
+    nav li {
+        margin: 8px 15px;
+    }
+
+    section {
+        height: auto;
+        padding: 50px 20px;
+    }
 }
