@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    createBubbles('bubbles-sobre',    10);
-    createBubbles('bubbles-tech',     14);
-    createBubbles('bubbles-projetos', 18);
+    createBubbles('bubbles-sobre',    18);
+    createBubbles('bubbles-tech',      9);
+    createBubbles('bubbles-projetos',  3);
 
     // ── Partículas bioluminescentes (Contato) ─────────────────
     function createParticles(containerId, count) {

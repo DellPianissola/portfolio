@@ -190,6 +190,10 @@ h1 {
 /* ============================================================
    SECTIONS — PROFUNDIDADE PROGRESSIVA
    ============================================================ */
+main {
+    background: linear-gradient(to bottom, #00BFFF 0%, #0074A8 20%, #004f7a 40%, #002a45 60%, #010d1a 85%, #000508 100%);
+}
+
 section {
     position: relative;
     overflow: hidden;
@@ -231,7 +235,7 @@ h2 {
 
 /* ---- RASO: Sobre mim ---- */
 #sobre {
-    background: linear-gradient(to bottom, #00BFFF 0%, #0d9db5 100%);
+    background: transparent;
 }
 
 .sobre-content {
@@ -247,7 +251,7 @@ h2 {
 
 /* ---- MEIA PROFUNDIDADE: Tecnologias ---- */
 #tecnologias {
-    background: linear-gradient(to bottom, #0a5270 0%, #063d52 100%);
+    background: transparent;
 }
 
 .tech-list {
@@ -280,7 +284,7 @@ h2 {
 
 /* ---- FUNDO: Projetos ---- */
 #projetos {
-    background: linear-gradient(to bottom, #052535 0%, #021a26 100%);
+    background: transparent;
 }
 
 .projetos-grid {
@@ -363,7 +367,7 @@ h2 {
 
 /* ---- ABISSAL: Contato ---- */
 #contato {
-    background: linear-gradient(to bottom, #040d14 0%, #010508 100%);
+    background: transparent;
 }
 
 #contato h2 {
