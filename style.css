@@ -97,9 +97,10 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #c9e8f5 0%, #87CEEB 60%, #4ab8d8 100%);
+    background: linear-gradient(to bottom, #c9e8f5 0%, #87CEEB 60%, #00BFFF 100%);
     color: white;
     padding-top: 60px;
+    padding-bottom: 220px;
 }
 
 h1 {
@@ -170,21 +171,38 @@ h1 {
     width: 100%;
 }
 
-.wave-back { z-index: 0; }
-.wave-front { z-index: 2; }
+.wave-back {
+    z-index: 0;
+    animation: bobWave 6s ease-in-out infinite alternate;
+}
+
+.wave-front {
+    z-index: 2;
+}
+
+@keyframes bobWave {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-8px); }
+}
 
 .waves {
     display: block;
     width: 200%;
 }
 
-.wave-1 { animation: moveWave 10s ease-in-out infinite alternate; }
-.wave-2 { animation: moveWave 7s 1.2s ease-in-out infinite alternate; }
-.wave-3 { animation: moveWave 5s 0.7s ease-in-out infinite alternate; }
+.wave-0 { animation: moveWaveR 15s 0.5s ease-in-out infinite alternate; }
+.wave-1 { animation: moveWave  10s           ease-in-out infinite alternate; }
+.wave-2 { animation: moveWaveR  7s 1.2s      ease-in-out infinite alternate; }
+.wave-3 { animation: moveWave   5s 0.7s      ease-in-out infinite alternate; }
 
 @keyframes moveWave {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
+}
+
+@keyframes moveWaveR {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
 }
 
 /* ============================================================
