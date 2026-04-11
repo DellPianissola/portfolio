@@ -32,6 +32,37 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
     });
 
+    // ── Nuvens (céu diurno) ───────────────────────────────────
+    function launchCloud() {
+        const container = document.getElementById('clouds-container');
+        const cloud = document.createElement('div');
+        cloud.classList.add('cloud');
+
+        const width    = Math.random() * 140 + 80;   // 80–220px
+        const top      = Math.random() * 32 + 5;     // 5–37% do topo
+        const duration = Math.random() * 40 + 55;    // 55–95s
+        const opacity  = Math.random() * 0.25 + 0.65;
+
+        cloud.style.width    = `${width}px`;
+        cloud.style.height   = `${width * 0.38}px`;
+        cloud.style.top      = `${top}%`;
+        cloud.style.left     = `-${width + 20}px`;
+        cloud.style.opacity  = opacity;
+        cloud.style.animationDuration = `${duration}s`;
+
+        container.appendChild(cloud);
+        setTimeout(() => cloud.remove(), (duration + 1) * 1000);
+    }
+
+    function scheduleClouds() {
+        launchCloud();
+        setTimeout(scheduleClouds, Math.random() * 14000 + 10000); // a cada 10–24s
+    }
+
+    launchCloud();
+    setTimeout(launchCloud, 6000);
+    setTimeout(scheduleClouds, 12000);
+
     // ── Estrelas (céu noturno) ────────────────────────────────
     const starsContainer = document.getElementById('stars');
     for (let i = 0; i < 90; i++) {
