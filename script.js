@@ -106,7 +106,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const parsedSun = {};
         Object.keys(SUN_G).forEach(k => parsedSun[k] = SUN_G[k].map(hx));
 
-        // ── Cores das ondas ───────────────────────────────────
+        // ── Cores das ondas + mar ─────────────────────────────
+        const mainEl = document.querySelector('main');
         const waveEls = [
             document.querySelector('.wave-0'),
             document.querySelector('.wave-1'),
@@ -116,17 +117,34 @@ document.addEventListener("DOMContentLoaded", function() {
         const WAVE_DAY   = ['#003f6b','#0074A8','#009ACD','#00BFFF'].map(hx);
         const WAVE_NIGHT = ['#010c18','#011a2c','#022440','#03305a'].map(hx);
 
+        // Gradiente do main: 5 stops em [0%, 20%, 50%, 80%, 100%]
+        const MAIN_DAY   = ['#00BFFF','#0074A8','#004f7a','#010d1a','#000508'].map(hx);
+        const MAIN_NIGHT = ['#03305a','#021830','#010d20','#010810','#000305'].map(hx);
+        const MAIN_POS   = [0, 20, 50, 80, 100];
+
+        function lerpColor(a, b, t) {
+            return [
+                Math.round(a[0] + (b[0]-a[0])*t),
+                Math.round(a[1] + (b[1]-a[1])*t),
+                Math.round(a[2] + (b[2]-a[2])*t),
+            ];
+        }
+
         function applyWaveColors(t) { // t=0 → dia, t=1 → noite
             waveEls.forEach((el, i) => {
-                const r = Math.round(WAVE_DAY[i][0] + (WAVE_NIGHT[i][0]-WAVE_DAY[i][0])*t);
-                const g = Math.round(WAVE_DAY[i][1] + (WAVE_NIGHT[i][1]-WAVE_DAY[i][1])*t);
-                const b = Math.round(WAVE_DAY[i][2] + (WAVE_NIGHT[i][2]-WAVE_DAY[i][2])*t);
+                const [r,g,b] = lerpColor(WAVE_DAY[i], WAVE_NIGHT[i], t);
                 el.style.fill = `rgb(${r},${g},${b})`;
             });
+            const stops = MAIN_DAY.map((c, i) => {
+                const [r,g,b] = lerpColor(c, MAIN_NIGHT[i], t);
+                return `rgb(${r},${g},${b}) ${MAIN_POS[i]}%`;
+            });
+            mainEl.style.background = `linear-gradient(to bottom,${stops.join(',')})`;
         }
 
         function resetWaveColors() {
             waveEls.forEach(el => el.style.fill = '');
+            mainEl.style.background = '';
         }
 
         function toHex([r,g,b]) {
@@ -294,7 +312,12 @@ document.addEventListener("DOMContentLoaded", function() {
         cloudsActive = false;
         clearTimeout(cloudSchedulerTimeout);
         cloudSchedulerTimeout = null;
-        document.getElementById('clouds-container').innerHTML = '';
+        const container = document.getElementById('clouds-container');
+        Array.from(container.children).forEach(cloud => {
+            cloud.style.transition = 'opacity 1.5s ease';
+            cloud.style.opacity = '0';
+            setTimeout(() => cloud.remove(), 1500);
+        });
     };
 
     if (!document.body.classList.contains('dark-mode')) {

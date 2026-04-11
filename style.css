@@ -363,7 +363,7 @@ h1 {
    SECTIONS — PROFUNDIDADE PROGRESSIVA
    ============================================================ */
 main {
-    background: linear-gradient(to bottom, #00BFFF 0%, #0074A8 20%, #004f7a 40%, #002a45 60%, #010d1a 85%, #000508 100%);
+    background: linear-gradient(to bottom, #00BFFF 0%, #0074A8 20%, #004f7a 50%, #010d1a 80%, #000508 100%);
 }
 
 section {
@@ -687,7 +687,7 @@ footer a {
 .dark-mode .wave-3 { fill: #03305a; }
 
 .dark-mode main {
-    background: linear-gradient(to bottom, #03305a 0%, #021830 20%, #010d20 50%, #010810 80%, #000305 100%);
+    background: linear-gradient(to bottom, #03305a 0%, #021830 20%, #010d20 50%, #010810 80%, #000305 100%); /* stops em sincronia com o JS */
 }
 
 /* ============================================================
