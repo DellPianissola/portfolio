@@ -1,42 +1,58 @@
-# Portfólio de Dell Pianissola
+# Gabriel Pianissola — Portfólio
 
-Um portfólio pessoal moderno e responsivo, desenvolvido com HTML, CSS e JavaScript puro. Apresenta minhas habilidades, projetos e informações de contato.
+Portfólio pessoal com temática de **oceano e água**. A navegação pelo site simula um mergulho progressivo — da superfície até o fundo do abismo.
+
+## Conceito visual
+
+| Seção | Profundidade | Tema |
+|---|---|---|
+| **Home** | Superfície / Céu | Céu dinâmico, ondas animadas |
+| **Sobre** | Água rasa | Turquesa, bolhas flutuando |
+| **Tecnologias** | Meia profundidade | Azul médio, badges glassmorphism |
+| **Projetos** | Fundo do mar | Azul escuro, cards estilo vigia de submarino |
+| **Contato** | Zona abissal | Quase preto, partículas bioluminescentes |
 
 ## Funcionalidades
 
-- **Navegação suave**: Links de navegação com scroll suave entre seções.
-- **Modo escuro**: Toggle para alternar entre temas claro e escuro.
-- **Animações**: Efeitos de onda no header, hover nos projetos e efeito de digitação.
-- **Responsivo**: Design adaptável para desktop e mobile.
-- **Formulário de contato**: Simulação de envio (logs no console).
+- **Céu dinâmico** — sistema orbital: o Sol e a Lua giram em órbita circular com 180° de separação, sempre atrás das ondas
+- **Transição dia/noite animada** — ao ativar o modo escuro, o Sol percorre o céu se pondo; ao desativar, a Lua se põe antes do Sol nascer
+- **Cores sincronizadas** — o gradiente do céu muda em tempo real com a posição do Sol (dia → laranja → vermelho → noite → pré-amanhecer → aurora → dia)
+- **Nuvens geradas dinamicamente** — cruzam o céu periodicamente em tamanhos e velocidades aleatórias
+- **Ondas em 4 camadas** — animação de vaivém sutil com profundidade visual
+- **Estrelas** — aparecem no céu noturno com brilho pulsante
+- **Bolhas** — flutuam em cada seção com quantidade inversamente proporcional à profundidade
+- **Partículas bioluminescentes** — seção de contato
+- **Dark mode** com persistência via `localStorage`
+- **Efeito de digitação** no header
+- **Menu hambúrguer** responsivo para mobile
+- **Smooth scroll** na navegação
 
-## Tecnologias Usadas
+## Stack
 
 - HTML5
-- CSS3 (Flexbox, Grid, Animações)
-- JavaScript (ES6+)
+- CSS3 (animações, gradientes, glassmorphism)
+- JavaScript vanilla (sem frameworks ou dependências externas)
 
-## Como Rodar
+## Como rodar
 
-1. Clone o repositório: `git clone https://github.com/DellPianissola/portfolio.git`
-2. Abra `index.html` no navegador ou use um servidor local (ex.: `python -m http.server 8000`).
-3. Acesse `http://localhost:8000`.
+```bash
+git clone https://github.com/DellPianissola/portfolio.git
+cd portfolio
+# Abra index.html no navegador, ou use um servidor local:
+python -m http.server 8000
+```
 
-## Estrutura do Projeto
+## Estrutura
 
 ```
 portfolio/
-├── index.html      # Página principal
-├── style.css       # Estilos
-├── script.js       # Interatividade
-├── images/         # Imagens (ex.: selfie)
-└── README.md       # Este arquivo
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    └── selfie_praia_cortado.jpg
 ```
 
-## Melhorias Futuras
+## Autor
 
-- Integração com backend para formulário real.
-- Adição de mais projetos com imagens e links.
-- Otimização de performance e acessibilidade.
-
-Contato: [Dell.pianissola@outlook.com](mailto:Dell.pianissola@outlook.com) | [GitHub](https://github.com/DellPianissola)
+**Gabriel Pianissola** — [GitHub](https://github.com/DellPianissola) · [Dell.pianissola@outlook.com](mailto:Dell.pianissola@outlook.com)

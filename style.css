@@ -97,7 +97,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #c9e8f5 0%, #87CEEB 60%, #00BFFF 100%);
+    background: linear-gradient(to bottom, #c9e8f5 0%, #87CEEB 35%, #4ab8d8 65%, #00BFFF 100%);
     color: white;
     padding-top: 60px;
     padding-bottom: 220px;
@@ -163,6 +163,26 @@ h1 {
     border-radius: 45% 55% 40% 60% / 40% 60% 45% 55%;
 }
 
+/* Transições sem flash no carregamento */
+.no-transition * {
+    transition: none !important;
+}
+
+/* Overlay de transição do céu */
+#sky-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, #020810 0%, #041428 35%, #062038 65%, #062038 100%);
+    opacity: 0;
+    transition: opacity 1.8s ease;
+}
+
+.dark-mode #sky-overlay {
+    opacity: 1;
+}
+
 /* Céu diurno */
 #day-sky {
     position: absolute;
@@ -170,8 +190,7 @@ h1 {
     z-index: 0;
     pointer-events: none;
     opacity: 1;
-    transition: opacity 1.2s ease;
-    overflow: hidden;
+    transition: opacity 1.8s ease;
 }
 
 .dark-mode #day-sky {
@@ -180,10 +199,11 @@ h1 {
 
 .sun {
     position: absolute;
-    top: 10%;
-    right: 12%;
     width: 72px;
     height: 72px;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
     border-radius: 50%;
     background: radial-gradient(circle at 38% 38%, #fffde7, #FFE033 45%, #FFB700 100%);
     box-shadow:
@@ -249,7 +269,7 @@ h1 {
     z-index: 0;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 1.2s ease;
+    transition: opacity 1.8s ease;
 }
 
 .dark-mode #night-sky {
@@ -258,10 +278,11 @@ h1 {
 
 .moon {
     position: absolute;
-    top: 14%;
-    right: 14%;
     width: 64px;
     height: 64px;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
     border-radius: 50%;
     background: radial-gradient(circle at 38% 38%, #fffef0, #fff9c4 45%, #f0d840 100%);
     box-shadow:
@@ -321,6 +342,7 @@ h1 {
     display: block;
     width: 200%;
 }
+
 
 .wave-0 { animation: moveWaveR 15s 0.5s ease-in-out infinite alternate; }
 .wave-1 { animation: moveWave  10s           ease-in-out infinite alternate; }
@@ -657,10 +679,6 @@ footer a {
    ============================================================ */
 .dark-mode nav {
     background: rgba(5, 12, 28, 0.92);
-}
-
-.dark-mode header {
-    background: linear-gradient(to bottom, #020810 0%, #041428 55%, #062038 100%);
 }
 
 .dark-mode .wave-0 { fill: #010c18; }
