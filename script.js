@@ -26,14 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.add('no-transition');
     if (localStorage.getItem('dark-mode') === 'enabled') {
         document.body.classList.add('dark-mode');
-        toggleButton.textContent = '☀️';
     }
     requestAnimationFrame(() => document.body.classList.remove('no-transition'));
 
     toggleButton.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        toggleButton.textContent = isDark ? '☀️' : '🌙';
         localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
         if (window.animateCelestial) window.animateCelestial(isDark);
     });
@@ -85,10 +83,6 @@ document.addEventListener("DOMContentLoaded", function() {
             else if (t < 0.58) applySky('sunset1', 'sunset2', (t-0.28)/0.30);
             else if (t < 0.80) applySky('sunset2', 'dusk',    (t-0.58)/0.22);
             else               applySky('dusk',    'night',   (t-0.80)/0.20);
-        }
-
-        function preDawnSkyAt(t) {
-            if (t > 0.65) applySky('night', 'predawn', (t-0.65)/0.35);
         }
 
         function sunriseSkyAt(t) {
