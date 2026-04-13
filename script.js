@@ -373,6 +373,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
     createParticles('particles-contato', 40);
 
+    // ── Layout Phyllotaxis (espiral de girassol) das águas-vivas
+    function layoutJellyfish() {
+        const tank = document.querySelector('.jellyfish-tank');
+        if (!tank) return;
+        const orbits = tank.querySelectorAll('.jf-orbit');
+        const n      = orbits.length;
+        const maxR   = Math.min(tank.offsetWidth * 0.44, 380);
+        tank.style.height = (maxR * 2 + 260) + 'px';
+
+        const goldenAngle = Math.PI * (3 - Math.sqrt(5)); // ≈ 137.5°
+        orbits.forEach((el, i) => {
+            const angle = i * goldenAngle;
+            const dist  = Math.sqrt((i + 0.5) / n) * maxR;
+            const x = Math.cos(angle) * dist;
+            const y = Math.sin(angle) * dist;
+            el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+    }
+    layoutJellyfish();
+    window.addEventListener('resize', layoutJellyfish);
+
     // ── Formulário de contato ─────────────────────────────────
     const form = document.getElementById('contact-form');
     form.addEventListener('submit', function(e) {

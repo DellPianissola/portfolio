@@ -588,13 +588,16 @@ h2 {
 
 /* ── Águas-vivas SVG (Tecnologias) ───────────────────────── */
 .jellyfish-tank {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 12px 8px;
+    position: relative;
+    width: 100%;
+    height: 820px;
     margin-top: 48px;
-    padding-bottom: 20px;
+}
+
+.jf-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 .jellyfish {
@@ -618,6 +621,7 @@ h2 {
 .jf-svg { display: block; overflow: visible; }
 
 /* Tamanhos (viewBox 1:1 → quadrado) */
+.jf--xl .jf-svg { width: 210px; height: 210px; }
 .jf--lg .jf-svg { width: 160px; height: 160px; }
 .jf--md .jf-svg { width: 128px; height: 128px; }
 .jf--sm .jf-svg { width: 100px; height: 100px; }
@@ -645,29 +649,29 @@ h2 {
 .jf-skirt          { fill: currentColor; }
 .jf-tentacles path { stroke: currentColor; }
 
-/* Cores bioluminescentes — 5 tons ciclando */
-.jellyfish:nth-child(5n+1) { color: rgb(160,100,255); filter: drop-shadow(0 0 10px rgba(160,100,255,0.7)); }
-.jellyfish:nth-child(5n+2) { color: rgb(0,200,255);   filter: drop-shadow(0 0 10px rgba(0,200,255,0.7));   }
-.jellyfish:nth-child(5n+3) { color: rgb(230,80,220);  filter: drop-shadow(0 0 10px rgba(230,80,220,0.7));  }
-.jellyfish:nth-child(5n+4) { color: rgb(0,220,175);   filter: drop-shadow(0 0 10px rgba(0,220,175,0.7));   }
-.jellyfish:nth-child(5n+5) { color: rgb(80,145,255);  filter: drop-shadow(0 0 10px rgba(80,145,255,0.7));  }
+/* Cores bioluminescentes — 5 tons ciclando por .jf-orbit */
+.jf-orbit:nth-child(5n+1) .jellyfish { color: rgb(160,100,255); filter: drop-shadow(0 0 10px rgba(160,100,255,0.7)); }
+.jf-orbit:nth-child(5n+2) .jellyfish { color: rgb(0,200,255);   filter: drop-shadow(0 0 10px rgba(0,200,255,0.7));   }
+.jf-orbit:nth-child(5n+3) .jellyfish { color: rgb(230,80,220);  filter: drop-shadow(0 0 10px rgba(230,80,220,0.7));  }
+.jf-orbit:nth-child(5n+4) .jellyfish { color: rgb(0,220,175);   filter: drop-shadow(0 0 10px rgba(0,220,175,0.7));   }
+.jf-orbit:nth-child(5n+5) .jellyfish { color: rgb(80,145,255);  filter: drop-shadow(0 0 10px rgba(80,145,255,0.7));  }
 
 /* Timings individuais */
-.jellyfish:nth-child(1)  { animation-duration: 4.8s; animation-delay: 0.0s; --jf-y: -14px; --jf-r:  2deg; }
-.jellyfish:nth-child(2)  { animation-duration: 5.5s; animation-delay: 0.7s; --jf-y: -10px; --jf-r: -3deg; }
-.jellyfish:nth-child(3)  { animation-duration: 4.3s; animation-delay: 1.2s; --jf-y: -16px; --jf-r:  1deg; }
-.jellyfish:nth-child(4)  { animation-duration: 6.0s; animation-delay: 0.4s; --jf-y: -11px; --jf-r: -2deg; }
-.jellyfish:nth-child(5)  { animation-duration: 5.1s; animation-delay: 1.6s; --jf-y: -13px; --jf-r:  3deg; }
-.jellyfish:nth-child(6)  { animation-duration: 4.6s; animation-delay: 0.9s; --jf-y: -15px; --jf-r: -1deg; }
-.jellyfish:nth-child(7)  { animation-duration: 5.8s; animation-delay: 0.2s; --jf-y: -10px; --jf-r:  2deg; }
-.jellyfish:nth-child(8)  { animation-duration: 4.1s; animation-delay: 1.9s; --jf-y: -17px; --jf-r: -3deg; }
-.jellyfish:nth-child(9)  { animation-duration: 5.4s; animation-delay: 0.6s; --jf-y: -12px; --jf-r:  1deg; }
-.jellyfish:nth-child(10) { animation-duration: 4.9s; animation-delay: 1.4s; --jf-y: -14px; --jf-r: -2deg; }
-.jellyfish:nth-child(11) { animation-duration: 5.2s; animation-delay: 0.3s; --jf-y: -11px; --jf-r:  3deg; }
-.jellyfish:nth-child(12) { animation-duration: 4.4s; animation-delay: 2.1s; --jf-y: -16px; --jf-r: -1deg; }
-.jellyfish:nth-child(13) { animation-duration: 6.1s; animation-delay: 0.8s; --jf-y: -10px; --jf-r:  2deg; }
-.jellyfish:nth-child(14) { animation-duration: 4.7s; animation-delay: 1.7s; --jf-y: -13px; --jf-r: -3deg; }
-.jellyfish:nth-child(15) { animation-duration: 5.6s; animation-delay: 0.5s; --jf-y: -15px; --jf-r:  1deg; }
+.jf-orbit:nth-child(1)  .jellyfish { animation-duration: 4.8s; animation-delay: 0.0s; --jf-y: -14px; --jf-r:  2deg; }
+.jf-orbit:nth-child(2)  .jellyfish { animation-duration: 5.5s; animation-delay: 0.7s; --jf-y: -10px; --jf-r: -3deg; }
+.jf-orbit:nth-child(3)  .jellyfish { animation-duration: 4.3s; animation-delay: 1.2s; --jf-y: -16px; --jf-r:  1deg; }
+.jf-orbit:nth-child(4)  .jellyfish { animation-duration: 6.0s; animation-delay: 0.4s; --jf-y: -11px; --jf-r: -2deg; }
+.jf-orbit:nth-child(5)  .jellyfish { animation-duration: 5.1s; animation-delay: 1.6s; --jf-y: -13px; --jf-r:  3deg; }
+.jf-orbit:nth-child(6)  .jellyfish { animation-duration: 4.6s; animation-delay: 0.9s; --jf-y: -15px; --jf-r: -1deg; }
+.jf-orbit:nth-child(7)  .jellyfish { animation-duration: 5.8s; animation-delay: 0.2s; --jf-y: -10px; --jf-r:  2deg; }
+.jf-orbit:nth-child(8)  .jellyfish { animation-duration: 4.1s; animation-delay: 1.9s; --jf-y: -17px; --jf-r: -3deg; }
+.jf-orbit:nth-child(9)  .jellyfish { animation-duration: 5.4s; animation-delay: 0.6s; --jf-y: -12px; --jf-r:  1deg; }
+.jf-orbit:nth-child(10) .jellyfish { animation-duration: 4.9s; animation-delay: 1.4s; --jf-y: -14px; --jf-r: -2deg; }
+.jf-orbit:nth-child(11) .jellyfish { animation-duration: 5.2s; animation-delay: 0.3s; --jf-y: -11px; --jf-r:  3deg; }
+.jf-orbit:nth-child(12) .jellyfish { animation-duration: 4.4s; animation-delay: 2.1s; --jf-y: -16px; --jf-r: -1deg; }
+.jf-orbit:nth-child(13) .jellyfish { animation-duration: 6.1s; animation-delay: 0.8s; --jf-y: -10px; --jf-r:  2deg; }
+.jf-orbit:nth-child(14) .jellyfish { animation-duration: 4.7s; animation-delay: 1.7s; --jf-y: -13px; --jf-r: -3deg; }
+.jf-orbit:nth-child(15) .jellyfish { animation-duration: 5.6s; animation-delay: 0.5s; --jf-y: -15px; --jf-r:  1deg; }
 
 @keyframes jfFloat {
     from { transform: translateY(0)                 rotate(0deg); }
