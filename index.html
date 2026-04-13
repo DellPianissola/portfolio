@@ -136,13 +136,22 @@
             <div class="bubbles-container" id="bubbles-tech"></div>
             <div class="container">
                 <h2>Ferramentas do mergulhador</h2>
-                <div class="tech-list">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>React</span>
-                    <span>Python</span>
-                    <span>Django</span>
+                <div class="jellyfish-tank">
+                    <div class="jellyfish jf--lg"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">JavaScript</span></div></div>
+                    <div class="jellyfish jf--lg"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">TypeScript</span></div></div>
+                    <div class="jellyfish jf--lg"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Python</span></div></div>
+                    <div class="jellyfish jf--md"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">React</span></div></div>
+                    <div class="jellyfish jf--lg"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Java</span></div></div>
+                    <div class="jellyfish jf--md"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Kotlin</span></div></div>
+                    <div class="jellyfish jf--lg"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">React Native</span></div></div>
+                    <div class="jellyfish jf--md"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Django</span></div></div>
+                    <div class="jellyfish jf--lg"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label jf-small">Django REST Framework</span></div></div>
+                    <div class="jellyfish jf--md"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Node.js</span></div></div>
+                    <div class="jellyfish jf--md"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Postgres</span></div></div>
+                    <div class="jellyfish jf--sm"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">HTML</span></div></div>
+                    <div class="jellyfish jf--sm"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">CSS</span></div></div>
+                    <div class="jellyfish jf--sm"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">Git</span></div></div>
+                    <div class="jellyfish jf--sm"><div class="jf-wrap"><svg class="jf-svg"><use href="#jf"/></svg><span class="jf-label">SWT</span></div></div>
                 </div>
             </div>
         </section>
@@ -202,6 +211,45 @@
         <p>&copy; 2026 Gabriel Pianissola. Todos os direitos reservados.</p>
         <a href="https://github.com/DellPianissola" target="_blank">GitHub</a>
     </footer>
+
+    <!-- SVG: forma reutilizável da água-viva -->
+    <svg style="display:none" aria-hidden="true">
+        <defs>
+            <symbol id="jf" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+                <!-- Tentáculos (atrás do corpo) -->
+                <g class="jf-tentacles" fill="none" stroke-width="8" stroke-linecap="round">
+                    <!-- Esquerda -->
+                    <path>
+                        <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+                            keyTimes="0;0.4;1" keySplines="0.4 0 0.2 1; 0.2 0 0.2 1" calcMode="spline"
+                            values="M70 120 C40 140,40 160,70 185; M70 120 C20 150,110 150,60 185; M70 120 C40 140,40 160,70 185"/>
+                    </path>
+                    <path>
+                        <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+                            keyTimes="0;0.4;1" keySplines="0.4 0 0.2 1; 0.2 0 0.2 1" calcMode="spline"
+                            values="M90 120 C60 140,60 160,90 185; M90 120 C40 150,130 150,80 185; M90 120 C60 140,60 160,90 185"/>
+                    </path>
+                    <!-- Direita -->
+                    <path>
+                        <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+                            keyTimes="0;0.4;1" keySplines="0.4 0 0.2 1; 0.2 0 0.2 1" calcMode="spline"
+                            values="M110 120 C140 140,140 160,110 185; M110 120 C180 150,70 150,120 185; M110 120 C140 140,140 160,110 185"/>
+                    </path>
+                    <path>
+                        <animate attributeName="d" dur="1.6s" repeatCount="indefinite"
+                            keyTimes="0;0.4;1" keySplines="0.4 0 0.2 1; 0.2 0 0.2 1" calcMode="spline"
+                            values="M130 120 C160 140,160 160,130 185; M130 120 C200 150,90 150,140 185; M130 120 C160 140,160 160,130 185"/>
+                    </path>
+                </g>
+
+                <!-- Corpo (bell) -->
+                <ellipse class="jf-body" cx="100" cy="80" rx="60" ry="50"/>
+
+                <!-- Dobrinha inferior -->
+                <ellipse class="jf-skirt" cx="100" cy="120" rx="52" ry="10"/>
+            </symbol>
+        </defs>
+    </svg>
 
     <script src="script.js"></script>
 </body>

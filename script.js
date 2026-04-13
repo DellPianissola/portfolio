@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 0; i < count; i++) {
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
-            const size = Math.random() * 28 + 8;
+            const size = Math.random() * 12 + 4;
             bubble.style.width  = `${size}px`;
             bubble.style.height = `${size}px`;
             bubble.style.left   = `${Math.random() * 100}%`;
@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     createBubbles('bubbles-sobre',    18);
     createBubbles('bubbles-jornada',  12);
-    createBubbles('bubbles-tech',      9);
+    createBubbles('bubbles-tech',      4);
     createBubbles('bubbles-projetos',  3);
 
     // ── Partículas bioluminescentes (Contato) ─────────────────

@@ -586,32 +586,92 @@ h2 {
     background: transparent;
 }
 
-.tech-list {
+/* ── Águas-vivas SVG (Tecnologias) ───────────────────────── */
+.jellyfish-tank {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+    align-items: flex-end;
+    gap: 12px 8px;
+    margin-top: 48px;
+    padding-bottom: 20px;
 }
 
-.tech-list span {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(0, 220, 255, 0.35);
-    color: #a8ecff;
-    padding: 12px 22px;
-    border-radius: 50px;
-    font-size: 1.05rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(0, 200, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
-    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+.jellyfish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: default;
+    animation: jfFloat ease-in-out infinite alternate;
+    transition: filter 0.35s;
 }
 
-.tech-list span:hover {
-    background: rgba(0, 180, 255, 0.2);
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
-    transform: translateY(-4px);
+.jellyfish:hover { filter: brightness(1.5) saturate(1.3); }
+
+/* Wrapper com label sobreposto ao SVG */
+.jf-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.jf-svg { display: block; overflow: visible; }
+
+/* Tamanhos (viewBox 1:1 → quadrado) */
+.jf--lg .jf-svg { width: 160px; height: 160px; }
+.jf--md .jf-svg { width: 128px; height: 128px; }
+.jf--sm .jf-svg { width: 100px; height: 100px; }
+
+/* Label centrado no sino — cy=80 em 200px = 40% */
+.jf-label {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-align: center;
+    line-height: 1.25;
+    pointer-events: none;
+    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    width: 88%;
+}
+
+.jf-small { font-size: 0.56rem !important; }
+
+/* SVG internos via currentColor */
+.jf-body           { fill: currentColor; }
+.jf-skirt          { fill: currentColor; }
+.jf-tentacles path { stroke: currentColor; }
+
+/* Cores bioluminescentes — 5 tons ciclando */
+.jellyfish:nth-child(5n+1) { color: rgb(160,100,255); filter: drop-shadow(0 0 10px rgba(160,100,255,0.7)); }
+.jellyfish:nth-child(5n+2) { color: rgb(0,200,255);   filter: drop-shadow(0 0 10px rgba(0,200,255,0.7));   }
+.jellyfish:nth-child(5n+3) { color: rgb(230,80,220);  filter: drop-shadow(0 0 10px rgba(230,80,220,0.7));  }
+.jellyfish:nth-child(5n+4) { color: rgb(0,220,175);   filter: drop-shadow(0 0 10px rgba(0,220,175,0.7));   }
+.jellyfish:nth-child(5n+5) { color: rgb(80,145,255);  filter: drop-shadow(0 0 10px rgba(80,145,255,0.7));  }
+
+/* Timings individuais */
+.jellyfish:nth-child(1)  { animation-duration: 4.8s; animation-delay: 0.0s; --jf-y: -14px; --jf-r:  2deg; }
+.jellyfish:nth-child(2)  { animation-duration: 5.5s; animation-delay: 0.7s; --jf-y: -10px; --jf-r: -3deg; }
+.jellyfish:nth-child(3)  { animation-duration: 4.3s; animation-delay: 1.2s; --jf-y: -16px; --jf-r:  1deg; }
+.jellyfish:nth-child(4)  { animation-duration: 6.0s; animation-delay: 0.4s; --jf-y: -11px; --jf-r: -2deg; }
+.jellyfish:nth-child(5)  { animation-duration: 5.1s; animation-delay: 1.6s; --jf-y: -13px; --jf-r:  3deg; }
+.jellyfish:nth-child(6)  { animation-duration: 4.6s; animation-delay: 0.9s; --jf-y: -15px; --jf-r: -1deg; }
+.jellyfish:nth-child(7)  { animation-duration: 5.8s; animation-delay: 0.2s; --jf-y: -10px; --jf-r:  2deg; }
+.jellyfish:nth-child(8)  { animation-duration: 4.1s; animation-delay: 1.9s; --jf-y: -17px; --jf-r: -3deg; }
+.jellyfish:nth-child(9)  { animation-duration: 5.4s; animation-delay: 0.6s; --jf-y: -12px; --jf-r:  1deg; }
+.jellyfish:nth-child(10) { animation-duration: 4.9s; animation-delay: 1.4s; --jf-y: -14px; --jf-r: -2deg; }
+.jellyfish:nth-child(11) { animation-duration: 5.2s; animation-delay: 0.3s; --jf-y: -11px; --jf-r:  3deg; }
+.jellyfish:nth-child(12) { animation-duration: 4.4s; animation-delay: 2.1s; --jf-y: -16px; --jf-r: -1deg; }
+.jellyfish:nth-child(13) { animation-duration: 6.1s; animation-delay: 0.8s; --jf-y: -10px; --jf-r:  2deg; }
+.jellyfish:nth-child(14) { animation-duration: 4.7s; animation-delay: 1.7s; --jf-y: -13px; --jf-r: -3deg; }
+.jellyfish:nth-child(15) { animation-duration: 5.6s; animation-delay: 0.5s; --jf-y: -15px; --jf-r:  1deg; }
+
+@keyframes jfFloat {
+    from { transform: translateY(0)                 rotate(0deg); }
+    to   { transform: translateY(var(--jf-y,-12px)) rotate(var(--jf-r, 2deg)); }
 }
 
 /* ---- FUNDO: Projetos ---- */
