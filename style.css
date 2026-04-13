@@ -155,10 +155,32 @@ header {
     padding-bottom: 220px;
 }
 
+
+.intro-greeting {
+    font-size: 1.4rem;
+    font-weight: 400;
+    opacity: 1;
+    margin-bottom: 4px;
+    animation: fadeIn 1.6s;
+    text-shadow: 0 1px 3px rgba(0, 30, 80, 0.50), 0 3px 12px rgba(0, 20, 60, 0.25);
+}
+
 h1 {
     font-size: 3rem;
     animation: fadeIn 2s;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    text-shadow:
+        0 1px 3px rgba(0, 30, 80, 0.55),
+        0 3px 14px rgba(0, 20, 60, 0.30);
+}
+
+.intro-role {
+    font-size: 1.3rem;
+    font-weight: 400;
+    opacity: 1;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    animation: fadeIn 2.2s;
+    text-shadow: 0 1px 3px rgba(0, 30, 80, 0.50), 0 3px 12px rgba(0, 20, 60, 0.25);
 }
 
 @keyframes fadeIn {
@@ -166,17 +188,6 @@ h1 {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.typing {
-    font-size: 1.3rem;
-    border-right: 2px solid rgba(255,255,255,0.8);
-    animation: blink 1s infinite;
-    min-height: 2rem;
-}
-
-@keyframes blink {
-    0%, 50%  { border-color: transparent; }
-    51%, 100% { border-color: rgba(255,255,255,0.8); }
-}
 
 .inner-header {
     position: relative;

@@ -333,18 +333,6 @@ document.addEventListener("DOMContentLoaded", function() {
         starsContainer.appendChild(star);
     }
 
-    // ── Typing effect ─────────────────────────────────────────
-    const typingText = document.querySelector('.typing');
-    const text = "Especialista em criar soluções incríveis!";
-    let index = 0;
-    function typeWriter() {
-        if (index < text.length) {
-            typingText.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeWriter, 100);
-        }
-    }
-    setTimeout(typeWriter, 2000);
 
     // ── Gerador de bolhas ─────────────────────────────────────
     function createBubbles(containerId, count) {
