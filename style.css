@@ -473,6 +473,103 @@ h2 {
     background: transparent;
 }
 
+/* ---- MÉDIA PROFUNDIDADE: Jornada ---- */
+#jornada {
+    background: transparent;
+}
+
+.timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 48px auto 0;
+    padding-left: 32px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom,
+        rgba(0,191,255,0.8) 0%,
+        rgba(0,150,200,0.5) 60%,
+        rgba(0,100,160,0.2) 100%);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-marker::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00BFFF;
+    border: 2px solid rgba(255,255,255,0.6);
+    box-shadow: 0 0 10px rgba(0,191,255,0.7);
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.timeline-year {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    margin-top: 6px;
+}
+
+.timeline-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 20px 24px;
+    flex: 1;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.timeline-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(0,191,255,0.35);
+}
+
+.timeline-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.timeline-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.70);
+    line-height: 1.6;
+    margin: 0;
+}
+
 .sobre-content {
     display: flex;
     flex-direction: column;

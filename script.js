@@ -352,6 +352,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     createBubbles('bubbles-sobre',    18);
+    createBubbles('bubbles-jornada',  12);
     createBubbles('bubbles-tech',      9);
     createBubbles('bubbles-projetos',  3);
 
