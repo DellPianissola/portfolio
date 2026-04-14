@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // ── Cor do Sol ────────────────────────────────────────
         const SUN_G = {
-            day:    ['#fffde7','#FFE033','#FFB700'],
+            day:    ['#FFE55C','#FFD000','#FFA800'],
             sunset: ['#ffe0b2','#FF8C00','#FF5000'],
             dusk:   ['#ffccaa','#FF5520','#CC1800'],
         };
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('.wave-2'),
             document.querySelector('.wave-3'),
         ];
-        const WAVE_DAY   = ['#003f6b','#0074A8','#009ACD','#00BFFF'].map(hx);
+        const WAVE_DAY   = ['#1a5580','#1a86bc','#009ACD','#00BFFF'].map(hx);
         const WAVE_NIGHT = ['#010c18','#011a2c','#022440','#03305a'].map(hx);
 
         // Gradiente do main: 5 stops em [0%, 20%, 50%, 80%, 100%]
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
         function applySunColor(k1, k2, t) {
             const s1 = parsedSun[k1], s2 = parsedSun[k2];
             const c  = s1.map((v,i) => v.map((n,j) => Math.round(n+(s2[i][j]-n)*t)));
-            sunEl.style.background = `radial-gradient(circle at 38% 38%,${toHex(c[0])},${toHex(c[1])} 45%,${toHex(c[2])} 100%)`;
+            sunEl.style.background = `radial-gradient(circle,${toHex(c[0])},${toHex(c[1])} 55%,${toHex(c[2])} 100%)`;
             const glow = c[1].join(',');
             sunEl.style.boxShadow  = `0 0 24px 8px rgba(${glow},.65),0 0 72px 26px rgba(${glow},.32),0 0 130px 55px rgba(${glow},.15)`;
         }
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
         cloud.classList.add('cloud');
 
         const width    = Math.random() * 140 + 80;   // 80–220px
-        const top      = Math.random() * 32 + 5;     // 5–37% do topo
+        const top      = Math.random() * 18 + 2;     // 2–20% do topo
         const duration = Math.random() * 40 + 55;    // 55–95s
         const opacity  = Math.random() * 0.25 + 0.65;
 
