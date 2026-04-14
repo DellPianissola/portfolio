@@ -53,10 +53,6 @@ nav ul {
     gap: 4px;
 }
 
-nav li {
-    margin: 0;
-}
-
 nav a {
     display: block;
     color: rgba(255,255,255,0.82);
@@ -159,7 +155,6 @@ header {
 .intro-greeting {
     font-size: 1.4rem;
     font-weight: 400;
-    opacity: 1;
     margin-bottom: 4px;
     animation: fadeIn 1.6s;
     text-shadow: 0 1px 3px rgba(0, 30, 80, 0.50), 0 3px 12px rgba(0, 20, 60, 0.25);
@@ -176,7 +171,6 @@ h1 {
 .intro-role {
     font-size: 1.3rem;
     font-weight: 400;
-    opacity: 1;
     margin-top: 4px;
     letter-spacing: 0.5px;
     animation: fadeIn 2.2s;
@@ -252,7 +246,6 @@ h1 {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 1;
     transition: opacity 1.8s ease;
 }
 
@@ -419,18 +412,6 @@ section {
     color: white;
 }
 
-.section-wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    line-height: 0;
-}
-
-.section-wave svg {
-    display: block;
-    width: 100%;
-}
 
 .container {
     position: relative;
@@ -446,14 +427,8 @@ h2 {
 }
 
 /* ---- RASO: Sobre mim ---- */
-#sobre {
-    background: transparent;
-}
 
 /* ---- MÉDIA PROFUNDIDADE: Jornada ---- */
-#jornada {
-    background: transparent;
-}
 
 .timeline {
     position: relative;
@@ -559,9 +534,6 @@ h2 {
 }
 
 /* ---- MEIA PROFUNDIDADE: Tecnologias ---- */
-#tecnologias {
-    background: transparent;
-}
 
 /* ── Águas-vivas SVG (Tecnologias) ───────────────────────── */
 .jellyfish-tank {
@@ -619,7 +591,6 @@ h2 {
     width: 88%;
 }
 
-.jf-small { font-size: 0.56rem !important; }
 
 .jf-text {
     fill: white;
@@ -649,9 +620,6 @@ h2 {
 }
 
 /* ---- FUNDO: Projetos ---- */
-#projetos {
-    background: transparent;
-}
 
 .projetos-grid {
     display: flex;
@@ -732,10 +700,6 @@ h2 {
 }
 
 /* ---- ABISSAL: Contato ---- */
-#contato {
-    background: transparent;
-}
-
 #contato h2 {
     color: #80d8ff;
     text-shadow: 0 0 20px rgba(0, 180, 255, 0.5);

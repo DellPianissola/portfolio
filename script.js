@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    function debounce(fn, delay) {
+        let timer;
+        return function() { clearTimeout(timer); timer = setTimeout(fn, delay); };
+    }
+
     // ── Smooth scrolling ──────────────────────────────────────
+    const navMenu  = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -14,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ── Hamburger menu (mobile) ───────────────────────────────
     const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', function() {
         navMenu.classList.toggle('open');
     });
@@ -181,10 +186,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         function sweep(el, from, to, dur, skyFn, colorFn, done) {
             const t0 = performance.now();
+            const o  = orb(); // lê offsetWidth/Height uma vez antes do loop
             (function frame(now) {
                 const raw   = Math.min((now-t0)/dur, 1);
                 const angle = from + (to-from)*eio(raw);
-                place(el, angle, orb(), true);
+                place(el, angle, o, true);
                 if (skyFn)   skyFn(raw);
                 if (colorFn) colorFn(raw);
                 if (raw < 1) requestAnimationFrame(frame);
@@ -266,10 +272,11 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         init();
-        window.addEventListener('resize', init);
+        window.addEventListener('resize', debounce(init, 120));
     })();
 
     // ── Nuvens (céu diurno) ───────────────────────────────────
+    const cloudsContainer = document.getElementById('clouds-container');
     let cloudsActive = false;
     let cloudSchedulerTimeout = null;
 
@@ -289,7 +296,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function launchCloud() {
         if (!cloudsActive) return;
-        const container = document.getElementById('clouds-container');
 
         const shape  = CLOUD_SHAPES[Math.floor(Math.random() * CLOUD_SHAPES.length)];
         const width  = Math.random() * 180 + 60;     // 60–240px
@@ -316,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {
         path.setAttribute('fill', 'rgba(255,255,255,0.92)');
         svg.appendChild(path);
 
-        container.appendChild(svg);
+        cloudsContainer.appendChild(svg);
         setTimeout(() => svg.remove(), (duration + 1) * 1000);
     }
 
@@ -338,8 +344,7 @@ document.addEventListener("DOMContentLoaded", function() {
         cloudsActive = false;
         clearTimeout(cloudSchedulerTimeout);
         cloudSchedulerTimeout = null;
-        const container = document.getElementById('clouds-container');
-        Array.from(container.children).forEach(cloud => {
+        Array.from(cloudsContainer.children).forEach(cloud => {
             cloud.style.transition = 'opacity 1.5s ease';
             cloud.style.opacity = '0';
             setTimeout(() => cloud.remove(), 1500);
@@ -366,44 +371,38 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    // ── Gerador de bolhas ─────────────────────────────────────
-    function createBubbles(containerId, count) {
+    // ── Gerador de elementos flutuantes (bolhas e partículas) ─
+    function createFloatingElements(containerId, count, className, applyStyles) {
         const container = document.getElementById(containerId);
         if (!container) return;
         for (let i = 0; i < count; i++) {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-            const size = Math.random() * 12 + 4;
-            bubble.style.width  = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left   = `${Math.random() * 100}%`;
-            bubble.style.animationDuration = `${Math.random() * 10 + 6}s`;
-            bubble.style.animationDelay    = `${Math.random() * 8}s`;
-            container.appendChild(bubble);
+            const el = document.createElement('div');
+            el.classList.add(className);
+            applyStyles(el.style);
+            container.appendChild(el);
         }
     }
 
-    createBubbles('bubbles-sobre',    18);
-    createBubbles('bubbles-jornada',  12);
-    createBubbles('bubbles-tech',      4);
-    createBubbles('bubbles-projetos',  3);
+    const bubbleStyles = s => {
+        const size = Math.random() * 12 + 4;
+        s.width             = `${size}px`;
+        s.height            = `${size}px`;
+        s.left              = `${Math.random() * 100}%`;
+        s.animationDuration = `${Math.random() * 10 + 6}s`;
+        s.animationDelay    = `${Math.random() * 8}s`;
+    };
 
-    // ── Partículas bioluminescentes (Contato) ─────────────────
-    function createParticles(containerId, count) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        for (let i = 0; i < count; i++) {
-            const p = document.createElement('div');
-            p.classList.add('particle');
-            p.style.left             = `${Math.random() * 100}%`;
-            p.style.top              = `${Math.random() * 100}%`;
-            p.style.animationDelay   = `${Math.random() * 3}s`;
-            p.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            container.appendChild(p);
-        }
-    }
+    createFloatingElements('bubbles-sobre',    18, 'bubble',   bubbleStyles);
+    createFloatingElements('bubbles-jornada',  12, 'bubble',   bubbleStyles);
+    createFloatingElements('bubbles-tech',      4, 'bubble',   bubbleStyles);
+    createFloatingElements('bubbles-projetos',  3, 'bubble',   bubbleStyles);
 
-    createParticles('particles-contato', 40);
+    createFloatingElements('particles-contato', 40, 'particle', s => {
+        s.left              = `${Math.random() * 100}%`;
+        s.top               = `${Math.random() * 100}%`;
+        s.animationDelay    = `${Math.random() * 3}s`;
+        s.animationDuration = `${Math.random() * 3 + 2}s`;
+    });
 
     // ── Timings individuais de cada água-viva (dur em s, delay em s, y em px, r em deg)
     const JF_TIMINGS = [
@@ -506,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     layoutJellyfish();
-    window.addEventListener('resize', layoutJellyfish);
+    window.addEventListener('resize', debounce(layoutJellyfish, 120));
 
     // ── Formulário de contato ─────────────────────────────────
     const form       = document.getElementById('contact-form');
