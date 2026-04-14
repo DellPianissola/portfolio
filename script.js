@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     requestAnimationFrame(() => document.body.classList.remove('no-transition'));
 
     toggleButton.addEventListener('click', function() {
+        if (window.celestialBusy) return;
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
         localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
@@ -43,10 +44,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const headerEl = document.querySelector('header');
         const overlay  = document.getElementById('sky-overlay');
 
-        const REST   = 58 * Math.PI / 180;
-        const SIZE   = 72;
-        const PHASE1 = 2200;
-        const PHASE2 = 900;
+        const REST    = 58 * Math.PI / 180;
+        const HORIZON = 22 * Math.PI / 180; // ângulo onde o astro toca o mar
+        const SIZE    = 72;
+        const PHASE1  = 2200;
+        const PHASE2  = 900;
 
         // ── Gradientes do céu (4 stops: 0%, 35%, 65%, 100%) ──
         const SKY = {
@@ -213,7 +215,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
+        window.celestialBusy = false;
+
         window.animateCelestial = function(toNight) {
+            window.celestialBusy = true;
             const o = orb();
 
             if (toNight) {
@@ -223,14 +228,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 overlay.style.transition = 'none';
                 overlay.style.opacity    = '0';
 
-                sweep(sunEl, REST, Math.PI, PHASE1, sunsetSkyAt, sunColorAt, function() {
+                sweep(sunEl, REST, Math.PI - HORIZON, PHASE1, sunsetSkyAt, sunColorAt, function() {
                     place(sunEl, REST-Math.PI, o, false);
                     resetSunStyle();
-                    place(moonEl, 0.01, o, true);
-                    sweep(moonEl, 0.01, REST, PHASE2, null, null, function() {
+                    place(moonEl, HORIZON, o, true);
+                    sweep(moonEl, HORIZON, REST, PHASE2, null, null, function() {
                         headerEl.style.background = '';
-                        resetWaveColors(); // entrega ao CSS (.dark-mode .wave-X)
+                        resetWaveColors();
                         handoffOverlay(true);
+                        window.celestialBusy = false;
                     });
                 });
             } else {
@@ -242,17 +248,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 overlay.style.opacity    = '0';
 
                 // FASE 1: Lua se põe — céu e ondas permanecem noite
-                sweep(moonEl, REST, Math.PI, PHASE1, null, null, function() {
+                sweep(moonEl, REST, Math.PI - HORIZON, PHASE1, null, null, function() {
                     place(moonEl, REST-Math.PI, o, false);
-                    place(sunEl, 0.01, o, true);
+                    place(sunEl, HORIZON, o, true);
 
                     // FASE 2: Sol nasce — céu e ondas amanhecem
-                    sweep(sunEl, 0.01, REST, PHASE2, sunriseSkyAt, null, function() {
+                    sweep(sunEl, HORIZON, REST, PHASE2, sunriseSkyAt, null, function() {
                         headerEl.style.background = '';
                         resetSunStyle();
-                        resetWaveColors(); // entrega ao CSS (sem .dark-mode)
+                        resetWaveColors();
                         handoffOverlay(false);
                         if (window.startClouds) window.startClouds();
+                        window.celestialBusy = false;
                     });
                 });
             }
