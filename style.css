@@ -621,10 +621,10 @@ h2 {
 .jf-svg { display: block; overflow: visible; }
 
 /* Tamanhos (viewBox 1:1 → quadrado) */
-.jf--xl .jf-svg { width: 210px; height: 210px; }
-.jf--lg .jf-svg { width: 160px; height: 160px; }
-.jf--md .jf-svg { width: 128px; height: 128px; }
-.jf--sm .jf-svg { width: 100px; height: 100px; }
+.jf--xl .jf-svg { width: 230px; height: 230px; }
+.jf--lg .jf-svg { width: 175px; height: 175px; }
+.jf--md .jf-svg { width: 145px; height: 145px; }
+.jf--sm .jf-svg { width: 118px; height: 118px; }
 
 /* Label centrado no sino — cy=80 em 200px = 40% */
 .jf-label {
@@ -643,6 +643,15 @@ h2 {
 }
 
 .jf-small { font-size: 0.56rem !important; }
+
+.jf-text {
+    fill: white;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 17px;
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.8));
+    pointer-events: none;
+}
 
 /* SVG internos via currentColor */
 .jf-body           { fill: currentColor; }
