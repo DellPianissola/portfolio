@@ -405,6 +405,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     createParticles('particles-contato', 40);
 
+    // ── Timings individuais de cada água-viva (dur em s, delay em s, y em px, r em deg)
+    const JF_TIMINGS = [
+        { dur: 4.8, delay: 0.0, y: -14, r:  2 },
+        { dur: 5.5, delay: 0.7, y: -10, r: -3 },
+        { dur: 4.3, delay: 1.2, y: -16, r:  1 },
+        { dur: 6.0, delay: 0.4, y: -11, r: -2 },
+        { dur: 5.1, delay: 1.6, y: -13, r:  3 },
+        { dur: 4.6, delay: 0.9, y: -15, r: -1 },
+        { dur: 5.8, delay: 0.2, y: -10, r:  2 },
+        { dur: 4.1, delay: 1.9, y: -17, r: -3 },
+        { dur: 5.4, delay: 0.6, y: -12, r:  1 },
+        { dur: 4.9, delay: 1.4, y: -14, r: -2 },
+        { dur: 5.2, delay: 0.3, y: -11, r:  3 },
+        { dur: 4.4, delay: 2.1, y: -16, r: -1 },
+        { dur: 6.1, delay: 0.8, y: -10, r:  2 },
+        { dur: 4.7, delay: 1.7, y: -13, r: -3 },
+        { dur: 5.6, delay: 0.5, y: -15, r:  1 },
+    ];
+
     // ── Injeta SVG individual em cada água-viva (animações dessincronizadas)
     function buildJfLabel(label) {
         const words = label.split(' ');
@@ -459,6 +478,13 @@ document.addEventListener("DOMContentLoaded", function() {
         svg.setAttribute('viewBox', '0 0 200 200');
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         svg.innerHTML = buildJfSVG(begin, dur, label);
+
+        const t = JF_TIMINGS[i % JF_TIMINGS.length];
+        const jf = svg.closest('.jellyfish');
+        jf.style.animationDuration = `${t.dur}s`;
+        jf.style.animationDelay    = `${t.delay}s`;
+        jf.style.setProperty('--jf-y', `${t.y}px`);
+        jf.style.setProperty('--jf-r', `${t.r}deg`);
     });
 
     // ── Layout Phyllotaxis (espiral de girassol) das águas-vivas
@@ -483,13 +509,36 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('resize', layoutJellyfish);
 
     // ── Formulário de contato ─────────────────────────────────
-    const form = document.getElementById('contact-form');
+    const form       = document.getElementById('contact-form');
+    const submitBtn  = document.getElementById('form-submit');
+    const statusEl   = document.getElementById('form-status');
+
+    function setFormState(state, message) {
+        statusEl.textContent  = message;
+        statusEl.className    = state; // '', 'success' ou 'error'
+        submitBtn.disabled    = state === 'loading';
+        submitBtn.textContent = state === 'loading' ? 'Enviando...' : 'Enviar';
+    }
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const name  = form.querySelector('input[type="text"]').value;
-        const email = form.querySelector('input[type="email"]').value;
-        alert(`Obrigado, ${name}! Sua mensagem foi recebida. Entrarei em contato pelo e-mail ${email} em breve.`);
-        form.reset();
+        setFormState('loading', '');
+
+        // ── Integrar EmailJS aqui ─────────────────────────────
+        // emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', form)
+        //     .then(() => {
+        //         setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+        //         form.reset();
+        //     })
+        //     .catch(() => {
+        //         setFormState('error', 'Erro ao enviar. Tente novamente ou use o e-mail direto.');
+        //     });
+
+        // Placeholder até integração com EmailJS
+        setTimeout(() => {
+            setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+            form.reset();
+        }, 800);
     });
 
 });

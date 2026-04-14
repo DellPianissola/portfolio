@@ -642,22 +642,6 @@ h2 {
 .jf-orbit:nth-child(5n+4) .jellyfish { color: rgb(0,220,175);   filter: drop-shadow(0 0 10px rgba(0,220,175,0.7));   }
 .jf-orbit:nth-child(5n+5) .jellyfish { color: rgb(80,145,255);  filter: drop-shadow(0 0 10px rgba(80,145,255,0.7));  }
 
-/* Timings individuais */
-.jf-orbit:nth-child(1)  .jellyfish { animation-duration: 4.8s; animation-delay: 0.0s; --jf-y: -14px; --jf-r:  2deg; }
-.jf-orbit:nth-child(2)  .jellyfish { animation-duration: 5.5s; animation-delay: 0.7s; --jf-y: -10px; --jf-r: -3deg; }
-.jf-orbit:nth-child(3)  .jellyfish { animation-duration: 4.3s; animation-delay: 1.2s; --jf-y: -16px; --jf-r:  1deg; }
-.jf-orbit:nth-child(4)  .jellyfish { animation-duration: 6.0s; animation-delay: 0.4s; --jf-y: -11px; --jf-r: -2deg; }
-.jf-orbit:nth-child(5)  .jellyfish { animation-duration: 5.1s; animation-delay: 1.6s; --jf-y: -13px; --jf-r:  3deg; }
-.jf-orbit:nth-child(6)  .jellyfish { animation-duration: 4.6s; animation-delay: 0.9s; --jf-y: -15px; --jf-r: -1deg; }
-.jf-orbit:nth-child(7)  .jellyfish { animation-duration: 5.8s; animation-delay: 0.2s; --jf-y: -10px; --jf-r:  2deg; }
-.jf-orbit:nth-child(8)  .jellyfish { animation-duration: 4.1s; animation-delay: 1.9s; --jf-y: -17px; --jf-r: -3deg; }
-.jf-orbit:nth-child(9)  .jellyfish { animation-duration: 5.4s; animation-delay: 0.6s; --jf-y: -12px; --jf-r:  1deg; }
-.jf-orbit:nth-child(10) .jellyfish { animation-duration: 4.9s; animation-delay: 1.4s; --jf-y: -14px; --jf-r: -2deg; }
-.jf-orbit:nth-child(11) .jellyfish { animation-duration: 5.2s; animation-delay: 0.3s; --jf-y: -11px; --jf-r:  3deg; }
-.jf-orbit:nth-child(12) .jellyfish { animation-duration: 4.4s; animation-delay: 2.1s; --jf-y: -16px; --jf-r: -1deg; }
-.jf-orbit:nth-child(13) .jellyfish { animation-duration: 6.1s; animation-delay: 0.8s; --jf-y: -10px; --jf-r:  2deg; }
-.jf-orbit:nth-child(14) .jellyfish { animation-duration: 4.7s; animation-delay: 1.7s; --jf-y: -13px; --jf-r: -3deg; }
-.jf-orbit:nth-child(15) .jellyfish { animation-duration: 5.6s; animation-delay: 0.5s; --jf-y: -15px; --jf-r:  1deg; }
 
 @keyframes jfFloat {
     from { transform: translateY(0)                 rotate(0deg); }
@@ -819,6 +803,22 @@ h2 {
     background: rgba(0, 229, 255, 0.1);
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
 }
+
+.btn-abyss:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#form-status {
+    min-height: 1.4em;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: opacity 0.3s;
+}
+
+#form-status.success { color: #00e5ff; }
+#form-status.error   { color: #ff6b6b; }
 
 /* ============================================================
    BOLHAS
