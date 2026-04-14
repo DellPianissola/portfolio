@@ -293,31 +293,8 @@ h1 {
 
 .cloud {
     position: absolute;
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 50px;
     animation: driftCloud linear forwards;
-}
-
-.cloud::before,
-.cloud::after {
-    content: '';
-    position: absolute;
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 50%;
-}
-
-.cloud::before {
-    width: 55%;
-    height: 160%;
-    top: -55%;
-    left: 12%;
-}
-
-.cloud::after {
-    width: 42%;
-    height: 140%;
-    top: -40%;
-    right: 14%;
+    overflow: visible;
 }
 
 @keyframes driftCloud {
