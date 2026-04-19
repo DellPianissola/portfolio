@@ -849,80 +849,129 @@ h2 {
 
 .projetos-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 10px;
-}
-
-/* Vigia de submarino */
-.projeto {
-    flex: 0 0 280px;
-}
-
-.porthole-ring {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    background: rgba(0, 20, 40, 0.85);
-    border: 10px solid #4a7a90;
-    box-shadow:
-        0 0 0 4px #2a5a70,
-        0 0 0 7px #3a6a80,
-        inset 0 0 30px rgba(0, 0, 0, 0.6),
-        0 0 25px rgba(0, 180, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: box-shadow 0.4s, transform 0.4s;
-    overflow: hidden;
-}
-
-.porthole-ring:hover {
-    transform: scale(1.05);
-    box-shadow:
-        0 0 0 4px #2a5a70,
-        0 0 0 7px #3a6a80,
-        inset 0 0 30px rgba(0, 0, 0, 0.6),
-        0 0 40px rgba(0, 200, 255, 0.45);
-}
-
-.porthole-content {
-    padding: 20px;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    gap: 24px;
+    margin-top: 16px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.porthole-content h3 {
-    font-size: 1.1rem;
-    color: #a8ecff;
+.projeto-card {
+    position: relative;
+    background: rgba(0, 20, 50, 0.55);
+    border: 1px solid rgba(0, 180, 255, 0.15);
+    border-left: 3px solid rgba(0, 229, 255, 0.5);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: border-left-color 0.3s, transform 0.25s, background 0.3s;
+}
+
+.projeto-card:hover {
+    border-left-color: #00e5ff;
+    background: rgba(0, 30, 65, 0.7);
+    transform: translateX(5px);
+}
+
+/* Círculo decorativo de sonar no fundo */
+.projeto-ping {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 229, 255, 0.07);
+    pointer-events: none;
+}
+
+.projeto-ping::before,
+.projeto-ping::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 229, 255, 0.05);
+}
+
+.projeto-ping::after {
+    inset: 50px;
+    border-color: rgba(0, 229, 255, 0.04);
+}
+
+.projeto-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.projeto-id {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: rgba(0, 229, 255, 0.5);
     letter-spacing: 1px;
 }
 
-.porthole-content p {
-    font-size: 0.85rem;
-    color: rgba(200, 240, 255, 0.8);
-    line-height: 1.5;
+.projeto-tipo {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(0, 229, 255, 0.55);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.btn-deep {
+.projeto-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e8f7ff;
+    margin-bottom: 10px;
+}
+
+.projeto-card p {
+    font-size: 0.88rem;
+    color: rgba(200, 235, 255, 0.7);
+    line-height: 1.65;
+    margin-bottom: 18px;
+    max-width: 520px;
+}
+
+.projeto-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.projeto-stack span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(0, 229, 255, 0.8);
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 20px;
+    padding: 3px 12px;
+    letter-spacing: 0.3px;
+}
+
+.btn-projeto {
     display: inline-block;
-    background: transparent;
-    color: #00e5ff;
-    border: 1px solid #00e5ff;
-    padding: 8px 18px;
-    border-radius: 50px;
-    text-decoration: none;
     font-size: 0.85rem;
-    margin-top: 5px;
-    transition: background 0.3s, box-shadow 0.3s;
+    font-weight: 600;
+    color: #00e5ff;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: letter-spacing 0.2s, opacity 0.2s;
+    opacity: 0.8;
 }
 
-.btn-deep:hover {
-    background: rgba(0, 229, 255, 0.15);
-    box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+.btn-projeto:hover {
+    letter-spacing: 0.8px;
+    opacity: 1;
 }
 
 /* ---- ABISSAL: Contato ---- */
