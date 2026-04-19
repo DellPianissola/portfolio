@@ -587,94 +587,165 @@ h2 {
 
 .timeline {
     position: relative;
-    max-width: 700px;
+    max-width: 680px;
     margin: 48px auto 0;
-    padding-left: 32px;
+    padding-left: 80px;
 }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 2px;
-    background: linear-gradient(to bottom,
-        rgba(0,191,255,0.8) 0%,
-        rgba(0,150,200,0.5) 60%,
-        rgba(0,100,160,0.2) 100%);
-    border-radius: 2px;
-}
+/* linha desenhada por cada item, de dot a dot */
 
 .timeline-item {
     position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
 }
 
 .timeline-item:last-child {
     margin-bottom: 0;
 }
 
-.timeline-marker {
+/* Linha de baixo: do dot atual até o topo do próximo dot */
+.timeline-item:not(:last-child)::after {
+    content: '';
     position: absolute;
-    left: -42px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    left: -49px;
+    top: 50%;
+    height: calc(50% + 36px);
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(0, 191, 255, 0.5);
 }
 
-.timeline-marker::before {
+/* Linha de cima: do topo do item até o dot */
+.timeline-item:not(:first-child)::before {
     content: '';
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #00BFFF;
-    border: 2px solid rgba(255,255,255,0.6);
-    box-shadow: 0 0 10px rgba(0,191,255,0.7);
-    margin-top: 6px;
-    flex-shrink: 0;
+    position: absolute;
+    left: -49px;
+    top: 0;
+    height: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(0, 191, 255, 0.5);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -49px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+    z-index: 2;
 }
 
 .timeline-year {
-    font-size: 0.78rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.5px;
+    color: #00e5ff;
+    letter-spacing: 0.3px;
     white-space: nowrap;
-    margin-top: 6px;
+    line-height: 1;
+    min-width: 30px;
+}
+
+.timeline-year:first-child {
+    text-align: right;
+}
+
+.timeline-year:last-child {
+    text-align: left;
+}
+
+.timeline-year--atual {
+    color: rgba(0, 229, 255, 0.55);
+    font-style: italic;
+}
+
+.timeline-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #00BFFF;
+    border: 2px solid rgba(255,255,255,0.75);
+    box-shadow: 0 0 10px rgba(0,191,255,0.9);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-dot--active {
+    background: #00e5ff;
+    box-shadow: 0 0 0 0 rgba(0,229,255,0.6);
+    animation: dotPulse 2s ease-out infinite;
+}
+
+@keyframes dotPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(0,229,255,0.6); }
+    70%  { box-shadow: 0 0 0 10px rgba(0,229,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); }
 }
 
 .timeline-card {
-    background: rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.06);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid rgba(0,191,255,0.4);
     border-radius: 16px;
     padding: 20px 24px;
-    flex: 1;
-    transition: background 0.3s, border-color 0.3s;
+    text-align: left;
+    transition: background 0.3s, border-color 0.3s, transform 0.25s;
 }
 
 .timeline-card:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(0,191,255,0.35);
+    background: rgba(255,255,255,0.1);
+    border-left-color: rgba(0,229,255,0.8);
+    transform: translateX(4px);
+}
+
+.timeline-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+    margin-bottom: 12px;
+}
+
+.timeline-badge--edu {
+    background: rgba(100, 200, 255, 0.15);
+    color: #80d8ff;
+    border: 1px solid rgba(100,200,255,0.3);
+}
+
+.timeline-badge--work {
+    background: rgba(100, 255, 180, 0.12);
+    color: #80ffca;
+    border: 1px solid rgba(100,255,180,0.3);
 }
 
 .timeline-card h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: white;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+}
+
+.timeline-role {
+    font-size: 0.85rem;
+    color: rgba(0, 229, 255, 0.8);
+    margin-bottom: 10px !important;
+    font-weight: 500;
 }
 
 .timeline-card p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.70);
-    line-height: 1.6;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.65;
     margin: 0;
+    text-align: left;
 }
 
 .sobre-content {
