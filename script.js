@@ -507,6 +507,23 @@ document.addEventListener("DOMContentLoaded", function() {
     layoutJellyfish();
     window.addEventListener('resize', debounce(layoutJellyfish, 120));
 
+    // ── Navbar: seção ativa ───────────────────────────────────
+    const sections    = document.querySelectorAll('header[id], section[id]');
+    const navAnchors  = document.querySelectorAll('nav a[href^="#"]');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navAnchors.forEach(a => {
+                    a.classList.toggle('nav-active', a.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => observer.observe(s));
+
     // ── Formulário de contato ─────────────────────────────────
     const form       = document.getElementById('contact-form');
     const submitBtn  = document.getElementById('form-submit');
