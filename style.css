@@ -605,25 +605,6 @@ h2 {
     background: rgba(255, 255, 255, 0.13);
 }
 
-.sobre-card-top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-}
-
-.sobre-card-icon {
-    font-size: 1.6rem;
-    line-height: 1;
-    flex-shrink: 0;
-}
-
-.sobre-card-bar {
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(to right, rgba(0, 229, 255, 0.6), transparent);
-    border-radius: 2px;
-}
 
 .sobre-card strong {
     font-size: 1rem;
@@ -868,14 +849,19 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-weight: 700;
-    font-size: 0.78rem;
+    font-weight: 800;
+    font-size: 1.1rem;
     text-align: center;
-    line-height: 1.25;
+    line-height: 1.2;
     pointer-events: none;
-    text-shadow: 0 0 8px rgba(0,0,0,0.6);
-    width: 88%;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7);
+    width: 92%;
 }
+
+.jf--xl .jf-label { font-size: 1.6rem; }
+.jf--lg .jf-label { font-size: 1.5rem; }
+.jf--md .jf-label { font-size: 1.5rem; }
+.jf--sm .jf-label { font-size: 1.5rem; }
 
 
 .jf-text {
