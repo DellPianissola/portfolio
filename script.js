@@ -493,7 +493,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const orbits = tank.querySelectorAll('.jf-orbit');
         const n      = orbits.length;
         const maxR   = Math.min(tank.offsetWidth * 0.44, 380);
-        tank.style.height = (maxR * 2 + 260) + 'px';
+        const tankH  = maxR * 2 + 260;
+        const section = tank.closest('section');
+        const sectionH = section ? section.offsetHeight : tankH;
+        tank.style.height = tankH + 'px';
+        tank.style.top    = Math.max(0, (sectionH - tankH) / 2) + 'px';
 
         const goldenAngle = Math.PI * (3 - Math.sqrt(5)); // ≈ 137.5°
         orbits.forEach((el, i) => {
@@ -525,13 +529,38 @@ document.addEventListener("DOMContentLoaded", function() {
     sections.forEach(s => observer.observe(s));
 
     // ── Formulário de contato ─────────────────────────────────
-    const form       = document.getElementById('contact-form');
-    const submitBtn  = document.getElementById('form-submit');
-    const statusEl   = document.getElementById('form-status');
+    // ── Copiar e-mail ─────────────────────────────────────────
+    const copyBtn   = document.getElementById('copy-email');
+    const copyLabel = document.getElementById('copy-email-label');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('Dell.pianissola@outlook.com').then(() => {
+                copyLabel.textContent = 'Copiado!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyLabel.textContent = 'Email';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    }
+
+    // ── EmailJS ───────────────────────────────────────────────
+    const EMAILJS_PUBLIC_KEY  = 'pXZvi8C6J8LISowM6';
+    const EMAILJS_SERVICE_ID  = 'service_gz5rcy7';
+    const EMAILJS_TEMPLATE_ID = 'template_3rz9m2p';
+
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
+    const form      = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('form-submit');
+    const statusEl  = document.getElementById('form-status');
 
     function setFormState(state, message) {
         statusEl.textContent  = message;
-        statusEl.className    = state; // '', 'success' ou 'error'
+        statusEl.className    = state;
         submitBtn.disabled    = state === 'loading';
         submitBtn.textContent = state === 'loading' ? 'Enviando...' : 'Enviar';
     }
@@ -540,21 +569,14 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
         setFormState('loading', '');
 
-        // ── Integrar EmailJS aqui ─────────────────────────────
-        // emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', form)
-        //     .then(() => {
-        //         setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
-        //         form.reset();
-        //     })
-        //     .catch(() => {
-        //         setFormState('error', 'Erro ao enviar. Tente novamente ou use o e-mail direto.');
-        //     });
-
-        // Placeholder até integração com EmailJS
-        setTimeout(() => {
-            setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
-            form.reset();
-        }, 800);
+        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+            .then(() => {
+                setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+                form.reset();
+            })
+            .catch(() => {
+                setFormState('error', 'Erro ao enviar. Tente novamente ou use o e-mail direto.');
+            });
     });
 
 });
