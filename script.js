@@ -669,21 +669,28 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // Calcula limites Y para definir a altura do tank (tentáculos descem)
-        let minY = Infinity, maxY = -Infinity;
+        // Recentra o cluster de cabeças no (0,0) para que fique no meio do tank
+        let mx = 0, my = 0;
+        for (let i = 0; i < n; i++) { mx += positions[i].x; my += positions[i].y; }
+        mx /= n; my /= n;
+        for (let i = 0; i < n; i++) { positions[i].x -= mx; positions[i].y -= my; }
+
+        // Limites: cabeças (só corpo) e alcance dos tentáculos (descem)
+        let headMinY = 0, tentMaxY = 0;
         for (let i = 0; i < n; i++) {
             const r = headRadii[i];
-            minY = Math.min(minY, positions[i].y - r);
-            maxY = Math.max(maxY, positions[i].y + r * 2.4); // espaço para os tentáculos
+            headMinY = Math.min(headMinY, positions[i].y - r);
+            tentMaxY = Math.max(tentMaxY, positions[i].y + r * 2.4);
         }
-        const yCenter = (minY + maxY) / 2;
-        const tankH   = Math.max(maxY - minY + 80, 380);
+        // Tank simétrico em torno do centroide das cabeças: cabeças ficam
+        // no meio vertical do tank, tentáculos cabem abaixo.
+        const halfTank = Math.max(-headMinY, tentMaxY) + 40;
+        const tankH    = Math.max(halfTank * 2, 380);
 
         const section  = tank.closest('section');
-        // Se o tank precisa de mais altura do que a seção tem, expande a seção
         if (section) {
-            const needed = tankH + 160; // + padding vertical
-            section.style.minHeight = Math.max(needed, window.innerHeight * 1.1) + 'px';
+            const needed = tankH + 80;
+            section.style.minHeight = Math.max(needed, window.innerHeight) + 'px';
         }
         const sectionH = section ? section.offsetHeight : tankH;
         tank.style.height = tankH + 'px';
@@ -691,7 +698,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         orbits.forEach((el, i) => {
             const x = positions[i].x;
-            const y = positions[i].y - yCenter;
+            const y = positions[i].y;
             el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
         });
     }

@@ -545,8 +545,12 @@ section {
 }
 
 #tecnologias {
-    min-height: 110vh;
-    padding: 120px 20px 120px;
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+}
+
+#contato {
+    padding: 100px 20px 100px;
 }
 
 #jornada {
