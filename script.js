@@ -486,25 +486,98 @@ document.addEventListener("DOMContentLoaded", function() {
         jf.style.setProperty('--jf-r', `${t.r}deg`);
     });
 
-    // ── Layout Phyllotaxis (espiral de girassol) das águas-vivas
+    // ── Layout das águas-vivas: phyllotaxis + relaxamento de colisões
+    // Garante que as "cabeças" nunca se sobreponham. Se a largura da tela
+    // não comporta lateralmente, expande verticalmente.
     function layoutJellyfish() {
         const tank = document.querySelector('.jellyfish-tank');
         if (!tank) return;
         const orbits = tank.querySelectorAll('.jf-orbit');
-        const n      = orbits.length;
-        const maxR   = Math.min(tank.offsetWidth * 0.44, 380);
-        const tankH  = maxR * 2 + 260;
-        const section = tank.closest('section');
+        const n = orbits.length;
+        if (n === 0) return;
+
+        const tankW   = tank.offsetWidth;
+        const sidePad = 12;
+        const halfW   = tankW / 2 - sidePad;
+
+        // Raio aproximado da cabeça por classe de tamanho
+        // (body é ellipse rx=60 num viewBox 200; rendered ≈ 60 * width/200)
+        const SIZE_W = { 'jf--sm': 118, 'jf--md': 145, 'jf--lg': 175, 'jf--xl': 230 };
+        const headRadii = Array.from(orbits).map(orb => {
+            const jf = orb.querySelector('.jellyfish');
+            for (const cls in SIZE_W) {
+                if (jf && jf.classList.contains(cls)) {
+                    return (SIZE_W[cls] * 60 / 200) + 6; // raio + padding
+                }
+            }
+            return 50;
+        });
+
+        // Posição inicial: phyllotaxis (espiral de girassol)
+        const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+        const baseR = Math.min(halfW, 320);
+        const positions = [];
+        for (let i = 0; i < n; i++) {
+            const a = i * goldenAngle;
+            const t = Math.sqrt((i + 0.5) / n);
+            positions.push({
+                x: Math.cos(a) * t * baseR,
+                y: Math.sin(a) * t * baseR
+            });
+        }
+
+        // Relaxamento iterativo: empurra pares sobrepostos
+        const ITERS = 120;
+        for (let iter = 0; iter < ITERS; iter++) {
+            for (let i = 0; i < n; i++) {
+                for (let j = i + 1; j < n; j++) {
+                    const dx = positions[j].x - positions[i].x;
+                    const dy = positions[j].y - positions[i].y;
+                    const minD = headRadii[i] + headRadii[j];
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < minD * minD) {
+                        const d = Math.sqrt(d2) || 0.01;
+                        const overlap = (minD - d) / 2;
+                        const ux = dx / d;
+                        const uy = dy / d;
+                        positions[i].x -= ux * overlap;
+                        positions[i].y -= uy * overlap;
+                        positions[j].x += ux * overlap;
+                        positions[j].y += uy * overlap;
+                    }
+                }
+            }
+            // Restringe X: nunca sai da largura do tank
+            for (let i = 0; i < n; i++) {
+                const r = headRadii[i];
+                if (positions[i].x - r < -halfW) positions[i].x = -halfW + r;
+                if (positions[i].x + r >  halfW) positions[i].x =  halfW - r;
+            }
+        }
+
+        // Calcula limites Y para definir a altura do tank (tentáculos descem)
+        let minY = Infinity, maxY = -Infinity;
+        for (let i = 0; i < n; i++) {
+            const r = headRadii[i];
+            minY = Math.min(minY, positions[i].y - r);
+            maxY = Math.max(maxY, positions[i].y + r * 2.4); // espaço para os tentáculos
+        }
+        const yCenter = (minY + maxY) / 2;
+        const tankH   = Math.max(maxY - minY + 80, 380);
+
+        const section  = tank.closest('section');
+        // Se o tank precisa de mais altura do que a seção tem, expande a seção
+        if (section) {
+            const needed = tankH + 160; // + padding vertical
+            section.style.minHeight = Math.max(needed, window.innerHeight * 1.1) + 'px';
+        }
         const sectionH = section ? section.offsetHeight : tankH;
         tank.style.height = tankH + 'px';
         tank.style.top    = Math.max(0, (sectionH - tankH) / 2) + 'px';
 
-        const goldenAngle = Math.PI * (3 - Math.sqrt(5)); // ≈ 137.5°
         orbits.forEach((el, i) => {
-            const angle = i * goldenAngle;
-            const dist  = Math.sqrt((i + 0.5) / n) * maxR;
-            const x = Math.cos(angle) * dist;
-            const y = Math.sin(angle) * dist;
+            const x = positions[i].x;
+            const y = positions[i].y - yCenter;
             el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
         });
     }
