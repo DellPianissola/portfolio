@@ -608,6 +608,36 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!swapped) break;
         }
 
+        // Troca explícita das regiões rosa (py) e verde (ops): 2-opt com
+        // centroides-alvo trocados entre esses dois grupos.
+        const PY = COLOR_CLASSES.indexOf('jf--py');
+        const OPS = COLOR_CLASSES.indexOf('jf--ops');
+        const currentCent = recomputeCentroids();
+        if (currentCent[PY] && currentCent[OPS]) {
+            const targetCent = {};
+            for (const g in currentCent) targetCent[g] = currentCent[g];
+            targetCent[PY]  = currentCent[OPS];
+            targetCent[OPS] = currentCent[PY];
+            for (let pass = 0; pass < 10; pass++) {
+                let swapped = false;
+                for (let i = 0; i < n; i++) {
+                    for (let j = i + 1; j < n; j++) {
+                        if (groupOf[i] === groupOf[j]) continue;
+                        const ti = targetCent[groupOf[i]], tj = targetCent[groupOf[j]];
+                        if (!ti || !tj) continue;
+                        const si = slots[itemSlot[i]], sj = slots[itemSlot[j]];
+                        const before = (si.x-ti.x)**2 + (si.y-ti.y)**2 + (sj.x-tj.x)**2 + (sj.y-tj.y)**2;
+                        const after  = (sj.x-ti.x)**2 + (sj.y-ti.y)**2 + (si.x-tj.x)**2 + (si.y-tj.y)**2;
+                        if (after < before - 1) {
+                            [itemSlot[i], itemSlot[j]] = [itemSlot[j], itemSlot[i]];
+                            swapped = true;
+                        }
+                    }
+                }
+                if (!swapped) break;
+            }
+        }
+
         const positions = itemSlot.map(s => ({ x: slots[s].x, y: slots[s].y }));
 
         // Relaxamento: só repulsão de sobreposição
