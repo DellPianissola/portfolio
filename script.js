@@ -513,21 +513,105 @@ document.addEventListener("DOMContentLoaded", function() {
             return 50;
         });
 
-        // Posição inicial: phyllotaxis (espiral de girassol)
+        // Gera slots da espiral phyllotaxis (preserva o efeito visual)
         const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-        const baseR = Math.min(halfW, 320);
-        const positions = [];
+        const baseR       = Math.min(halfW, 320);
+        const slots = [];
         for (let i = 0; i < n; i++) {
             const a = i * goldenAngle;
             const t = Math.sqrt((i + 0.5) / n);
-            positions.push({
-                x: Math.cos(a) * t * baseR,
-                y: Math.sin(a) * t * baseR
-            });
+            slots.push({ x: Math.cos(a) * t * baseR, y: Math.sin(a) * t * baseR });
         }
 
-        // Relaxamento iterativo: empurra pares sobrepostos
-        const ITERS = 120;
+        // Atribui orbits a slots agrupando por cor: cada item vai pro
+        // slot livre mais próximo do centroide dos já colocados da mesma cor.
+        const COLOR_CLASSES = ['jf--js', 'jf--py', 'jf--jvm', 'jf--web', 'jf--ops'];
+        const groupOf = Array.from(orbits).map(orb => {
+            const jf = orb.querySelector('.jellyfish');
+            const idx = COLOR_CLASSES.findIndex(c => jf && jf.classList.contains(c));
+            return idx < 0 ? COLOR_CLASSES.length : idx;
+        });
+        // Ordena processamento por grupo (grupos maiores primeiro, ordem estável)
+        const groupSizes = {};
+        groupOf.forEach(g => { groupSizes[g] = (groupSizes[g] || 0) + 1; });
+        const order = Array.from({ length: n }, (_, i) => i)
+            .sort((a, b) => (groupSizes[groupOf[b]] - groupSizes[groupOf[a]]) || (groupOf[a] - groupOf[b]) || (a - b));
+
+        const slotTaken = new Array(n).fill(false);
+        const itemSlot  = new Array(n).fill(-1);
+        const centroids = {}; // { group: {x,y,count} }
+
+        for (const i of order) {
+            const g = groupOf[i];
+            let bestSlot = -1;
+            if (centroids[g]) {
+                const cx = centroids[g].x / centroids[g].count;
+                const cy = centroids[g].y / centroids[g].count;
+                let bestD = Infinity;
+                for (let s = 0; s < n; s++) {
+                    if (slotTaken[s]) continue;
+                    const dx = slots[s].x - cx, dy = slots[s].y - cy;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < bestD) { bestD = d2; bestSlot = s; }
+                }
+            } else {
+                // Primeiro item do grupo: pega o slot livre mais central
+                let bestD = Infinity;
+                for (let s = 0; s < n; s++) {
+                    if (slotTaken[s]) continue;
+                    const d2 = slots[s].x * slots[s].x + slots[s].y * slots[s].y;
+                    if (d2 < bestD) { bestD = d2; bestSlot = s; }
+                }
+            }
+            slotTaken[bestSlot] = true;
+            itemSlot[i] = bestSlot;
+            const c = centroids[g] || (centroids[g] = { x: 0, y: 0, count: 0 });
+            c.x += slots[bestSlot].x;
+            c.y += slots[bestSlot].y;
+            c.count++;
+        }
+
+        // Refino: troca pares entre grupos diferentes se reduz soma das
+        // distâncias ao centroide da própria cor (elimina "órfãos").
+        function recomputeCentroids() {
+            const c = {};
+            for (let i = 0; i < n; i++) {
+                const g = groupOf[i], s = slots[itemSlot[i]];
+                const e = c[g] || (c[g] = { x: 0, y: 0, count: 0 });
+                e.x += s.x; e.y += s.y; e.count++;
+            }
+            for (const g in c) { c[g].x /= c[g].count; c[g].y /= c[g].count; }
+            return c;
+        }
+        function distToCentroid(i, cent) {
+            const c = cent[groupOf[i]];
+            const s = slots[itemSlot[i]];
+            const dx = s.x - c.x, dy = s.y - c.y;
+            return dx * dx + dy * dy;
+        }
+        for (let pass = 0; pass < 6; pass++) {
+            let swapped = false;
+            const cent = recomputeCentroids();
+            for (let i = 0; i < n; i++) {
+                for (let j = i + 1; j < n; j++) {
+                    if (groupOf[i] === groupOf[j]) continue;
+                    const ci = cent[groupOf[i]], cj = cent[groupOf[j]];
+                    const si = slots[itemSlot[i]], sj = slots[itemSlot[j]];
+                    const before = (si.x-ci.x)**2 + (si.y-ci.y)**2 + (sj.x-cj.x)**2 + (sj.y-cj.y)**2;
+                    const after  = (sj.x-ci.x)**2 + (sj.y-ci.y)**2 + (si.x-cj.x)**2 + (si.y-cj.y)**2;
+                    if (after < before - 1) {
+                        [itemSlot[i], itemSlot[j]] = [itemSlot[j], itemSlot[i]];
+                        swapped = true;
+                    }
+                }
+            }
+            if (!swapped) break;
+        }
+
+        const positions = itemSlot.map(s => ({ x: slots[s].x, y: slots[s].y }));
+
+        // Relaxamento: só repulsão de sobreposição
+        const ITERS = 160;
         for (let iter = 0; iter < ITERS; iter++) {
             for (let i = 0; i < n; i++) {
                 for (let j = i + 1; j < n; j++) {
@@ -547,7 +631,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
             }
-            // Restringe X: nunca sai da largura do tank
+            // 3) Restringe X: nunca sai da largura do tank
             for (let i = 0; i < n; i++) {
                 const r = headRadii[i];
                 if (positions[i].x - r < -halfW) positions[i].x = -halfW + r;

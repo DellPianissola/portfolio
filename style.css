@@ -883,12 +883,12 @@ h2 {
 .jf-skirt          { fill: currentColor; }
 .jf-tentacles path { stroke: currentColor; }
 
-/* Cores bioluminescentes — 5 tons ciclando por .jf-orbit */
-.jf-orbit:nth-child(5n+1) .jellyfish { color: rgb(160,100,255); filter: drop-shadow(0 0 10px rgba(160,100,255,0.7)); }
-.jf-orbit:nth-child(5n+2) .jellyfish { color: rgb(0,200,255);   filter: drop-shadow(0 0 10px rgba(0,200,255,0.7));   }
-.jf-orbit:nth-child(5n+3) .jellyfish { color: rgb(230,80,220);  filter: drop-shadow(0 0 10px rgba(230,80,220,0.7));  }
-.jf-orbit:nth-child(5n+4) .jellyfish { color: rgb(0,220,175);   filter: drop-shadow(0 0 10px rgba(0,220,175,0.7));   }
-.jf-orbit:nth-child(5n+5) .jellyfish { color: rgb(80,145,255);  filter: drop-shadow(0 0 10px rgba(80,145,255,0.7));  }
+/* Cores bioluminescentes — agrupadas por categoria de stack */
+.jellyfish.jf--py  { color: rgb(230,80,220);  filter: drop-shadow(0 0 10px rgba(230,80,220,0.7));  } /* Python ecosystem */
+.jellyfish.jf--web { color: rgb(0,200,255);   filter: drop-shadow(0 0 10px rgba(0,200,255,0.7));   } /* Web base / front */
+.jellyfish.jf--jvm { color: rgb(160,100,255); filter: drop-shadow(0 0 10px rgba(160,100,255,0.7)); } /* JVM */
+.jellyfish.jf--js  { color: rgb(80,145,255);  filter: drop-shadow(0 0 10px rgba(80,145,255,0.7));  } /* JavaScript stack */
+.jellyfish.jf--ops { color: rgb(0,220,175);   filter: drop-shadow(0 0 10px rgba(0,220,175,0.7));   } /* DevOps & Dados */
 
 
 @keyframes jfFloat {
