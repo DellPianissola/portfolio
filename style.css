@@ -858,20 +858,25 @@ h2 {
     width: 92%;
 }
 
-.jf--xl .jf-label { font-size: 1.6rem; }
-.jf--lg .jf-label { font-size: 1.5rem; }
-.jf--md .jf-label { font-size: 1.5rem; }
-.jf--sm .jf-label { font-size: 1.5rem; }
+.jf--xl .jf-label { font-size: 2.4rem; }
+.jf--lg .jf-label { font-size: 2.2rem; }
+.jf--md .jf-label { font-size: 2rem; }
+.jf--sm .jf-label { font-size: 1.8rem; }
 
 
 .jf-text {
     fill: white;
     font-family: inherit;
     font-weight: 700;
-    font-size: 17px;
     filter: drop-shadow(0 1px 4px rgba(0,0,0,0.8));
     pointer-events: none;
 }
+
+/* Tamanhos compensam a escala do viewBox (200) → garante mínimo visual */
+.jf--sm .jf-text { font-size: 24px; }   /* 118/200 → ~14.2px renderizados */
+.jf--md .jf-text { font-size: 22px; }   /* 145/200 → ~16px renderizados */
+.jf--lg .jf-text { font-size: 19px; }   /* 175/200 → ~16.6px renderizados */
+.jf--xl .jf-text { font-size: 16px; }   /* 230/200 → ~18.4px renderizados */
 
 /* SVG internos via currentColor */
 .jf-body           { fill: currentColor; }
