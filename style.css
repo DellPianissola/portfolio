@@ -1062,6 +1062,21 @@ h2 {
     pointer-events: none;
 }
 
+/* Esconde o badge do reCAPTCHA — o aviso de ToS abaixo cumpre a
+   exigência do Google (https://developers.google.com/recaptcha/docs/faq). */
+.grecaptcha-badge { visibility: hidden; }
+
+.recaptcha-notice {
+    font-size: 0.72rem;
+    color: rgba(180, 220, 255, 0.55);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+.recaptcha-notice a {
+    color: rgba(180, 220, 255, 0.8);
+    text-decoration: underline;
+}
+
 #contact-form input,
 #contact-form textarea {
     padding: 12px 16px;
