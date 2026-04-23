@@ -50,7 +50,9 @@ portfolio/
 ├── style.css
 ├── script.js
 └── images/
-    └── selfie_praia_cortado.jpg
+    ├── og-cover.jpg
+    ├── selfie-300.jpg / .webp
+    └── selfie-600.jpg / .webp
 ```
 
 ## Autor
