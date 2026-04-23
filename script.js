@@ -743,14 +743,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const EMAILJS_PUBLIC_KEY  = 'pXZvi8C6J8LISowM6';
     const EMAILJS_SERVICE_ID  = 'service_gz5rcy7';
     const EMAILJS_TEMPLATE_ID = 'template_3rz9m2p';
-
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
+    const RECAPTCHA_SITE_KEY  = '6LcLX8UsAAAAACWBoRg9RKpkY5n0EzG17ba7W1Tb';
 
     const form      = document.getElementById('contact-form');
     const submitBtn = document.getElementById('form-submit');
     const statusEl  = document.getElementById('form-status');
+    const honeypot  = document.getElementById('contact-website');
+    const EMAIL_FALLBACK = 'dell.pianissola@outlook.com';
 
     function setFormState(state, message) {
         statusEl.textContent  = message;
@@ -759,18 +758,72 @@ document.addEventListener("DOMContentLoaded", function() {
         submitBtn.textContent = state === 'loading' ? 'Enviando...' : 'Enviar';
     }
 
+    if (typeof emailjs === 'undefined') {
+        // CDN bloqueado / offline: degrada pra mailto com conteúdo pré-preenchido
+        submitBtn.textContent = 'Abrir no e-mail';
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = form.elements['name'].value.trim();
+            const from = form.elements['email'].value.trim();
+            const msg  = form.elements['message'].value.trim();
+            const subject = encodeURIComponent(`Contato do portfólio — ${name || 'sem nome'}`);
+            const body    = encodeURIComponent(`${msg}\n\n— ${name} <${from}>`);
+            window.location.href = `mailto:${EMAIL_FALLBACK}?subject=${subject}&body=${body}`;
+        });
+        return;
+    }
+
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    // reCAPTCHA v2 Invisible: widget invisível, execute() dispara verificação,
+    // callback recebe o token → envia pro EmailJS.
+    let recaptchaWidgetId = null;
+
+    window.onRecaptchaLoad = function() {
+        const container = document.getElementById('recaptcha-container');
+        if (!container || recaptchaWidgetId !== null) return;
+        recaptchaWidgetId = grecaptcha.render(container, {
+            sitekey: RECAPTCHA_SITE_KEY,
+            size: 'invisible',
+            callback: function() {
+                emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+                    .then(() => {
+                        setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+                        form.reset();
+                    })
+                    .catch(() => {
+                        setFormState('error', 'Erro ao enviar. Tente novamente ou use o e-mail direto.');
+                    })
+                    .finally(() => {
+                        grecaptcha.reset(recaptchaWidgetId);
+                    });
+            },
+            'error-callback': function() {
+                setFormState('error', 'Falha na verificação anti-spam. Tente novamente.');
+                grecaptcha.reset(recaptchaWidgetId);
+            },
+            'expired-callback': function() {
+                grecaptcha.reset(recaptchaWidgetId);
+            },
+        });
+    };
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        setFormState('loading', '');
 
-        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
-            .then(() => {
-                setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
-                form.reset();
-            })
-            .catch(() => {
-                setFormState('error', 'Erro ao enviar. Tente novamente ou use o e-mail direto.');
-            });
+        if (honeypot && honeypot.value) {
+            setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+            form.reset();
+            return;
+        }
+
+        if (recaptchaWidgetId === null || typeof grecaptcha === 'undefined') {
+            setFormState('error', 'Verificação anti-spam não carregou. Recarregue a página.');
+            return;
+        }
+
+        setFormState('loading', '');
+        grecaptcha.execute(recaptchaWidgetId);
     });
 
 });

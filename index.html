@@ -283,6 +283,8 @@
                     </button>
                 </div>
                 <form id="contact-form">
+                    <input id="contact-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
+
                     <label for="contact-name" class="sr-only">Seu Nome</label>
                     <input id="contact-name" type="text" name="name" placeholder="Seu Nome" required>
 
@@ -292,6 +294,7 @@
                     <label for="contact-message" class="sr-only">Sua Mensagem</label>
                     <textarea id="contact-message" name="message" placeholder="Sua Mensagem" required></textarea>
 
+                    <div id="recaptcha-container"></div>
                     <button type="submit" class="btn-abyss" id="form-submit">Enviar</button>
                     <p id="form-status" aria-live="polite"></p>
                 </form>
@@ -307,7 +310,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+            integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS"
+            crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
