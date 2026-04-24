@@ -1,6 +1,10 @@
 // ── Sistema orbital Sol / Lua + Cores do Céu ─────────────────
 
 import { startClouds, stopClouds } from './clouds.js';
+import { debounce } from './utils.js';
+
+// Helper para consumidores externos lerem o flag (live binding friendly)
+export function isCelestialBusy() { return celestialBusy; }
 
 // ── DOM refs (inicializados em initCelestial) ─────────────────
 let sunEl, moonEl, headerEl, overlay, mainEl, waveEls;
@@ -239,5 +243,5 @@ export function initCelestial() {
 
     celestialBusy = false;
     init();
-    window.addEventListener('resize', init);
+    window.addEventListener('resize', debounce(init, 120));
 }
