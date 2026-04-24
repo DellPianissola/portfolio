@@ -728,7 +728,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const copyLabel = document.getElementById('copy-email-label');
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText('Dell.pianissola@outlook.com').then(() => {
+            navigator.clipboard.writeText(APP_CONFIG.EMAIL).then(() => {
                 copyLabel.textContent = 'Copiado!';
                 copyBtn.classList.add('copied');
                 setTimeout(() => {
@@ -739,17 +739,15 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ── EmailJS ───────────────────────────────────────────────
-    const EMAILJS_PUBLIC_KEY  = 'pXZvi8C6J8LISowM6';
-    const EMAILJS_SERVICE_ID  = 'service_gz5rcy7';
-    const EMAILJS_TEMPLATE_ID = 'template_3rz9m2p';
-    const RECAPTCHA_SITE_KEY  = '6LcLX8UsAAAAACWBoRg9RKpkY5n0EzG17ba7W1Tb';
+    // ── EmailJS — chaves lidas do config.js ───────────────────
+    const { EMAIL, EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID, RECAPTCHA_SITE_KEY } = APP_CONFIG;
 
-    const form      = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('form-submit');
-    const statusEl  = document.getElementById('form-status');
-    const honeypot  = document.getElementById('contact-website');
-    const EMAIL_FALLBACK = 'dell.pianissola@outlook.com';
+    const form         = document.getElementById('contact-form');
+    const submitBtn    = document.getElementById('form-submit');
+    const statusEl     = document.getElementById('form-status');
+    const honeypot     = document.getElementById('contact-website');
+    const EMAIL_FALLBACK = EMAIL;
 
     function setFormState(state, message) {
         statusEl.textContent  = message;
