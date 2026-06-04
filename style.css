@@ -590,43 +590,75 @@ h2 {
 
 .sobre-cards {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     justify-content: center;
+    align-items: flex-start;
     margin-top: 8px;
 }
 
 .sobre-card {
     flex: 1;
     min-width: 0;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 28px 20px 24px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    padding: 32px 24px 26px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
     text-align: left;
-    backdrop-filter: blur(8px);
-    transition: transform 0.25s, background 0.25s;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 8px 32px rgba(0, 30, 80, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+/* Marca decorativa no topo — vira âncora visual */
+.sobre-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 24px;
+    width: 32px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0 0 4px 4px;
+    transition: background 0.3s, width 0.3s;
 }
 
 .sobre-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.13);
+    transform: translateY(-6px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow:
+        0 16px 44px rgba(0, 30, 80, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
+.sobre-card:hover::before {
+    background: white;
+    width: 48px;
+}
 
 .sobre-card strong {
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.2px;
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    color: white;
+    text-wrap: balance;
 }
 
 .sobre-card span {
-    font-size: 0.85rem;
-    opacity: 0.75;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.82);
+    text-wrap: pretty;
 }
 
 @media (max-width: 600px) {
@@ -1452,20 +1484,57 @@ footer a {
 }
 
 /* Idioma badge */
-.sobre-idioma {
-    margin-top: 20px;
+.sobre-facts {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
 }
 
-.sobre-idioma span {
-    display: inline-block;
-    font-size: 0.82rem;
+.sobre-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+    position: relative;
+}
+
+.sobre-fact + .sobre-fact::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.sobre-fact-label {
+    font-size: 0.7rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 5px 16px;
-    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.sobre-fact-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.1px;
+}
+
+@media (max-width: 480px) {
+    .sobre-facts {
+        gap: 20px;
+        flex-direction: column;
+    }
+    .sobre-fact + .sobre-fact::before {
+        display: none;
+    }
 }
 
 /* ============================================================
