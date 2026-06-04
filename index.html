@@ -30,6 +30,11 @@
 
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <title>Gabriel Pianissola</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -68,9 +73,9 @@
                 </div>
             </div>
             <picture>
-                <source type="image/webp" srcset="images/selfie-300.webp 1x, images/selfie-600.webp 2x">
-                <source type="image/jpeg" srcset="images/selfie-300.jpg 1x, images/selfie-600.jpg 2x">
-                <img src="images/selfie-300.jpg" alt="Gabriel Pianissola sorrindo na praia" class="profile-pic" width="300" height="300" fetchpriority="high">
+                <source type="image/webp" srcset="images/profile/selfie-300.webp 1x, images/profile/selfie-600.webp 2x">
+                <source type="image/jpeg" srcset="images/profile/selfie-300.jpg 1x, images/profile/selfie-600.jpg 2x">
+                <img src="images/profile/selfie-300.jpg" alt="Gabriel Pianissola sorrindo na praia" class="profile-pic" width="300" height="300" fetchpriority="high">
             </picture>
         </div>
 
@@ -232,25 +237,22 @@
         <section id="tecnologias">
             <div class="bubbles-container" id="bubbles-tech"></div>
             <div class="jellyfish-tank">
-                    <div class="jf-orbit" style="z-index:3"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">JavaScript</span></div></div></div>
-                    <div class="jf-orbit" style="z-index:2"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">TypeScript</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Django REST</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--xl jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">React</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--xl jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Java</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Kotlin</span></div></div></div>
-                    <div class="jf-orbit" style="z-index:2"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">React Native</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Django</span></div></div></div>
                     <div class="jf-orbit"><div class="jellyfish jf--xl jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Python</span></div></div></div>
+                    <div class="jf-orbit" style="z-index:3"><div class="jellyfish jf--xl jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">JavaScript</span></div></div></div>
+                    <div class="jf-orbit" style="z-index:4"><div class="jellyfish jf--xl jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">React</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--xl jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Java</span></div></div></div>
+                    <div class="jf-orbit" style="z-index:2"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">TypeScript</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Django</span></div></div></div>
+                    <div class="jf-orbit" style="z-index:2"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">React Native</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Kotlin</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Android</span></div></div></div>
                     <div class="jf-orbit"><div class="jellyfish jf--md jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Node.js</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Postgres</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--web"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">HTML</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--web"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">CSS</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Git</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--md jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">FastAPI</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--md jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Docker</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--md jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">PostgreSQL</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">MinIO</span></div></div></div>
+                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Prisma</span></div></div></div>
                     <div class="jf-orbit"><div class="jellyfish jf--sm jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">SWT</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--xl jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Docker</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--web"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Tailwind</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">AWS</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">S3</span></div></div></div>
                 </div>
         </section>
 
@@ -264,56 +266,40 @@
                     <article class="projeto-card">
                         <div class="projeto-ping"></div>
                         <div class="projeto-header">
-                            <span class="projeto-id">// 001</span>
-                            <span class="projeto-tipo">Full Stack · Web</span>
+                            <span class="projeto-tipo">Full-Stack</span>
+                            <span class="projeto-ano">2026</span>
                         </div>
-                        <h3>What Watch Next</h3>
-                        <p>App para casais escolherem o que assistir juntos. Perfis individuais, sistema de prioridades e sorteio inteligente baseado nas preferências de cada um.</p>
+                        <h3>Whatchu</h3>
+                        <a href="https://whatchu.pianissola.tech/app" target="_blank" rel="noopener" class="projeto-thumb">
+                            <picture>
+                                <source type="image/webp" srcset="images/projects/whatchu-preview-1200.webp 1x, images/projects/whatchu-preview-2400.webp 2x">
+                                <source type="image/jpeg" srcset="images/projects/whatchu-preview-1200.jpg 1x, images/projects/whatchu-preview-2400.jpg 2x">
+                                <img src="images/projects/whatchu-preview-1200.jpg" alt="Tela inicial do Whatchu mostrando o sorteio de um título" width="1200" height="675" loading="lazy">
+                            </picture>
+                        </a>
+                        <p>Plataforma multi-usuário para decidir o que assistir hoje. Cada usuário monta sua watchlist com busca integrada ao TMDB, organiza por prioridade, e o sistema faz um sorteio com peso. Inclui autenticação JWT com refresh token, onboarding guiado, upload de avatar via MinIO e testes automatizados.</p>
                         <div class="projeto-stack">
                             <span>React</span>
+                            <span>Vite</span>
                             <span>Node.js</span>
                             <span>Express</span>
-                            <span>PostgreSQL</span>
                             <span>Prisma</span>
-                            <span>Docker</span>
-                        </div>
-                        <a href="https://github.com/DellPianissola/what-watch-next" target="_blank" rel="noopener" class="btn-projeto">Ver no GitHub →</a>
-                    </article>
-
-                    <article class="projeto-card">
-                        <div class="projeto-ping"></div>
-                        <div class="projeto-header">
-                            <span class="projeto-id">// 002</span>
-                            <span class="projeto-tipo">Backend · API</span>
-                        </div>
-                        <h3>DungeonHub Core</h3>
-                        <p>Backend de uma plataforma colaborativa para gerenciar sessões de RPG. Criação de campanhas, gestão de personagens e atualizações em tempo real para todos os participantes.</p>
-                        <div class="projeto-stack">
-                            <span>Python</span>
-                            <span>Django REST Framework</span>
                             <span>PostgreSQL</span>
+                            <span>MinIO</span>
+                            <span>JWT</span>
+                            <span>Vitest</span>
                             <span>Docker</span>
                         </div>
-                        <a href="https://github.com/DellPianissola/DungeonHubCore" target="_blank" rel="noopener" class="btn-projeto">Ver no GitHub →</a>
-                    </article>
-
-                    <article class="projeto-card">
-                        <div class="projeto-ping"></div>
-                        <div class="projeto-header">
-                            <span class="projeto-id">// 003</span>
-                            <span class="projeto-tipo">Full Stack · Web</span>
+                        <div class="projeto-links">
+                            <a href="https://whatchu.pianissola.tech/app" target="_blank" rel="noopener" class="btn-projeto btn-projeto--primary">Visitar site</a>
+                            <a href="https://github.com/DellPianissola/whatchu" target="_blank" rel="noopener" class="btn-projeto">GitHub</a>
                         </div>
-                        <h3>Delivery Tracking</h3>
-                        <p>Aplicação full-stack para rastreamento de entregas, com separação entre frontend e backend e containerização via Docker.</p>
-                        <div class="projeto-stack">
-                            <span>JavaScript</span>
-                            <span>Node.js</span>
-                            <span>Docker</span>
-                        </div>
-                        <a href="https://github.com/DellPianissola/delivery_tracking" target="_blank" rel="noopener" class="btn-projeto">Ver no GitHub →</a>
                     </article>
 
                 </div>
+                <p class="projetos-footer">
+                    Mais experimentos e estudos no <a href="https://github.com/DellPianissola" target="_blank" rel="noopener">GitHub</a>.
+                </p>
             </div>
         </section>
 

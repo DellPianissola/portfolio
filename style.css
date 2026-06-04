@@ -32,7 +32,11 @@ html::-webkit-scrollbar {
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -1069,7 +1073,7 @@ h2 {
 }
 
 .projeto-id {
-    font-family: 'Courier New', monospace;
+    font-family: 'Geist Mono', 'Courier New', monospace;
     font-size: 0.75rem;
     color: rgba(0, 229, 255, 0.5);
     letter-spacing: 1px;
@@ -1081,6 +1085,75 @@ h2 {
     color: rgba(0, 229, 255, 0.55);
     letter-spacing: 0.5px;
     text-transform: uppercase;
+}
+
+.projeto-ano {
+    margin-left: auto;
+    font-family: 'Geist Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: rgba(0, 229, 255, 0.45);
+    letter-spacing: 1px;
+}
+
+.projeto-thumb {
+    display: block;
+    position: relative;
+    margin: 4px 0 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, rgba(0, 60, 110, 0.6), rgba(0, 30, 70, 0.8));
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.projeto-thumb:hover {
+    border-color: rgba(0, 229, 255, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 180, 255, 0.18);
+}
+
+.projeto-thumb picture,
+.projeto-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.projeto-thumb img {
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+    /* Esconde o alt-text quando a imagem falha — gradient do container fica visível */
+    color: transparent;
+    font-size: 0;
+}
+
+.projeto-thumb:hover img {
+    transform: scale(1.02);
+}
+
+.projetos-footer {
+    max-width: 680px;
+    margin: 28px auto 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(200, 235, 255, 0.5);
+}
+
+.projetos-footer a {
+    color: rgba(0, 229, 255, 0.75);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.projetos-footer a:hover {
+    color: #00e5ff;
+}
+
+section[id] {
+    scroll-margin-top: 80px;
 }
 
 .projeto-card h3 {
@@ -1095,7 +1168,6 @@ h2 {
     color: rgba(200, 235, 255, 0.7);
     line-height: 1.65;
     margin-bottom: 18px;
-    max-width: 520px;
 }
 
 .projeto-stack {
@@ -1116,6 +1188,13 @@ h2 {
     letter-spacing: 0.3px;
 }
 
+.projeto-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
 .btn-projeto {
     display: inline-block;
     font-size: 0.85rem;
@@ -1123,13 +1202,26 @@ h2 {
     color: #00e5ff;
     text-decoration: none;
     letter-spacing: 0.3px;
-    transition: letter-spacing 0.2s, opacity 0.2s;
+    transition: letter-spacing 0.2s, opacity 0.2s, background 0.2s, border-color 0.2s;
     opacity: 0.8;
 }
 
 .btn-projeto:hover {
     letter-spacing: 0.8px;
     opacity: 1;
+}
+
+.btn-projeto--primary {
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    border-radius: 20px;
+    padding: 6px 14px;
+    opacity: 1;
+}
+
+.btn-projeto--primary:hover {
+    background: rgba(0, 229, 255, 0.2);
+    border-color: rgba(0, 229, 255, 0.6);
 }
 
 /* ---- ABISSAL: Contato ---- */
