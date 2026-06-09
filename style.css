@@ -140,6 +140,49 @@ nav ul a.nav-active {
     padding: 8px 12px;
 }
 
+/* Sem container próprio: vive dentro da pill .nav-actions p/ evitar caixa-em-caixa. */
+#lang-switch {
+    pointer-events: all;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: white;
+    flex-shrink: 0;
+}
+
+#lang-switch .lang-sep {
+    color: rgba(255,255,255,0.22);
+    font-size: 0.85rem;
+    user-select: none;
+    pointer-events: none;
+    margin: 0 -1px;
+}
+
+#lang-switch .lang-opt {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+#lang-switch .lang-opt:hover {
+    color: white;
+    background: rgba(255,255,255,0.14);
+}
+
+#lang-switch .lang-opt.is-active {
+    color: white;
+    background: rgba(255,255,255,0.14);
+    box-shadow: inset 0 -2px 0 rgba(0, 229, 255, 0.8);
+}
+
 /* ── Toggle pill slider ──────────────────────────────────── */
 #dark-mode-toggle {
     position: relative;

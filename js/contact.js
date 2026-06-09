@@ -1,5 +1,7 @@
 // ── Formulário de contato: copiar e-mail + EmailJS + reCAPTCHA ─
 
+import { t } from './i18n.js';
+
 export function initContact() {
     const cfg = window.APP_CONFIG || {};
     const { EMAIL, EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID,
@@ -11,10 +13,10 @@ export function initContact() {
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(EMAIL).then(() => {
-                copyLabel.textContent = 'Copiado!';
+                copyLabel.textContent = t('contact.emailCopied');
                 copyBtn.classList.add('copied');
                 setTimeout(() => {
-                    copyLabel.textContent = 'Email';
+                    copyLabel.textContent = t('contact.emailLabel');
                     copyBtn.classList.remove('copied');
                 }, 2000);
             });
@@ -27,22 +29,30 @@ export function initContact() {
     const honeypot  = document.getElementById('contact-website');
     if (!form) return;
 
+    let baseSendLabel = t('contact.send');
+
     function setFormState(state, message) {
         statusEl.textContent  = message;
         statusEl.className    = state;
         submitBtn.disabled    = state === 'loading';
-        submitBtn.textContent = state === 'loading' ? 'Enviando...' : 'Enviar';
+        submitBtn.textContent = state === 'loading' ? t('contact.sending') : baseSendLabel;
     }
+
+    document.addEventListener('langchange', () => {
+        baseSendLabel = (typeof emailjs === 'undefined') ? t('contact.mailtoOpen') : t('contact.send');
+        if (submitBtn && !submitBtn.disabled) submitBtn.textContent = baseSendLabel;
+    });
 
     // CDN bloqueado / offline: degrada pra mailto pré-preenchido
     if (typeof emailjs === 'undefined') {
-        submitBtn.textContent = 'Abrir no e-mail';
+        baseSendLabel = t('contact.mailtoOpen');
+        submitBtn.textContent = baseSendLabel;
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const name = form.elements['name'].value.trim();
             const from = form.elements['email'].value.trim();
             const msg  = form.elements['message'].value.trim();
-            const subject = encodeURIComponent(`Contato do portfólio — ${name || 'sem nome'}`);
+            const subject = encodeURIComponent(`${t('contact.mailtoSubject')}${name || t('contact.mailtoNoName')}`);
             const body    = encodeURIComponent(`${msg}\n\n— ${name} <${from}>`);
             window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
         });
@@ -63,18 +73,18 @@ export function initContact() {
             callback: function() {
                 emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
                     .then(() => {
-                        setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+                        setFormState('success', t('contact.success'));
                         form.reset();
                     })
                     .catch(() => {
-                        setFormState('error', 'Erro ao enviar. Tente novamente ou use o e-mail direto.');
+                        setFormState('error', t('contact.error'));
                     })
                     .finally(() => {
                         grecaptcha.reset(recaptchaWidgetId);
                     });
             },
             'error-callback': function() {
-                setFormState('error', 'Falha na verificação anti-spam. Tente novamente.');
+                setFormState('error', t('contact.recaptchaFail'));
                 grecaptcha.reset(recaptchaWidgetId);
             },
             'expired-callback': function() {
@@ -95,13 +105,13 @@ export function initContact() {
         e.preventDefault();
 
         if (honeypot && honeypot.value) {
-            setFormState('success', 'Mensagem enviada! Entrarei em contato em breve.');
+            setFormState('success', t('contact.success'));
             form.reset();
             return;
         }
 
         if (recaptchaWidgetId === null || typeof grecaptcha === 'undefined') {
-            setFormState('error', 'Verificação anti-spam não carregou. Recarregue a página.');
+            setFormState('error', t('contact.recaptchaNotLoaded'));
             return;
         }
 

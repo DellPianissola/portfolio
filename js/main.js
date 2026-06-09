@@ -1,5 +1,6 @@
 // ── Entry point ───────────────────────────────────────────────
 
+import { initI18n }      from './i18n.js';
 import { initUI }        from './ui.js';
 import { initTheme }     from './theme.js';
 import { initCelestial } from './celestial.js';
@@ -9,6 +10,7 @@ import { initStars, initBubbles, initParticles } from './ambient.js';
 import { initContact }   from './contact.js';
 
 document.addEventListener('DOMContentLoaded', function() {
+    initI18n();
     initUI();
     initTheme();
     initCelestial();

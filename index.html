@@ -39,22 +39,27 @@
 </head>
 <body>
     <nav>
-        <a href="#home" class="nav-logo" aria-label="Ir para o início">
+        <a href="#home" class="nav-logo" data-i18n-attr="aria-label:nav.logoAria">
             <span class="nav-logo-bracket">&lt;</span>Dell<span class="nav-logo-bracket">/&gt;</span>
         </a>
 
         <ul id="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#jornada">Jornada</a></li>
-            <li><a href="#tecnologias">Tecnologias</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#home" data-i18n="nav.home">Home</a></li>
+            <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
+            <li><a href="#jornada" data-i18n="nav.journey">Jornada</a></li>
+            <li><a href="#tecnologias" data-i18n="nav.tech">Tecnologias</a></li>
+            <li><a href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+            <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
         </ul>
 
         <div class="nav-actions">
-            <button id="dark-mode-toggle" aria-label="Alternar modo escuro"></button>
-            <button id="menu-toggle" aria-label="Abrir menu">
+            <div id="lang-switch" role="group" data-i18n-attr="aria-label:nav.langGroupAria">
+                <button type="button" class="lang-opt" data-lang="pt" data-i18n-attr="aria-label:nav.langPtAria">PT</button>
+                <span class="lang-sep" aria-hidden="true">│</span>
+                <button type="button" class="lang-opt" data-lang="en" data-i18n-attr="aria-label:nav.langEnAria">EN</button>
+            </div>
+            <button id="dark-mode-toggle" data-i18n-attr="aria-label:nav.themeAria" aria-label="Alternar modo escuro"></button>
+            <button id="menu-toggle" data-i18n-attr="aria-label:nav.menuAria" aria-label="Abrir menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -64,18 +69,18 @@
     <header id="home">
         <div class="inner-header">
             <div id="profile">
-                <p class="intro-greeting">Olá, me chamo</p>
+                <p class="intro-greeting" data-i18n="hero.greeting">Olá, me chamo</p>
                 <h1 class="no-wrap">Gabriel Pianissola</h1>
-                <p class="intro-role no-wrap">Programador Full-Stack</p>
+                <p class="intro-role no-wrap" data-i18n="hero.role">Programador Full-Stack</p>
                 <div class="hero-cta">
-                    <a href="#projetos" class="btn-hero">Ver Projetos</a>
-                    <a href="#contato" class="btn-hero btn-hero--outline">Falar comigo</a>
+                    <a href="#projetos" class="btn-hero" data-i18n="hero.ctaProjects">Ver Projetos</a>
+                    <a href="#contato" class="btn-hero btn-hero--outline" data-i18n="hero.ctaContact">Falar comigo</a>
                 </div>
             </div>
             <picture>
                 <source type="image/webp" srcset="images/profile/selfie-300.webp 1x, images/profile/selfie-600.webp 2x">
                 <source type="image/jpeg" srcset="images/profile/selfie-300.jpg 1x, images/profile/selfie-600.jpg 2x">
-                <img src="images/profile/selfie-300.jpg" alt="Gabriel Pianissola sorrindo na praia" class="profile-pic" width="300" height="300" fetchpriority="high">
+                <img src="images/profile/selfie-300.jpg" alt="Gabriel Pianissola sorrindo na praia" data-i18n-attr="alt:hero.profileAlt" class="profile-pic" width="300" height="300" fetchpriority="high">
             </picture>
         </div>
 
@@ -96,7 +101,7 @@
                 <path class='wave-2' fill="#009ACD" fill-opacity="1" d="M0,160L48,181.3C96,203,192,245,288,234.7C384,224,480,160,576,160C672,160,768,224,864,234.7C960,245,1056,203,1152,192C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
         </div>
-        <a href="#sobre" class="scroll-indicator" aria-label="Rolar para baixo">
+        <a href="#sobre" class="scroll-indicator" data-i18n-attr="aria-label:hero.scrollAria" aria-label="Rolar para baixo">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
@@ -114,33 +119,33 @@
         <section id="sobre">
             <div class="bubbles-container" id="bubbles-sobre"></div>
             <div class="container">
-                <h2>Sobre mim</h2>
+                <h2 data-i18n="about.title">Sobre mim</h2>
                 <div class="sobre-content">
-                    <p class="sobre-intro">
+                    <p class="sobre-intro" data-i18n="about.intro">
                         Comecei programando microcontroladores no time de robótica do ensino médio. Hoje atuo full-stack em web, mobile e desktop, com foco em problemas técnicos difíceis e decisões de arquitetura que envelhecem bem.
                     </p>
                     <div class="sobre-cards">
                         <div class="sobre-card">
-                            <strong>Amplitude técnica</strong>
-                            <span>Web, mobile e desktop. Front, backend e infra. Atuo na camada onde o problema está.</span>
+                            <strong data-i18n="about.card1Title">Amplitude técnica</strong>
+                            <span data-i18n="about.card1Text">Web, mobile e desktop. Front, backend e infra. Atuo na camada onde o problema está.</span>
                         </div>
                         <div class="sobre-card">
-                            <strong>Decisões que escalam</strong>
-                            <span>Arquiteturas pensadas pra crescer: comunicação assíncrona entre APIs e uploads direto entre cliente e storage com URLs assinadas.</span>
+                            <strong data-i18n="about.card2Title">Decisões que escalam</strong>
+                            <span data-i18n="about.card2Text">Arquiteturas pensadas pra crescer: comunicação assíncrona entre APIs e uploads direto entre cliente e storage com URLs assinadas.</span>
                         </div>
                         <div class="sobre-card">
-                            <strong>Aprendo entregando</strong>
-                            <span>Cada projeto trouxe uma stack nova que precisei dominar pra entregar. Foi assim com FastAPI, MinIO e Android nativo.</span>
+                            <strong data-i18n="about.card3Title">Aprendo entregando</strong>
+                            <span data-i18n="about.card3Text">Cada projeto trouxe uma stack nova que precisei dominar pra entregar. Foi assim com FastAPI, MinIO e Android nativo.</span>
                         </div>
                     </div>
                     <div class="sobre-facts">
                         <div class="sobre-fact">
-                            <span class="sobre-fact-label">Idiomas</span>
-                            <span class="sobre-fact-value">Português · Inglês</span>
+                            <span class="sobre-fact-label" data-i18n="about.factLangLabel">Idiomas</span>
+                            <span class="sobre-fact-value" data-i18n="about.factLangValue">Português · Inglês</span>
                         </div>
                         <div class="sobre-fact">
-                            <span class="sobre-fact-label">Fora do código</span>
-                            <span class="sobre-fact-value">Mar, leitura, treino</span>
+                            <span class="sobre-fact-label" data-i18n="about.factOutLabel">Fora do código</span>
+                            <span class="sobre-fact-value" data-i18n="about.factOutValue">Mar, leitura, treino</span>
                         </div>
                     </div>
                 </div>
@@ -151,7 +156,7 @@
         <section id="jornada">
             <div class="bubbles-container" id="bubbles-jornada"></div>
             <div class="container">
-                <h2>Minha Jornada</h2>
+                <h2 data-i18n="journey.title">Minha Jornada</h2>
                 <div class="timeline">
 
                     <div class="timeline-item">
@@ -161,10 +166,10 @@
                             <span class="timeline-year">2018</span>
                         </div>
                         <div class="timeline-card">
-                            <span class="timeline-badge timeline-badge--edu">🎓 Educação</span>
+                            <span class="timeline-badge timeline-badge--edu" data-i18n="journey.badgeEdu">🎓 Educação</span>
                             <h3>ETEP</h3>
-                            <p class="timeline-role">Ensino Médio Técnico em Mecatrônica</p>
-                            <p>Primeiros passos na programação, com base sólida em software, eletrônica e mecânica. Programação embarcada com PIC e Arduino, e participação no time de robótica FIRST.</p>
+                            <p class="timeline-role" data-i18n="journey.etepRole">Ensino Médio Técnico em Mecatrônica</p>
+                            <p data-i18n="journey.etepText">Primeiros passos na programação, com base sólida em software, eletrônica e mecânica. Programação embarcada com PIC e Arduino, e participação no time de robótica FIRST.</p>
                         </div>
                     </div>
 
@@ -175,10 +180,10 @@
                             <span class="timeline-year">2023</span>
                         </div>
                         <div class="timeline-card">
-                            <span class="timeline-badge timeline-badge--edu">🎓 Educação</span>
+                            <span class="timeline-badge timeline-badge--edu" data-i18n="journey.badgeEdu">🎓 Educação</span>
                             <h3>UNIP</h3>
-                            <p class="timeline-role">Ciência da Computação</p>
-                            <p>Formação sólida em desenvolvimento de software e visão de produto. TCC: plataforma de incentivo ao ensino com gamificação.</p>
+                            <p class="timeline-role" data-i18n="journey.unipRole">Ciência da Computação</p>
+                            <p data-i18n="journey.unipText">Formação sólida em desenvolvimento de software e visão de produto. TCC: plataforma de incentivo ao ensino com gamificação.</p>
                         </div>
                     </div>
 
@@ -189,13 +194,13 @@
                             <span class="timeline-year">2025</span>
                         </div>
                         <div class="timeline-card">
-                            <span class="timeline-badge timeline-badge--work">💼 Experiência</span>
+                            <span class="timeline-badge timeline-badge--work" data-i18n="journey.badgeWork">💼 Experiência</span>
                             <h3>Instituto SENAI de Inovação</h3>
-                            <p class="timeline-role">Desenvolvedor Full Stack</p>
-                            <p>Atuei em múltiplos projetos como backend principal, majoritariamente em Django, com passagens por FastAPI (APIs para serviços de IA) e React Native (adaptação de plataforma web para mobile). Docker em todos.</p>
-                            <p class="timeline-highlight"><strong>Projeto destaque: comunicação assíncrona entre APIs.</strong> Assumi o backend na metade do prazo, com nada feito, e entreguei em 6 meses um escopo originalmente estimado em 12. Além do prazo, fechei o projeto com mais funcionalidades do que o contrato pedia. Arquitetura com comunicação assíncrona entre 2 APIs e frontend, e documentação completa para que o cliente evoluísse a plataforma de forma autônoma.</p>
-                            <p><strong>Outros projetos relevantes:</strong></p>
-                            <ul class="timeline-list">
+                            <p class="timeline-role" data-i18n="journey.senaiRole">Desenvolvedor Full Stack</p>
+                            <p data-i18n="journey.senaiText">Atuei em múltiplos projetos como backend principal, majoritariamente em Django, com passagens por FastAPI (APIs para serviços de IA) e React Native (adaptação de plataforma web para mobile). Docker em todos.</p>
+                            <p class="timeline-highlight" data-i18n-html="journey.senaiHighlight"><strong>Projeto destaque: comunicação assíncrona entre APIs.</strong> Assumi o backend na metade do prazo, com nada feito, e entreguei em 6 meses um escopo originalmente estimado em 12. Além do prazo, fechei o projeto com mais funcionalidades do que o contrato pedia. Arquitetura com comunicação assíncrona entre 2 APIs e frontend, e documentação completa para que o cliente evoluísse a plataforma de forma autônoma.</p>
+                            <p data-i18n-html="journey.senaiOthers"><strong>Outros projetos relevantes:</strong></p>
+                            <ul class="timeline-list" data-i18n-html="journey.senaiList">
                                 <li><strong>Plataforma de upload tipo Drive:</strong> arquitetura com MinIO e URLs assinadas para tirar o tráfego de arquivos pesados do backend, permitindo upload direto entre cliente e storage.</li>
                                 <li><strong>App mobile em React Native:</strong> porte de uma plataforma web existente para Android e iOS.</li>
                                 <li><strong>APIs para IA em FastAPI:</strong> serviços de inferência integrados aos backends Django.</li>
@@ -216,15 +221,15 @@
                         <div class="timeline-marker">
                             <span class="timeline-year">2025</span>
                             <div class="timeline-dot timeline-dot--active"></div>
-                            <span class="timeline-year timeline-year--atual">Atual</span>
+                            <span class="timeline-year timeline-year--atual" data-i18n="journey.current">Atual</span>
                         </div>
                         <div class="timeline-card">
-                            <span class="timeline-badge timeline-badge--work">💼 Experiência</span>
+                            <span class="timeline-badge timeline-badge--work" data-i18n="journey.badgeWork">💼 Experiência</span>
                             <h3>Kaffa</h3>
-                            <p class="timeline-role">Full Stack no time de produto</p>
-                            <p>Atuo de ponta a ponta no produto: frontend web em React, desktop em SWT, backend no framework proprietário da empresa e camada Android, com passagens por mapas e GIS.</p>
-                            <p><strong>Sou a referência técnica do time em Android.</strong> Atuo numa ponte proprietária que traduz SWT (desktop) para componentes nativos Android, onde identifiquei e corrigi falhas de renderização sob diferentes escalas de DPI, como deformação de campos e botões ao aplicar zoom no tablet.</p>
-                            <p>Reconstruí o módulo de import e export de arquivos DWG no canvas gráfico do produto, lidando com a conversão entre SVG e DWG em ambos os sentidos.</p>
+                            <p class="timeline-role" data-i18n="journey.kaffaRole">Full Stack no time de produto</p>
+                            <p data-i18n="journey.kaffaText1">Atuo de ponta a ponta no produto: frontend web em React, desktop em SWT, backend no framework proprietário da empresa e camada Android, com passagens por mapas e GIS.</p>
+                            <p data-i18n-html="journey.kaffaText2"><strong>Sou a referência técnica do time em Android.</strong> Atuo numa ponte proprietária que traduz SWT (desktop) para componentes nativos Android, onde identifiquei e corrigi falhas de renderização sob diferentes escalas de DPI, como deformação de campos e botões ao aplicar zoom no tablet.</p>
+                            <p data-i18n="journey.kaffaText3">Reconstruí o módulo de import e export de arquivos DWG no canvas gráfico do produto, lidando com a conversão entre SVG e DWG em ambos os sentidos.</p>
                             <div class="timeline-stack">
                                 <span>React</span>
                                 <span>Kotlin</span>
@@ -267,13 +272,13 @@
         <section id="projetos">
             <div class="bubbles-container" id="bubbles-projetos"></div>
             <div class="container">
-                <h2>Projetos</h2>
+                <h2 data-i18n="projects.title">Projetos</h2>
                 <div class="projetos-grid">
 
                     <article class="projeto-card">
                         <div class="projeto-ping"></div>
                         <div class="projeto-header">
-                            <span class="projeto-tipo">Full-Stack</span>
+                            <span class="projeto-tipo" data-i18n="projects.whatchuType">Full-Stack</span>
                             <span class="projeto-ano">2026</span>
                         </div>
                         <h3>Whatchu</h3>
@@ -281,10 +286,10 @@
                             <picture>
                                 <source type="image/webp" srcset="images/projects/whatchu-preview-1200.webp 1x, images/projects/whatchu-preview-2400.webp 2x">
                                 <source type="image/jpeg" srcset="images/projects/whatchu-preview-1200.jpg 1x, images/projects/whatchu-preview-2400.jpg 2x">
-                                <img src="images/projects/whatchu-preview-1200.jpg" alt="Tela inicial do Whatchu mostrando o sorteio de um título" width="1200" height="675" loading="lazy">
+                                <img src="images/projects/whatchu-preview-1200.jpg" alt="Tela inicial do Whatchu mostrando o sorteio de um título" data-i18n-attr="alt:projects.whatchuAlt" width="1200" height="675" loading="lazy">
                             </picture>
                         </a>
-                        <p>Plataforma multi-usuário para decidir o que assistir hoje. Cada usuário monta sua watchlist com busca integrada ao TMDB, organiza por prioridade, e o sistema faz um sorteio com peso. Inclui autenticação JWT com refresh token, onboarding guiado, upload de avatar via MinIO e testes automatizados.</p>
+                        <p data-i18n="projects.whatchuDesc">Plataforma multi-usuário para decidir o que assistir hoje. Cada usuário monta sua watchlist com busca integrada ao TMDB, organiza por prioridade, e o sistema faz um sorteio com peso. Inclui autenticação JWT com refresh token, onboarding guiado, upload de avatar via MinIO e testes automatizados.</p>
                         <div class="projeto-stack">
                             <span>React</span>
                             <span>Vite</span>
@@ -298,13 +303,13 @@
                             <span>Docker</span>
                         </div>
                         <div class="projeto-links">
-                            <a href="https://whatchu.pianissola.tech/" target="_blank" rel="noopener" class="btn-projeto btn-projeto--primary">Visitar site</a>
-                            <a href="https://github.com/DellPianissola/whatchu" target="_blank" rel="noopener" class="btn-projeto">GitHub</a>
+                            <a href="https://whatchu.pianissola.tech/" target="_blank" rel="noopener" class="btn-projeto btn-projeto--primary" data-i18n="projects.visit">Visitar site</a>
+                            <a href="https://github.com/DellPianissola/whatchu" target="_blank" rel="noopener" class="btn-projeto" data-i18n="projects.github">GitHub</a>
                         </div>
                     </article>
 
                 </div>
-                <p class="projetos-footer">
+                <p class="projetos-footer" data-i18n-html="projects.footer">
                     Mais experimentos e estudos no <a href="https://github.com/DellPianissola" target="_blank" rel="noopener">GitHub</a>.
                 </p>
             </div>
@@ -314,7 +319,7 @@
         <section id="contato">
             <div class="particles-container" id="particles-contato"></div>
             <div class="container">
-                <h2>Entre em contato</h2>
+                <h2 data-i18n="contact.title">Entre em contato</h2>
                 <div class="contato-links">
                     <a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer" class="contato-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -324,27 +329,27 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                         GitHub
                     </a>
-                    <button class="contato-link contato-link--email" id="copy-email" aria-label="Copiar e-mail">
+                    <button class="contato-link contato-link--email" id="copy-email" data-i18n-attr="aria-label:contact.emailAria" aria-label="Copiar e-mail">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <span id="copy-email-label">Email</span>
+                        <span id="copy-email-label" data-i18n="contact.emailLabel">Email</span>
                     </button>
                 </div>
                 <form id="contact-form">
                     <input id="contact-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
 
-                    <label for="contact-name" class="sr-only">Seu Nome</label>
-                    <input id="contact-name" type="text" name="name" placeholder="Seu Nome" required>
+                    <label for="contact-name" class="sr-only" data-i18n="contact.nameLabel">Seu Nome</label>
+                    <input id="contact-name" type="text" name="name" placeholder="Seu Nome" data-i18n-attr="placeholder:contact.namePlaceholder" required>
 
-                    <label for="contact-email" class="sr-only">Seu E-mail</label>
-                    <input id="contact-email" type="email" name="email" placeholder="Seu E-mail" required>
+                    <label for="contact-email" class="sr-only" data-i18n="contact.emailFieldLabel">Seu E-mail</label>
+                    <input id="contact-email" type="email" name="email" placeholder="Seu E-mail" data-i18n-attr="placeholder:contact.emailPlaceholder" required>
 
-                    <label for="contact-message" class="sr-only">Sua Mensagem</label>
-                    <textarea id="contact-message" name="message" placeholder="Sua Mensagem" required></textarea>
+                    <label for="contact-message" class="sr-only" data-i18n="contact.msgLabel">Sua Mensagem</label>
+                    <textarea id="contact-message" name="message" placeholder="Sua Mensagem" data-i18n-attr="placeholder:contact.msgPlaceholder" required></textarea>
 
                     <div id="recaptcha-container"></div>
-                    <button type="submit" class="btn-abyss" id="form-submit">Enviar</button>
+                    <button type="submit" class="btn-abyss" id="form-submit" data-i18n="contact.send">Enviar</button>
                     <p id="form-status" aria-live="polite"></p>
-                    <p class="recaptcha-notice">
+                    <p class="recaptcha-notice" data-i18n-html="contact.recaptchaNotice">
                         Protegido por reCAPTCHA —
                         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacidade</a> e
                         <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Termos</a> do Google.
@@ -355,7 +360,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Gabriel Pianissola. Todos os direitos reservados.</p>
+        <p data-i18n="footer.copyright">&copy; 2026 Gabriel Pianissola. Todos os direitos reservados.</p>
         <div class="footer-links">
             <a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://github.com/DellPianissola" target="_blank" rel="noopener noreferrer">GitHub</a>
