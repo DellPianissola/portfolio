@@ -282,8 +282,19 @@ function layoutJellyfish() {
     });
 }
 
+function pauseOffscreen() {
+    const tank = document.querySelector('.jellyfish-tank');
+    if (!tank) return;
+    const svgs = tank.querySelectorAll('.jf-svg');
+    new IntersectionObserver(([entry]) => {
+        tank.classList.toggle('is-paused', !entry.isIntersecting);
+        svgs.forEach(svg => entry.isIntersecting ? svg.unpauseAnimations() : svg.pauseAnimations());
+    }).observe(tank);
+}
+
 export function initJellyfish() {
     buildJellyfishSVGs();
     layoutJellyfish();
+    pauseOffscreen();
     window.addEventListener('resize', debounce(layoutJellyfish, 120));
 }

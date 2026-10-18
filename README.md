@@ -7,22 +7,24 @@ Portfólio pessoal com temática de **oceano e água**. A navegação pelo site 
 | Seção | Profundidade | Tema |
 |---|---|---|
 | **Home** | Superfície / Céu | Céu dinâmico, ondas animadas |
-| **Sobre** | Água rasa | Turquesa, bolhas flutuando |
-| **Tecnologias** | Meia profundidade | Azul médio, badges glassmorphism |
-| **Projetos** | Fundo do mar | Azul escuro, cards estilo vigia de submarino |
-| **Contato** | Zona abissal | Quase preto, partículas bioluminescentes |
+| **Sobre** | Água rasa | Turquesa, peixes tropicais |
+| **Jornada** | Meia-água | Régua de anos, cardume de sardinhas |
+| **Tecnologias** | Meia profundidade | Águas-vivas com as stacks |
+| **Projetos** | Fundo do mar | Sonar que varre os projetos, plâncton bioluminescente |
+| **Contato** | Leito | Naufrágio no escuro, neve marinha e partículas bioluminescentes |
 
 ## Funcionalidades
 
-- **Céu dinâmico** — sistema orbital: o Sol e a Lua giram em órbita circular com 180° de separação, sempre atrás das ondas
-- **Transição dia/noite animada** — ao ativar o modo escuro, o Sol percorre o céu se pondo; ao desativar, a Lua se põe antes do Sol nascer
-- **Cores sincronizadas** — o gradiente do céu muda em tempo real com a posição do Sol (dia → laranja → vermelho → noite → pré-amanhecer → aurora → dia)
+- **Céu dinâmico** — sistema orbital: o Sol e a Lua percorrem uma órbita elíptica em lados opostos, sempre atrás das ondas
+- **Céu pela hora real**: no modo Auto o céu, o Sol e a Lua seguem o horário local do visitante; Dia e Noite giram o céu até o horário escolhido
+- **Cores sincronizadas**: céu, ondas e oceano mudam juntos com a posição do Sol (dia, pôr do sol, noite, amanhecer)
+- **Oceano vivo**: criaturas em canvas por profundidade, que fogem do cursor e se dissolvem na cor da água
 - **Nuvens geradas dinamicamente** — cruzam o céu periodicamente em tamanhos e velocidades aleatórias
 - **Ondas em 4 camadas** — animação de vaivém sutil com profundidade visual
 - **Estrelas** — aparecem no céu noturno com brilho pulsante
 - **Bolhas** — flutuam em cada seção com quantidade inversamente proporcional à profundidade
 - **Partículas bioluminescentes** — seção de contato
-- **Dark mode** com persistência via `localStorage`
+- **Modo Auto / Dia / Noite** com persistência via `localStorage`
 - **Efeito de digitação** no header
 - **Menu hambúrguer** responsivo para mobile
 - **Smooth scroll** na navegação

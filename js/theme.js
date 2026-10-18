@@ -1,22 +1,39 @@
-// ── Dark mode + localStorage ──────────────────────────────────
+// ── Modo do céu (Auto / Dia / Noite) + localStorage ───────────
 
-import { animateCelestial, isCelestialBusy } from './celestial.js';
+import { setSkyMode } from './celestial.js';
+
+const STORAGE_KEY = 'theme-mode';
+const MODES = ['auto', 'dia', 'noite'];
+
+function savedMode() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (MODES.includes(stored)) return stored;
+    return localStorage.getItem('dark-mode') === 'enabled' ? 'noite' : 'auto';
+}
+
+function markActive(mode) {
+    document.querySelectorAll('#theme-switch .theme-opt').forEach(btn => {
+        const active = btn.dataset.mode === mode;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+}
 
 export function initTheme() {
-    const toggleButton = document.getElementById('dark-mode-toggle');
+    const mode = savedMode();
 
-    // Aplica modo escuro salvo sem disparar transições CSS
     document.body.classList.add('no-transition');
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-    }
+    setSkyMode(mode, { instant: true });
+    markActive(mode);
     requestAnimationFrame(() => document.body.classList.remove('no-transition'));
 
-    toggleButton.addEventListener('click', function() {
-        if (isCelestialBusy()) return;
-        document.body.classList.toggle('dark-mode');
-        const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
-        animateCelestial(isDark);
+    document.querySelectorAll('#theme-switch .theme-opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const next = btn.dataset.mode;
+            localStorage.setItem(STORAGE_KEY, next);
+            localStorage.removeItem('dark-mode');
+            markActive(next);
+            setSkyMode(next);
+        });
     });
 }
