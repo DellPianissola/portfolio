@@ -1,16 +1,38 @@
 export function initExperience() {
-    const toggles = document.querySelectorAll('.xp-toggle');
+    const items = document.querySelectorAll('.xp');
+    let open = null;
 
-    const setOpen = (toggle, open) => {
-        toggle.setAttribute('aria-expanded', String(open));
-        document.getElementById(toggle.getAttribute('aria-controls')).classList.toggle('is-open', open);
+    const toggleOf = item => item.querySelector('.xp-toggle');
+
+    const close = () => {
+        if (!open) return;
+        const item = open;
+        open = null;
+        item.classList.remove('is-open');
+        toggleOf(item).setAttribute('aria-expanded', 'false');
+        return item;
     };
 
-    toggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            setOpen(toggle, toggle.getAttribute('aria-expanded') !== 'true');
-        });
+    const show = item => {
+        close();
+        open = item;
+        item.classList.add('is-open');
+        toggleOf(item).setAttribute('aria-expanded', 'true');
+        item.querySelector('.xp-close').focus({ preventScroll: true });
+        item.scrollIntoView({ block: 'nearest' });
+    };
+
+    const dismiss = () => {
+        const item = close();
+        if (item) toggleOf(item).focus({ preventScroll: true });
+    };
+
+    items.forEach(item => {
+        toggleOf(item).addEventListener('click', () => show(item));
+        item.querySelector('.xp-close').addEventListener('click', dismiss);
     });
 
-    setOpen(toggles[0], true);
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') dismiss();
+    });
 }
