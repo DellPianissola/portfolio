@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Gabriel Pianissola">
+    <meta name="theme-color" content="#1d2242">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <title>Gabriel Pianissola</title>
+
+    <script>document.documentElement.classList.add('js')</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="bar" data-i18n-attr="aria-label:nav.mainAria">
+        <a href="index.html" class="bar-logo" data-i18n-attr="aria-label:nav.logoAria">Gabriel Pianissola</a>
+        <a href="index.html#projetos" class="bar-back" data-i18n="case.back">Voltar aos projetos</a>
+        <div class="bar-actions">
+            <div id="lang-switch" role="group" data-i18n-attr="aria-label:nav.langGroupAria">
+                <button type="button" class="lang-opt" data-lang="pt" data-i18n-attr="aria-label:nav.langPtAria">PT</button>
+                <button type="button" class="lang-opt" data-lang="en" data-i18n-attr="aria-label:nav.langEnAria">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="case"></main>
+
+    <footer class="foot">
+        <span data-i18n="footer.copyright">&copy; 2026 Gabriel Pianissola</span>
+        <a href="index.html#projetos" data-i18n="case.back">Voltar aos projetos</a>
+    </footer>
+
+    <script type="module" src="js/case.js"></script>
+</body>
+</html>

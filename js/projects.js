@@ -21,6 +21,8 @@ const LOGOS = {
     'pnpm': 'pnpm',
 };
 
+export const logoUrl = name => `https://cdn.simpleicons.org/${LOGOS[name]}/1d2242`;
+
 function stackGrid(names) {
     const grid = document.createElement('div');
     grid.className = 'stack-grid';
@@ -30,7 +32,7 @@ function stackGrid(names) {
         tile.style.setProperty('--i', i);
 
         const logo = new Image(28, 28);
-        logo.src = `https://cdn.simpleicons.org/${LOGOS[name]}/1d2242`;
+        logo.src = logoUrl(name);
         logo.alt = '';
         logo.loading = 'lazy';
 
