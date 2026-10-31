@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio de Gabriel Pianissola, Programador Full-Stack especializado em JavaScript, TypeScript, Python, Django, React, React Native, Node.js, Kotlin, Java e mais.">
+    <meta name="description" content="Gabriel Pianissola, engenheiro de software full stack. Projetos, decisões técnicas e trajetória em web, mobile e desktop.">
     <meta name="author" content="Gabriel Pianissola">
-    <meta name="theme-color" content="#00BFFF" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#010d1a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#1d2242">
     <!-- CONFIG: ao trocar de domínio, atualize as 4 URLs abaixo + sitemap.xml + robots.txt -->
     <link rel="canonical" href="https://portfolio.dell-pianissola.workers.dev/">
 
@@ -14,546 +13,298 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gabriel Pianissola">
     <meta property="og:url" content="https://portfolio.dell-pianissola.workers.dev/">
-    <meta property="og:title" content="Gabriel Pianissola — Programador Full-Stack">
-    <meta property="og:description" content="Portfólio de Gabriel Pianissola. JavaScript, TypeScript, Python, Django, React, React Native, Kotlin e mais.">
-    <meta property="og:image" content="https://portfolio.dell-pianissola.workers.dev/images/og-cover.jpg">
+    <meta property="og:title" content="Gabriel Pianissola, engenheiro de software">
+    <meta property="og:description" content="Sistemas que continuam de pé depois que o prazo passa. Projetos, decisões técnicas e trajetória.">
+    <meta property="og:image" content="https://portfolio.dell-pianissola.workers.dev/images/og-cover.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Portfólio de Gabriel Pianissola, Programador Full-Stack">
+    <meta property="og:image:alt" content="Gabriel Pianissola, engenheiro de software">
     <meta property="og:locale" content="pt_BR">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gabriel Pianissola — Programador Full-Stack">
-    <meta name="twitter:description" content="Portfólio de Gabriel Pianissola. JavaScript, TypeScript, Python, Django, React, React Native, Kotlin e mais.">
-    <meta name="twitter:image" content="https://portfolio.dell-pianissola.workers.dev/images/og-cover.jpg">
+    <meta name="twitter:title" content="Gabriel Pianissola, engenheiro de software">
+    <meta name="twitter:description" content="Sistemas que continuam de pé depois que o prazo passa. Projetos, decisões técnicas e trajetória.">
+    <meta name="twitter:image" content="https://portfolio.dell-pianissola.workers.dev/images/og-cover.png">
 
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <title>Gabriel Pianissola</title>
 
+    <script>document.documentElement.classList.add('js')</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <a href="#home" class="nav-logo" data-i18n-attr="aria-label:nav.logoAria">
-            <span class="nav-logo-bracket">&lt;</span>Dell<span class="nav-logo-bracket">/&gt;</span>
-        </a>
+    <nav class="bar" data-i18n-attr="aria-label:nav.mainAria">
+        <a href="#home" class="bar-logo" data-i18n-attr="aria-label:nav.logoAria">Gabriel Pianissola</a>
 
         <ul id="nav-menu">
-            <li><a href="#home" data-i18n="nav.home">Home</a></li>
             <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
-            <li><a href="#jornada" data-i18n="nav.journey">Jornada</a></li>
-            <li><a href="#tecnologias" data-i18n="nav.tech">Tecnologias</a></li>
+            <li><a href="#como-trabalho" data-i18n="nav.how">Como trabalho</a></li>
             <li><a href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+            <li><a href="#experiencia" data-i18n="nav.experience">Experiência</a></li>
             <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
         </ul>
 
-        <div class="nav-actions">
+        <div class="bar-actions">
             <div id="lang-switch" role="group" data-i18n-attr="aria-label:nav.langGroupAria">
                 <button type="button" class="lang-opt" data-lang="pt" data-i18n-attr="aria-label:nav.langPtAria">PT</button>
-                <span class="lang-sep" aria-hidden="true">│</span>
                 <button type="button" class="lang-opt" data-lang="en" data-i18n-attr="aria-label:nav.langEnAria">EN</button>
             </div>
-            <div id="theme-switch" role="group" data-i18n-attr="aria-label:nav.themeGroupAria">
-                <button type="button" class="theme-opt" data-mode="auto" data-i18n="nav.themeAuto">Auto</button>
-                <button type="button" class="theme-opt" data-mode="dia" data-i18n="nav.themeDay">Dia</button>
-                <button type="button" class="theme-opt" data-mode="noite" data-i18n="nav.themeNight">Noite</button>
-            </div>
-            <button id="menu-toggle" data-i18n-attr="aria-label:nav.menuAria" aria-label="Abrir menu">
+            <button id="menu-toggle" type="button" data-i18n-attr="aria-label:nav.menuAria" aria-label="Abrir menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- SUPERFÍCIE: Céu -->
-    <header id="home">
-        <div class="inner-header">
-            <div id="profile">
-                <p class="intro-greeting" data-i18n="hero.greeting">Olá, me chamo</p>
-                <h1 class="no-wrap">Gabriel Pianissola</h1>
-                <p class="intro-role no-wrap" data-i18n="hero.role">Programador Full-Stack</p>
-                <div class="hero-cta">
-                    <a href="#projetos" class="btn-hero" data-i18n="hero.ctaProjects">Ver Projetos</a>
-                    <a href="#contato" class="btn-hero btn-hero--outline" data-i18n="hero.ctaContact">Falar comigo</a>
-                </div>
+    <header class="hero" id="home">
+        <div class="hero-text">
+            <h1 data-rise style="--i:0">Gabriel<br>Pianissola</h1>
+            <p class="hero-role" data-rise style="--i:1" data-i18n="hero.role">Engenheiro de software</p>
+            <p class="hero-line" data-rise style="--i:2" data-i18n="hero.line">Desenho sistemas que continuam de pé depois que o prazo passa.</p>
+            <div class="hero-actions" data-rise style="--i:3">
+                <a class="button button--white" href="#projetos" data-i18n="hero.ctaProjects">Ver projetos</a>
+                <a class="button button--dark" href="#contato" data-i18n="hero.ctaContact">Falar comigo</a>
             </div>
-            <picture>
-                <source type="image/webp" srcset="images/profile/selfie-300.webp 1x, images/profile/selfie-600.webp 2x">
-                <source type="image/jpeg" srcset="images/profile/selfie-300.jpg 1x, images/profile/selfie-600.jpg 2x">
-                <img src="images/profile/selfie-300.jpg" alt="Gabriel Pianissola sorrindo na praia" data-i18n-attr="alt:hero.profileAlt" class="profile-pic" width="300" height="300" fetchpriority="high">
-            </picture>
         </div>
-
-        <div class="sun"></div>
-        <div class="moon"></div>
-        <div id="day-sky">
-            <div id="clouds-container"></div>
-        </div>
-        <div id="night-sky">
-            <div id="stars"></div>
-        </div>
-
-        <div class="wave-container wave-back">
-            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path class='wave-0' fill="#1a5580" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,186.7C480,181,600,107,720,96C840,85,960,128,1080,149.3C1200,171,1320,149,1380,138.7L1440,128L1440,320L0,320Z"></path>
-                <path class='wave-1' fill="#1a86bc" fill-opacity="1" d="M0,96L48,128C96,160,192,224,288,229.3C384,235,480,181,576,149.3C672,117,768,107,864,128C960,149,1056,203,1152,208C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                <path class='wave-2' fill="#009ACD" fill-opacity="1" d="M0,160L48,181.3C96,203,192,245,288,234.7C384,224,480,160,576,160C672,160,768,224,864,234.7C960,245,1056,203,1152,192C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-            </svg>
-        </div>
-        <a href="#sobre" class="scroll-indicator" data-i18n-attr="aria-label:hero.scrollAria" aria-label="Rolar para baixo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </a>
-
-        <div class="wave-container wave-front">
-            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path class='wave-3' fill="#00BFFF" fill-opacity="1" d="M0,192L48,202.7C96,213,192,235,288,229.3C384,224,480,192,576,197.3C672,203,768,245,864,261.3C960,277,1056,267,1152,250.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-            </svg>
+        <div class="hero-pic">
+            <img src="images/profile/gabriel.webp" alt="Gabriel Pianissola de camisa azul-marinho, com a mão no queixo" data-i18n-attr="alt:hero.profileAlt" width="1233" height="1276" fetchpriority="high">
         </div>
     </header>
 
     <main>
-        <!-- RASO: Sobre mim -->
-        <section id="sobre">
-            <canvas class="ocean-life" aria-hidden="true"></canvas>
-            <div class="bubbles-container" id="bubbles-sobre"></div>
-            <div class="container">
-                <h2 data-i18n="about.title">Sobre mim</h2>
-                <div class="sobre-content">
-                    <p class="sobre-intro" data-i18n="about.intro">
-                        Comecei programando microcontroladores no time de robótica do ensino médio. Hoje atuo full-stack em web, mobile e desktop, com foco em problemas técnicos difíceis e decisões de arquitetura que envelhecem bem.
-                    </p>
-                    <div class="sobre-cards">
-                        <div class="sobre-card">
-                            <strong data-i18n="about.card1Title">Amplitude técnica</strong>
-                            <span data-i18n="about.card1Text">Web, mobile e desktop. Front, backend e infra. Atuo na camada onde o problema está.</span>
-                        </div>
-                        <div class="sobre-card">
-                            <strong data-i18n="about.card2Title">Decisões que escalam</strong>
-                            <span data-i18n="about.card2Text">Arquiteturas pensadas pra crescer: comunicação assíncrona entre APIs e uploads direto entre cliente e storage com URLs assinadas.</span>
-                        </div>
-                        <div class="sobre-card">
-                            <strong data-i18n="about.card3Title">Aprendo entregando</strong>
-                            <span data-i18n="about.card3Text">Cada projeto trouxe uma stack nova que precisei dominar pra entregar. Foi assim com FastAPI, MinIO e Android nativo.</span>
-                        </div>
-                    </div>
-                    <div class="sobre-facts">
-                        <div class="sobre-fact">
-                            <span class="sobre-fact-label" data-i18n="about.factLangLabel">Idiomas</span>
-                            <span class="sobre-fact-value" data-i18n="about.factLangValue">Português · Inglês</span>
-                        </div>
-                        <div class="sobre-fact">
-                            <span class="sobre-fact-label" data-i18n="about.factOutLabel">Fora do código</span>
-                            <span class="sobre-fact-value" data-i18n="about.factOutValue">Mar, leitura, treino</span>
-                        </div>
-                    </div>
+        <section class="about" id="sobre">
+            <div class="about-pic"><img src="images/profile/gabriel-sobre.webp" alt="Gabriel Pianissola sorrindo, de braços cruzados" data-i18n-attr="alt:about.photoAlt" width="1233" height="1276" loading="lazy"></div>
+            <div class="about-text">
+                <h2 data-reveal data-i18n="about.title">Sobre mim</h2>
+                <p data-reveal data-i18n="about.text1">Comecei programando PIC e Arduino no time de robótica do ensino técnico. Hoje atuo de ponta a ponta em web, mobile e desktop, na camada onde o problema está.</p>
+                <p data-reveal data-i18n="about.text2">Escolho cada solução pelo que ela vai custar depois, e escrevo a decisão para quem vier em seguida.</p>
+                <div class="numbers" data-reveal>
+                    <div><b data-i18n="about.stat1Value">6 de 12</b><span data-i18n="about.stat1Label">meses para entregar o escopo que assumi no SENAI</span></div>
+                    <div><b>2016</b><span data-i18n="about.stat2Label">início no técnico em mecatrônica, com robótica</span></div>
+                    <div><b data-i18n="about.stat3Value">PT e EN</b><span data-i18n="about.stat3Label">português e inglês no dia a dia</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- MÉDIA PROFUNDIDADE: Jornada -->
-        <section id="jornada">
-            <canvas class="ocean-life" aria-hidden="true"></canvas>
-            <div class="bubbles-container" id="bubbles-jornada"></div>
-            <div class="container container--wide">
-                <div class="journey-head">
-                    <h2 data-i18n="journey.title">Minha Jornada</h2>
-                    <div class="journey-filters" role="group" data-i18n-attr="aria-label:journey.filterAria">
-                        <button type="button" class="journey-filter is-active" data-filter="all" aria-pressed="true" data-i18n="journey.filterAll">Tudo</button>
-                        <button type="button" class="journey-filter" data-filter="edu" aria-pressed="false" data-i18n="journey.filterEdu">Formação</button>
-                        <button type="button" class="journey-filter" data-filter="work" aria-pressed="false" data-i18n="journey.filterWork">Experiência</button>
+        <section class="section how" id="como-trabalho">
+            <div class="intro">
+                <h2 data-reveal data-i18n="how.title">Como trabalho</h2>
+                <p data-reveal data-i18n="how.intro">As áreas em que atuo, de ponta a ponta.</p>
+            </div>
+            <div class="skills">
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m14 5-4 14"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill1Title">Full stack web</h3>
+                        <p data-i18n="how.skill1Text">React, TypeScript, Node.js, NestJS, Django, FastAPI e Spring Boot.</p>
                     </div>
-                </div>
-
-                <div class="journey-ruler">
-                    <button type="button" class="ruler-row" data-target="etep" data-kind="edu" data-from="2016" data-to="2019">
-                        <span class="ruler-label">ETEP</span>
-                        <span class="ruler-track"><span class="ruler-bar"></span></span>
-                    </button>
-                    <button type="button" class="ruler-row" data-target="unip" data-kind="edu" data-from="2020" data-to="2024">
-                        <span class="ruler-label">UNIP</span>
-                        <span class="ruler-track"><span class="ruler-bar"></span></span>
-                    </button>
-                    <button type="button" class="ruler-row" data-target="senai" data-kind="work" data-from="2021" data-to="2026">
-                        <span class="ruler-label">SENAI</span>
-                        <span class="ruler-track"><span class="ruler-bar"></span></span>
-                    </button>
-                    <button type="button" class="ruler-row" data-target="kaffa" data-kind="work" data-from="2025" data-to="now">
-                        <span class="ruler-label">Kaffa</span>
-                        <span class="ruler-track"><span class="ruler-bar"></span></span>
-                    </button>
-                    <div class="ruler-ticks" aria-hidden="true"></div>
-                </div>
-
-                <div class="journey-list">
-
-                    <article class="journey-item" id="journey-etep" data-kind="edu">
-                        <div class="journey-years">
-                            <span class="journey-from">2016</span>
-                            <span class="journey-to">→ 2018</span>
-                        </div>
-                        <div class="journey-card">
-                            <div class="journey-card-top">
-                                <span class="journey-kind" data-i18n="journey.kindEdu">FORMAÇÃO</span>
-                            </div>
-                            <div class="journey-title">
-                                <h3>ETEP</h3>
-                                <span class="journey-role" data-i18n="journey.etepRole">Ensino Médio Técnico em Mecatrônica</span>
-                            </div>
-                            <p data-i18n="journey.etepText">Primeiros passos na programação, com base sólida em software, eletrônica e mecânica. Programação embarcada com PIC e Arduino, e participação no time de robótica FIRST.</p>
-                        </div>
-                    </article>
-
-                    <article class="journey-item" id="journey-unip" data-kind="edu">
-                        <div class="journey-years">
-                            <span class="journey-from">2020</span>
-                            <span class="journey-to">→ 2023</span>
-                        </div>
-                        <div class="journey-card">
-                            <div class="journey-card-top">
-                                <span class="journey-kind" data-i18n="journey.kindEdu">FORMAÇÃO</span>
-                            </div>
-                            <div class="journey-title">
-                                <h3>UNIP</h3>
-                                <span class="journey-role" data-i18n="journey.unipRole">Ciência da Computação</span>
-                            </div>
-                            <p data-i18n="journey.unipText">Formação sólida em desenvolvimento de software e visão de produto. TCC: plataforma de incentivo ao ensino com gamificação.</p>
-                        </div>
-                    </article>
-
-                    <article class="journey-item" id="journey-senai" data-kind="work">
-                        <div class="journey-years">
-                            <span class="journey-from">2021</span>
-                            <span class="journey-to">→ 2025</span>
-                        </div>
-                        <div class="journey-card">
-                            <div class="journey-card-top">
-                                <span class="journey-kind journey-kind--work" data-i18n="journey.kindWork">EXPERIÊNCIA</span>
-                                <button type="button" class="journey-toggle" aria-expanded="false" aria-controls="journey-senai-details"></button>
-                            </div>
-                            <div class="journey-title">
-                                <h3>Instituto SENAI de Inovação</h3>
-                                <span class="journey-role" data-i18n="journey.senaiRole">Desenvolvedor Full Stack</span>
-                            </div>
-                            <p data-i18n="journey.senaiText">Atuei em múltiplos projetos como backend principal, majoritariamente em Django, com passagens por FastAPI (APIs para serviços de IA) e React Native (adaptação de plataforma web para mobile). Docker em todos.</p>
-                            <div class="journey-details" id="journey-senai-details">
-                                <div class="journey-details-inner">
-                                    <div class="journey-highlight">
-                                        <div class="journey-stat">
-                                            <span class="journey-stat-value">6<small>/12</small></span>
-                                            <span class="journey-stat-label" data-i18n="journey.months">MESES</span>
-                                        </div>
-                                        <p data-i18n-html="journey.senaiHighlight"><strong>Projeto destaque: comunicação assíncrona entre APIs.</strong> Assumi o backend na metade do prazo, com nada feito, e entreguei em 6 meses um escopo originalmente estimado em 12. Além do prazo, fechei o projeto com mais funcionalidades do que o contrato pedia. Arquitetura com comunicação assíncrona entre 2 APIs e frontend, e documentação completa para que o cliente evoluísse a plataforma de forma autônoma.</p>
-                                    </div>
-                                    <ul class="journey-subprojects" data-i18n-html="journey.senaiList">
-                                        <li><strong>Upload tipo Drive</strong> Arquitetura com MinIO e URLs assinadas para tirar o tráfego de arquivos pesados do backend, permitindo upload direto entre cliente e storage.</li>
-                                        <li><strong>App em React Native</strong> Porte de uma plataforma web existente para Android e iOS.</li>
-                                        <li><strong>APIs de IA em FastAPI</strong> Serviços de inferência integrados aos backends Django.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="journey-stack">
-                                <span>Python</span>
-                                <span>Django REST</span>
-                                <span>FastAPI</span>
-                                <span>React Native</span>
-                                <span>PostgreSQL</span>
-                                <span>MinIO</span>
-                                <span>Docker</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="journey-item" id="journey-kaffa" data-kind="work">
-                        <div class="journey-years">
-                            <span class="journey-from">2025</span>
-                            <span class="journey-to journey-to--current">→ <span data-i18n="journey.current">Atual</span></span>
-                        </div>
-                        <div class="journey-card">
-                            <div class="journey-card-top">
-                                <span class="journey-kind journey-kind--work" data-i18n="journey.kindWork">EXPERIÊNCIA</span>
-                                <span class="journey-now" data-i18n="journey.now">AGORA</span>
-                                <button type="button" class="journey-toggle" aria-expanded="false" aria-controls="journey-kaffa-details"></button>
-                            </div>
-                            <div class="journey-title">
-                                <h3>Kaffa</h3>
-                                <span class="journey-role" data-i18n="journey.kaffaRole">Full Stack no time de produto</span>
-                            </div>
-                            <p data-i18n="journey.kaffaText1">Atuo de ponta a ponta no produto: frontend web em React, desktop em SWT, backend no framework proprietário da empresa e camada Android, com passagens por mapas e GIS.</p>
-                            <div class="journey-details" id="journey-kaffa-details">
-                                <div class="journey-details-inner">
-                                    <p data-i18n-html="journey.kaffaText2"><strong>Sou a referência técnica do time em Android.</strong> Atuo numa ponte proprietária que traduz SWT (desktop) para componentes nativos Android, onde identifiquei e corrigi falhas de renderização sob diferentes escalas de DPI, como deformação de campos e botões ao aplicar zoom no tablet.</p>
-                                    <p data-i18n="journey.kaffaText3">Reconstruí o módulo de import e export de arquivos DWG no canvas gráfico do produto, lidando com a conversão entre SVG e DWG em ambos os sentidos.</p>
-                                </div>
-                            </div>
-                            <div class="journey-stack">
-                                <span>React</span>
-                                <span>Kotlin</span>
-                                <span>Java</span>
-                                <span>Android</span>
-                                <span>SWT</span>
-                                <span>GIS</span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 6h9"/><path d="m6.5 8.2 4.3 7.6"/><path d="m17.5 8.2-4.3 7.6"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill2Title">Arquitetura de sistemas</h3>
+                        <p data-i18n="how.skill2Text">APIs, comunicação assíncrona, outbox e upload direto com URLs assinadas.</p>
+                    </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill3Title">Mobile</h3>
+                        <p data-i18n="how.skill3Text">React Native, Expo, Kotlin e Android nativo.</p>
+                    </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8"/><path d="M12 16v4"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill4Title">Desktop</h3>
+                        <p data-i18n="how.skill4Text">Java e SWT em produto, com ponte para Android.</p>
+                    </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill5Title">Dados e storage</h3>
+                        <p data-i18n="how.skill5Text">PostgreSQL, Prisma e MinIO.</p>
+                    </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill6Title">Infra e deploy</h3>
+                        <p data-i18n="how.skill6Text">Docker em todos os projetos e Cloudflare.</p>
+                    </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill7Title">Testes</h3>
+                        <p data-i18n="how.skill7Text">Vitest, Jest e testes e2e com Testcontainers.</p>
+                    </div>
+                </article>
+                <article class="skill" data-reveal>
+                    <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 4-6 2.5v14L9 18l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v14"/><path d="M15 6.5v14"/></svg></span>
+                    <div>
+                        <h3 data-i18n="how.skill8Title">Mapas e formatos gráficos</h3>
+                        <p data-i18n="how.skill8Text">GIS, canvas gráfico e conversão entre DWG e SVG.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- MEIA PROFUNDIDADE: Tecnologias -->
-        <section id="tecnologias">
-            <div class="bubbles-container" id="bubbles-tech"></div>
-            <div class="jellyfish-tank">
-                    <div class="jf-orbit"><div class="jellyfish jf--xl jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Python</span></div></div></div>
-                    <div class="jf-orbit" style="z-index:3"><div class="jellyfish jf--xl jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">JavaScript</span></div></div></div>
-                    <div class="jf-orbit" style="z-index:4"><div class="jellyfish jf--xl jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">React</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--xl jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Java</span></div></div></div>
-                    <div class="jf-orbit" style="z-index:2"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">TypeScript</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Django</span></div></div></div>
-                    <div class="jf-orbit" style="z-index:2"><div class="jellyfish jf--lg jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">React Native</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Kotlin</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--lg jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Android</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Node.js</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--py"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">FastAPI</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Docker</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--md jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">PostgreSQL</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--ops"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">MinIO</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--js"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">Prisma</span></div></div></div>
-                    <div class="jf-orbit"><div class="jellyfish jf--sm jf--jvm"><div class="jf-wrap"><svg class="jf-svg"></svg><span class="jf-label">SWT</span></div></div></div>
-                </div>
-        </section>
-
-        <!-- FUNDO: Projetos -->
-        <section id="projetos">
-            <canvas class="ocean-life" aria-hidden="true"></canvas>
-            <div class="bubbles-container" id="bubbles-projetos"></div>
-            <div class="container container--wide">
-                <div class="sonar-head">
-                    <div class="sonar-title">
-                        <span class="sonar-eyebrow" data-i18n="projects.sonarEyebrow">SONAR · 4 CONTATOS</span>
-                        <h2 data-i18n="projects.title">Projetos</h2>
-                    </div>
-                    <button type="button" class="sonar-mode" id="sonar-mode" aria-pressed="false">
-                        <span class="sonar-mode-dot" aria-hidden="true"></span>
-                        <span id="sonar-mode-label" data-i18n="projects.sonarAuto">VARREDURA AUTOMÁTICA</span>
-                    </button>
-                </div>
-
-                <div class="sonar">
-                    <div class="sonar-side">
-                        <div class="sonar-radar" aria-hidden="true">
-                            <span class="sonar-ring sonar-ring--1"></span>
-                            <span class="sonar-ring sonar-ring--2"></span>
-                            <span class="sonar-axis sonar-axis--v"></span>
-                            <span class="sonar-axis sonar-axis--h"></span>
-                            <span class="sonar-sweep"></span>
-                            <span class="sonar-ping"></span>
-                        </div>
-                        <div class="sonar-list">
-                            <button type="button" class="sonar-row" aria-controls="projeto-whatchu" data-bearing="42" data-range=".62">
-                                <span class="sonar-code">01</span><span class="sonar-name">Whatchu</span><span class="sonar-bearing"></span>
-                            </button>
-                            <button type="button" class="sonar-row" aria-controls="projeto-citria" data-bearing="128" data-range=".74">
-                                <span class="sonar-code">02</span><span class="sonar-name">Citria</span><span class="sonar-bearing"></span>
-                            </button>
-                            <button type="button" class="sonar-row" aria-controls="projeto-inside" data-bearing="226" data-range=".66">
-                                <span class="sonar-code">03</span><span class="sonar-name">Inside</span><span class="sonar-bearing"></span>
-                            </button>
-                            <button type="button" class="sonar-row" aria-controls="projeto-iris" data-bearing="315" data-range=".5">
-                                <span class="sonar-code">04</span><span class="sonar-name">Íris</span><span class="sonar-bearing"></span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="sonar-panel">
-
-                        <article class="projeto-card is-selected" id="projeto-whatchu">
-                            <div class="projeto-meta">
-                                <span><span data-i18n="projects.contact">CONTATO</span> 01</span>
-                                <span class="projeto-meta-sep">/</span>
-                                <span><span data-i18n="projects.bearing">RUMO</span> <span class="projeto-bearing"></span></span>
-                                <span class="projeto-ano">2026</span>
-                            </div>
-                            <div class="projeto-title">
-                                <h3>Whatchu</h3>
-                                <span class="projeto-tipo" data-i18n="projects.whatchuType">Full-Stack</span>
-                            </div>
-                            <a href="https://whatchu.pianissola.tech/" target="_blank" rel="noopener" class="projeto-thumb">
-                                <img src="images/projects/whatchu-preview-1200.webp" srcset="images/projects/whatchu-preview-1200.webp 1x, images/projects/whatchu-preview-2400.webp 2x" alt="Tela inicial do Whatchu mostrando o sorteio de um título" data-i18n-attr="alt:projects.whatchuAlt" width="1200" height="675" loading="lazy">
-                            </a>
-                            <p data-i18n="projects.whatchuDesc">Plataforma multi-usuário para decidir o que assistir hoje. Cada usuário monta sua watchlist com busca integrada ao TMDB, organiza por prioridade, e o sistema faz um sorteio com peso. Inclui autenticação JWT com refresh token, onboarding guiado, upload de avatar via MinIO e testes automatizados.</p>
-                            <div class="projeto-stack">
-                                <span>React</span>
-                                <span>Vite</span>
-                                <span>Node.js</span>
-                                <span>Express</span>
-                                <span>Prisma</span>
-                                <span>PostgreSQL</span>
-                                <span>MinIO</span>
-                                <span>JWT</span>
-                                <span>Vitest</span>
-                                <span>Docker</span>
-                            </div>
-                            <div class="projeto-links">
-                                <a href="https://whatchu.pianissola.tech/" target="_blank" rel="noopener" class="btn-projeto"><span data-i18n="projects.visit">Visitar site</span> <span aria-hidden="true">↗</span></a>
-                                <a href="https://github.com/DellPianissola/whatchu" target="_blank" rel="noopener" class="projeto-github" data-i18n="projects.github">GitHub</a>
-                            </div>
-                        </article>
-
-                        <article class="projeto-card" id="projeto-citria">
-                            <div class="projeto-meta">
-                                <span><span data-i18n="projects.contact">CONTATO</span> 02</span>
-                                <span class="projeto-meta-sep">/</span>
-                                <span><span data-i18n="projects.bearing">RUMO</span> <span class="projeto-bearing"></span></span>
-                                <span class="projeto-ano">2026</span>
-                            </div>
-                            <div class="projeto-title">
-                                <h3>Citria</h3>
-                                <span class="projeto-tipo" data-i18n="projects.citriaType">Full-Stack · Mobile</span>
-                            </div>
-                            <a href="https://citria.pianissola.tech/" target="_blank" rel="noopener" class="projeto-thumb">
-                                <img src="images/projects/citria-preview-1200.webp" srcset="images/projects/citria-preview-1200.webp 1x, images/projects/citria-preview-2400.webp 2x" alt="Landing do Citria com o app do paciente mostrando a refeição do momento" data-i18n-attr="alt:projects.citriaAlt" width="1200" height="675" loading="lazy">
-                            </a>
-                            <p data-i18n="projects.citriaDesc">App de acompanhamento nutricional que conecta pacientes e nutricionistas. O paciente abre o app e vê a refeição da hora, registra com um toque e faz um check-in diário; a nutricionista monta dietas com a tabela TACO, acompanha evolução e agenda pelo painel web ou pelo app. Código compartilhado entre web e mobile, notificações push e testes e2e com Testcontainers.</p>
-                            <div class="projeto-stack">
-                                <span>React Native</span>
-                                <span>Expo</span>
-                                <span>React</span>
-                                <span>Vite</span>
-                                <span>Mantine</span>
-                                <span>NestJS</span>
-                                <span>Prisma</span>
-                                <span>PostgreSQL</span>
-                                <span>Jest</span>
-                                <span>Docker</span>
-                            </div>
-                            <div class="projeto-links">
-                                <a href="https://citria.pianissola.tech/" target="_blank" rel="noopener" class="btn-projeto"><span data-i18n="projects.visit">Visitar site</span> <span aria-hidden="true">↗</span></a>
-                            </div>
-                        </article>
-
-                        <article class="projeto-card" id="projeto-inside">
-                            <div class="projeto-meta">
-                                <span><span data-i18n="projects.contact">CONTATO</span> 03</span>
-                                <span class="projeto-meta-sep">/</span>
-                                <span><span data-i18n="projects.bearing">RUMO</span> <span class="projeto-bearing"></span></span>
-                                <span class="projeto-ano">2026</span>
-                            </div>
-                            <div class="projeto-title">
-                                <h3>Inside</h3>
-                                <span class="projeto-tipo" data-i18n="projects.insideType">Full-Stack</span>
-                            </div>
-                            <a href="https://inside.nomaicode.com/" target="_blank" rel="noopener" class="projeto-thumb">
-                                <img src="images/projects/inside-preview-1200.webp" srcset="images/projects/inside-preview-1200.webp 1x, images/projects/inside-preview-2400.webp 2x" alt="Tela de login do Inside, ferramenta interna da Nomai Code" data-i18n-attr="alt:projects.insideAlt" width="1200" height="675" loading="lazy">
-                            </a>
-                            <p data-i18n="projects.insideDesc">Ferramenta interna do estúdio Nomai Code para gerir leads, propostas, projetos e clientes. A API precifica propostas versionadas, converte o aceite em projeto com marcos e envia e-mails por outbox. O acesso é restrito, então o site mostra só a tela de login.</p>
-                            <div class="projeto-stack">
-                                <span>Java</span>
-                                <span>Spring Boot</span>
-                                <span>PostgreSQL</span>
-                                <span>React</span>
-                                <span>Vite</span>
-                                <span>Tailwind</span>
-                                <span>Docker</span>
-                            </div>
-                            <div class="projeto-links">
-                                <a href="https://inside.nomaicode.com/" target="_blank" rel="noopener" class="btn-projeto"><span data-i18n="projects.visit">Visitar site</span> <span aria-hidden="true">↗</span></a>
-                            </div>
-                        </article>
-
-                        <article class="projeto-card" id="projeto-iris">
-                            <div class="projeto-meta">
-                                <span><span data-i18n="projects.contact">CONTATO</span> 04</span>
-                                <span class="projeto-meta-sep">/</span>
-                                <span><span data-i18n="projects.bearing">RUMO</span> <span class="projeto-bearing"></span></span>
-                                <span class="projeto-ano">2026</span>
-                            </div>
-                            <div class="projeto-title">
-                                <h3>Íris</h3>
-                                <span class="projeto-tipo" data-i18n="projects.irisType">Front-End</span>
-                            </div>
-                            <a href="https://iris.nomaicode.com/" target="_blank" rel="noopener" class="projeto-thumb">
-                                <img src="images/projects/iris-preview-1200.webp" srcset="images/projects/iris-preview-1200.webp 1x, images/projects/iris-preview-2400.webp 2x" alt="Íris testando uma paleta de cores sobre o mockup de um site" data-i18n-attr="alt:projects.irisAlt" width="1200" height="675" loading="lazy">
-                            </a>
-                            <p data-i18n="projects.irisDesc">Laboratório de cores da Nomai Code: o cliente sobe o próprio logo e testa paletas em um mockup real de site, com contraste WCAG calculado enquanto arrasta. Um pipeline classifica e recolore o SVG no navegador, e o arquivo fica no navegador, a menos que o cliente escolha enviá-lo ao estúdio.</p>
-                            <div class="projeto-stack">
-                                <span>React</span>
-                                <span>Vite</span>
-                                <span>TypeScript</span>
-                                <span>Vitest</span>
-                                <span>Cloudflare</span>
-                                <span>pnpm</span>
-                            </div>
-                            <div class="projeto-links">
-                                <a href="https://iris.nomaicode.com/" target="_blank" rel="noopener" class="btn-projeto"><span data-i18n="projects.visit">Visitar site</span> <span aria-hidden="true">↗</span></a>
-                            </div>
-                        </article>
-
-                    </div>
-                </div>
-                <p class="projetos-footer" data-i18n-html="projects.footer">
-                    Mais experimentos e estudos no <a href="https://github.com/DellPianissola" target="_blank" rel="noopener">GitHub</a>.
-                </p>
+        <section class="section" id="projetos">
+            <div class="intro">
+                <h2 data-reveal data-i18n="projects.title">Projetos</h2>
+                <p data-reveal data-i18n="projects.intro">Construídos de ponta a ponta, do banco à interface.</p>
             </div>
-        </section>
-
-        <!-- ABISSAL: Contato -->
-        <section id="contato">
-            <canvas class="ocean-life" aria-hidden="true"></canvas>
-            <div class="particles-container" id="particles-contato"></div>
-            <div class="container">
-                <h2 data-i18n="contact.title">Entre em contato</h2>
-                <div class="contato-links">
-                    <a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer" class="contato-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        LinkedIn
+            <div class="projects">
+                <article class="project" data-reveal>
+                    <a class="project-link" href="https://whatchu.pianissola.tech/" target="_blank" rel="noopener">
+                        <span class="shot"><img src="images/projects/whatchu-preview-1200.webp" srcset="images/projects/whatchu-preview-1200.webp 1x, images/projects/whatchu-preview-2400.webp 2x" alt="Tela inicial do Whatchu mostrando o sorteio de um título" data-i18n-attr="alt:projects.whatchuAlt" width="1200" height="630" loading="lazy"></span>
+                        <span class="tag">Whatchu <small data-i18n="projects.whatchuType">Full stack</small></span>
                     </a>
-                    <a href="https://github.com/DellPianissola" target="_blank" rel="noopener noreferrer" class="contato-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        GitHub
+                    <p data-i18n="projects.whatchuDesc">Decide o que assistir com um sorteio ponderado pela prioridade de cada título, com busca integrada ao TMDB. JWT com refresh token, avatar via MinIO e testes automatizados.</p>
+                    <p class="stack">React, Vite, Node.js, Express, Prisma, PostgreSQL, MinIO, Vitest, Docker</p>
+                    <a class="more" href="https://github.com/DellPianissola/whatchu" target="_blank" rel="noopener" data-i18n="projects.github">Código no GitHub</a>
+                </article>
+                <article class="project" data-reveal>
+                    <a class="project-link" href="https://citria.pianissola.tech/" target="_blank" rel="noopener">
+                        <span class="shot"><img src="images/projects/citria-preview-1200.webp" srcset="images/projects/citria-preview-1200.webp 1x, images/projects/citria-preview-2400.webp 2x" alt="Landing do Citria com o app do paciente mostrando a refeição do momento" data-i18n-attr="alt:projects.citriaAlt" width="1200" height="675" loading="lazy"></span>
+                        <span class="tag">Citria <small data-i18n="projects.citriaType">Full stack e mobile</small></span>
                     </a>
-                    <button class="contato-link contato-link--email" id="copy-email" data-i18n-attr="aria-label:contact.emailAria" aria-label="Copiar e-mail">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <span id="copy-email-label" data-i18n="contact.emailLabel">Email</span>
-                    </button>
-                </div>
-                <form id="contact-form">
-                    <input id="contact-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
-
-                    <label for="contact-name" class="sr-only" data-i18n="contact.nameLabel">Seu Nome</label>
-                    <input id="contact-name" type="text" name="name" placeholder="Seu Nome" data-i18n-attr="placeholder:contact.namePlaceholder" required>
-
-                    <label for="contact-email" class="sr-only" data-i18n="contact.emailFieldLabel">Seu E-mail</label>
-                    <input id="contact-email" type="email" name="email" placeholder="Seu E-mail" data-i18n-attr="placeholder:contact.emailPlaceholder" required>
-
-                    <label for="contact-message" class="sr-only" data-i18n="contact.msgLabel">Sua Mensagem</label>
-                    <textarea id="contact-message" name="message" placeholder="Sua Mensagem" data-i18n-attr="placeholder:contact.msgPlaceholder" required></textarea>
-
-                    <div id="recaptcha-container"></div>
-                    <button type="submit" class="btn-abyss" id="form-submit" data-i18n="contact.send">Enviar</button>
-                    <p id="form-status" aria-live="polite"></p>
-                    <p class="recaptcha-notice" data-i18n-html="contact.recaptchaNotice">
-                        Protegido por reCAPTCHA —
-                        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacidade</a> e
-                        <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Termos</a> do Google.
-                    </p>
-                </form>
+                    <p data-i18n="projects.citriaDesc">Liga paciente e nutricionista: refeição da hora, check-in diário, dietas com a tabela TACO e agenda. Código compartilhado entre web e mobile, notificações push e testes e2e com Testcontainers.</p>
+                    <p class="stack">React Native, Expo, React, Vite, Mantine, NestJS, Prisma, PostgreSQL, Jest, Docker</p>
+                </article>
+                <article class="project" data-reveal>
+                    <a class="project-link" href="https://inside.nomaicode.com/" target="_blank" rel="noopener">
+                        <span class="shot"><img src="images/projects/inside-preview-1200.webp" srcset="images/projects/inside-preview-1200.webp 1x, images/projects/inside-preview-2400.webp 2x" alt="Tela de login do Inside" data-i18n-attr="alt:projects.insideAlt" width="1200" height="675" loading="lazy"></span>
+                        <span class="tag">Inside <small data-i18n="projects.insideType">Full stack</small></span>
+                    </a>
+                    <p data-i18n="projects.insideDesc">Gestão de leads, propostas, projetos e clientes. A API precifica propostas versionadas, converte o aceite em projeto com marcos e envia e-mails por outbox. O acesso é restrito, então o site mostra só a tela de login.</p>
+                    <p class="stack">Java, Spring Boot, PostgreSQL, React, Vite, Tailwind, Docker</p>
+                </article>
+                <article class="project" data-reveal>
+                    <a class="project-link" href="https://iris.nomaicode.com/" target="_blank" rel="noopener">
+                        <span class="shot"><img src="images/projects/iris-preview-1200.webp" srcset="images/projects/iris-preview-1200.webp 1x, images/projects/iris-preview-2400.webp 2x" alt="Íris testando uma paleta de cores sobre o mockup de um site" data-i18n-attr="alt:projects.irisAlt" width="1200" height="675" loading="lazy"></span>
+                        <span class="tag">Íris <small data-i18n="projects.irisType">Front-end</small></span>
+                    </a>
+                    <p data-i18n="projects.irisDesc">Laboratório de cores: o cliente sobe o próprio logo e testa paletas num mockup real de site, com contraste WCAG calculado enquanto arrasta.</p>
+                    <p class="stack">React, Vite, TypeScript, Vitest, Cloudflare, pnpm</p>
+                </article>
             </div>
+            <p class="projects-foot" data-reveal data-i18n-html="projects.footer">Mais experimentos e estudos no <a href="https://github.com/DellPianissola" target="_blank" rel="noopener">GitHub</a>.</p>
+        </section>
+
+        <section class="section section--flush" id="experiencia">
+            <div class="intro">
+                <h2 data-reveal data-i18n="experience.title">Experiência</h2>
+                <p data-reveal data-i18n="experience.intro">Da robótica ao time de produto, com os grandes feitos de cada etapa.</p>
+            </div>
+            <ol class="timeline">
+                <li class="xp" data-reveal>
+                    <time data-i18n="experience.kaffaDate">2025, atual</time>
+                    <div class="card">
+                        <h3><button type="button" class="xp-toggle" aria-expanded="false" aria-controls="xp-kaffa">
+                            <span class="xp-name">Kaffa</span>
+                            <span class="xp-role" data-i18n="experience.kaffaRole">Full stack no time de produto</span>
+                            <span class="xp-text" data-i18n="experience.kaffaText">Ponta a ponta no produto: React na web, SWT no desktop, Android, backend proprietário, mapas e GIS.</span>
+                            <span class="xp-cue"><span class="cue-open" data-i18n="experience.open">Ver decisões</span><span class="cue-close" data-i18n="experience.close">Recolher</span><span class="xp-plus" aria-hidden="true"></span></span>
+                        </button></h3>
+                        <div class="xp-panel" id="xp-kaffa">
+                            <div class="xp-panel-inner">
+                                <ul class="feats" data-i18n-html="experience.kaffaDecisions"><li><strong>Referência técnica em Android</strong>Responsável pela camada Android do produto dentro do time.</li><li><strong>Correção na ponte, não em cada tela</strong>Falhas de renderização sob escalas de DPI, como campos deformados com zoom no tablet, resolvidas na ponte SWT para Android.</li><li><strong>Conversão DWG e SVG</strong>Módulo de import e export do canvas gráfico reconstruído, nos dois sentidos.</li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="xp" data-reveal>
+                    <time data-i18n="experience.senaiDate">2021 a 2025</time>
+                    <div class="card">
+                        <h3><button type="button" class="xp-toggle" aria-expanded="false" aria-controls="xp-senai">
+                            <span class="xp-name" data-i18n="experience.senaiName">Instituto SENAI de Inovação</span>
+                            <span class="xp-role" data-i18n="experience.senaiRole">Desenvolvedor full stack</span>
+                            <span class="xp-text" data-i18n="experience.senaiText">Backend principal em múltiplos projetos, com Django, FastAPI, React Native e Docker.</span>
+                            <span class="xp-cue"><span class="cue-open" data-i18n="experience.open">Ver decisões</span><span class="cue-close" data-i18n="experience.close">Recolher</span><span class="xp-plus" aria-hidden="true"></span></span>
+                        </button></h3>
+                        <div class="xp-panel" id="xp-senai">
+                            <div class="xp-panel-inner">
+                                <ul class="feats" data-i18n-html="experience.senaiDecisions"><li><strong>12 meses de escopo em 6</strong>Backend assumido na metade do prazo, com nada feito, e projeto fechado com mais funcionalidades do que o contrato pedia.</li><li><strong>Comunicação assíncrona</strong>Duas APIs e o frontend sem esperar uns pelos outros, com documentação para o cliente evoluir sozinho.</li><li><strong>Upload direto com URLs assinadas</strong>Arquivos pesados fora do backend, com MinIO e envio direto entre cliente e storage.</li><li><strong>Inferência em FastAPI</strong>Serviços de IA integrados aos backends Django.</li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="xp is-edu" data-reveal>
+                    <time data-i18n="experience.unipDate">2020 a 2023</time>
+                    <div class="card">
+                        <h3><button type="button" class="xp-toggle" aria-expanded="false" aria-controls="xp-unip">
+                            <span class="xp-name">UNIP</span>
+                            <span class="xp-role" data-i18n="experience.unipRole">Ciência da Computação</span>
+                            <span class="xp-text" data-i18n="experience.unipText">TCC: plataforma de incentivo ao ensino com gamificação.</span>
+                            <span class="xp-cue"><span class="cue-open" data-i18n="experience.open">Ver decisões</span><span class="cue-close" data-i18n="experience.close">Recolher</span><span class="xp-plus" aria-hidden="true"></span></span>
+                        </button></h3>
+                        <div class="xp-panel" id="xp-unip">
+                            <div class="xp-panel-inner">
+                                <ul class="feats" data-i18n-html="experience.unipDecisions"><li><strong>TCC com gamificação</strong>Plataforma de incentivo ao ensino.</li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="xp is-edu" data-reveal>
+                    <time data-i18n="experience.etepDate">2016 a 2018</time>
+                    <div class="card">
+                        <h3><button type="button" class="xp-toggle" aria-expanded="false" aria-controls="xp-etep">
+                            <span class="xp-name">ETEP</span>
+                            <span class="xp-role" data-i18n="experience.etepRole">Técnico em Mecatrônica</span>
+                            <span class="xp-text" data-i18n="experience.etepText">Programação embarcada com PIC e Arduino e time de robótica FIRST.</span>
+                            <span class="xp-cue"><span class="cue-open" data-i18n="experience.open">Ver decisões</span><span class="cue-close" data-i18n="experience.close">Recolher</span><span class="xp-plus" aria-hidden="true"></span></span>
+                        </button></h3>
+                        <div class="xp-panel" id="xp-etep">
+                            <div class="xp-panel-inner">
+                                <ul class="feats" data-i18n-html="experience.etepDecisions"><li><strong>Robótica FIRST</strong>Participação no time, com base em software, eletrônica e mecânica.</li><li><strong>Programação embarcada</strong>Primeiros projetos com PIC e Arduino.</li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="section contact" id="contato">
+            <div>
+                <h2 data-reveal data-i18n="contact.title">Vamos conversar</h2>
+                <p class="contact-line" data-reveal data-i18n="contact.line">Tem uma vaga ou um sistema para construir? Me escreva.</p>
+                <dl class="ways" data-reveal>
+                    <div><dt data-i18n="contact.emailTerm">E-mail</dt><dd><button id="copy-email" type="button" class="copy" data-i18n-attr="aria-label:contact.emailAria" aria-label="Copiar e-mail"><span id="copy-email-label" data-i18n="contact.emailLabel">dell.pianissola@outlook.com</span></button></dd></div>
+                    <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer">gabriel-n-pianissola</a></dd></div>
+                    <div><dt>GitHub</dt><dd><a href="https://github.com/DellPianissola" target="_blank" rel="noopener noreferrer">DellPianissola</a></dd></div>
+                </dl>
+            </div>
+            <form id="contact-form" data-reveal>
+                <input id="contact-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
+
+                <label for="contact-name"><span data-i18n="contact.nameLabel">Seu nome</span>
+                    <input id="contact-name" class="field" type="text" name="name" autocomplete="name" required>
+                </label>
+                <label for="contact-email"><span data-i18n="contact.emailFieldLabel">Seu e-mail</span>
+                    <input id="contact-email" class="field" type="email" name="email" autocomplete="email" required>
+                </label>
+                <label for="contact-message" class="full"><span data-i18n="contact.msgLabel">Sua mensagem</span>
+                    <textarea id="contact-message" class="field" name="message" required></textarea>
+                </label>
+
+                <div id="recaptcha-container"></div>
+                <button type="submit" class="button" id="form-submit" data-i18n="contact.send">Enviar mensagem</button>
+                <p id="form-status" aria-live="polite"></p>
+                <p class="recaptcha-notice" data-i18n-html="contact.recaptchaNotice">Protegido por reCAPTCHA: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacidade</a> e <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Termos</a> do Google.</p>
+            </form>
         </section>
     </main>
 
-    <footer>
-        <p data-i18n="footer.copyright">&copy; 2026 Gabriel Pianissola. Todos os direitos reservados.</p>
-        <div class="footer-links">
-            <a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/DellPianissola" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
+    <footer class="foot">
+        <span data-i18n="footer.copyright">&copy; 2026 Gabriel Pianissola</span>
+        <a href="#home" data-i18n="footer.top">Voltar ao topo</a>
     </footer>
 
     <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>

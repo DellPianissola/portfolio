@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Pianissola</title>
+<meta name="description" content="Gabriel Pianissola, engenheiro de software. Uma porta para quem quer contratar, outra para quem quer construir um sistema.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/base.css">
+<style>
+:root {
+  --navy: #1d2242; --lift: #2a3160; --blue: #2456c8; --pale: #dfe6f4; --soft-on-navy: #b4bedb;
+  --bg: #f5f7fb; --surface: #e6ebf5; --ink: #1d2242; --muted: #48526f;
+  --accent: var(--blue); --accent-ink: #fff;
+  --font-display: 'EB Garamond', Georgia, serif; --font-text: 'EB Garamond', Georgia, serif;
+  --step-small: clamp(0.9375rem, 0.9rem + 0.1vw, 1rem);
+  --step-body: clamp(1.1875rem, 1.1rem + 0.3vw, 1.3125rem);
+  --step-lead: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --step-head: clamp(1.875rem, 1.4rem + 1.6vw, 2.75rem);
+  --step-display: clamp(2.5rem, 1rem + 4.4vw, 5rem);
+  --margin: clamp(1.25rem, 2.4vw, 2rem);
+  --left: clamp(1.25rem, 22vw, 20rem); --col: min(35rem, calc(100vw - 2.5rem));
+}
+h1, h2, h3 { font-weight: 400; letter-spacing: -.01em; line-height: 1.08; }
+h1 { font-style: italic; }
+p { line-height: 1.5; }
+[data-reveal] { transition-delay: calc(var(--i, 0) * 70ms) !important; }
+
+.wall { background: var(--navy); color: #f5f7fb; min-height: 100svh; padding: 1.5rem var(--margin) 3rem; display: grid; grid-template-rows: auto 1fr; --ink: #f5f7fb; }
+.bar { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.0625rem; }
+.bar a { color: inherit; }
+.wall-inner { align-self: center; text-align: center; display: grid; justify-items: center; gap: clamp(2rem, 4vw, 3.25rem); padding-top: 2rem; }
+.wall h1 { font-size: var(--step-display); }
+.doors { display: grid; grid-template-columns: repeat(2, minmax(0, min(20rem, 36svh))); gap: clamp(.9rem, 5vw, 5rem); text-align: left; }
+.door { display: block; text-decoration: none; transition: opacity var(--t-ui) ease; }
+.doors:hover .door:not(:hover) { opacity: .62; }
+.door-pic { aspect-ratio: 3 / 4; overflow: hidden; margin-bottom: .9rem; background: var(--lift); position: relative; }
+.door-pic img { width: 100%; height: 100%; object-fit: cover; background: none; transition: transform 900ms var(--ease-soft); }
+.door:hover .door-pic img { transform: scale(1.035); }
+.door-pic.me { background: var(--pale); }
+.door-pic.me img { object-position: 50% 0; }
+.duo { background: var(--blue); }
+.duo img { filter: grayscale(1) contrast(1.1); mix-blend-mode: screen; }
+.door strong { display: block; font-weight: 400; font-size: var(--step-lead); line-height: 1.15; }
+.door span { color: var(--soft-on-navy); font-size: 1.0625rem; line-height: 1.3; display: block; margin-top: .2rem; }
+
+.wide { display: grid; grid-template-columns: minmax(0, 35rem) minmax(0, 1fr); column-gap: clamp(2rem, 6vw, 6rem); padding-left: var(--left); padding-right: var(--margin); align-items: start; }
+.part { padding-top: clamp(6rem, 10vw, 9rem); }
+.part h2 { font-size: var(--step-head); margin-bottom: 1.25rem; }
+.part h3 { font-size: var(--step-lead); margin-bottom: .75rem; }
+.part p + p { margin-top: .85em; }
+
+.opening { padding-top: clamp(5rem, 9vw, 8rem); display: grid; grid-template-columns: var(--left) minmax(0, 1fr) minmax(0, 22rem); column-gap: 0; padding-inline: var(--margin); align-items: start; }
+.opening .facts { grid-column: 1; padding-right: 2rem; }
+.opening .facts div + div { margin-top: 1.1rem; }
+.opening .facts dt { color: var(--muted); font-size: var(--step-small); }
+.opening .facts dd { font-size: var(--step-small); }
+.opening .text { grid-column: 2; max-width: 35rem; margin-left: calc(-1 * var(--margin)); }
+.opening h2 { font-size: var(--step-head); margin-bottom: 1.25rem; }
+.opening figure { grid-column: 3; margin-left: 3rem; background: var(--pale); }
+.opening figure { aspect-ratio: 4 / 5; overflow: hidden; }
+.opening figure img { background: none; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: scale(1.75); transform-origin: 50% 10%; }
+
+.instrument { background: var(--navy); color: #f5f7fb; padding: 1.75rem; }
+.instrument label { display: grid; grid-template-columns: 1fr auto; font-size: 1.0625rem; margin-bottom: .35rem; }
+.instrument output { font-variant-numeric: tabular-nums; }
+.instrument input[type=range] { width: 100%; margin-bottom: 1.25rem; accent-color: #7fa3f5; height: 28px; }
+.pipes { display: grid; gap: 1.1rem; margin-top: .5rem; }
+.pipe-row { display: grid; grid-template-columns: 1fr auto; font-size: 1.0625rem; gap: .25rem 1rem; }
+.pipe { grid-column: 1 / -1; height: 18px; background: var(--lift); overflow: hidden; }
+.pipe i { display: block; height: 100%; width: 100%; background: #7fa3f5; transform-origin: left; transition: transform var(--t-ui) var(--ease-out); }
+.pipe-row b { font-weight: 500; font-variant-numeric: tabular-nums; }
+.instrument p { margin-top: 1.25rem; font-size: 1.0625rem; color: var(--soft-on-navy); }
+
+.ledger { list-style: none; padding: 0; position: relative; }
+.ledger li { position: relative; }
+.row { display: grid; grid-template-columns: 1fr 1fr auto; gap: .75rem; align-items: baseline; padding-block: .55rem; text-decoration: none; transition: color var(--t-hover) ease; }
+.row span { color: var(--muted); font-size: var(--step-small); }
+.row time { font-variant-numeric: tabular-nums; font-size: var(--step-small); }
+.ledger:hover .row:not(:hover) { color: var(--muted); }
+.ledger p { color: var(--ink); padding-bottom: .9rem; }
+.preview { position: sticky; top: 18svh; aspect-ratio: 16 / 9; }
+.preview figure { position: absolute; inset: 0; opacity: 0; transition: opacity 180ms ease; }
+.preview figure.is-on { opacity: 1; }
+.preview img { width: 100%; height: 100%; object-fit: cover; }
+.ledger-pic { display: none; }
+
+.two { list-style: none; padding: 0; }
+.two li { display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; padding-block: .5rem; align-items: baseline; }
+.two b { font-weight: 400; }
+.two b::before { content: ""; display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: var(--blue); margin-right: .6em; }
+.two em { font-style: normal; color: var(--muted); font-size: var(--step-small); font-variant-numeric: tabular-nums; }
+.two .plain { margin-left: 1.2em; display: block; color: var(--muted); font-size: 1.0625rem; line-height: 1.35; }
+
+.band { margin-top: clamp(6rem, 10vw, 9rem); padding-block: clamp(4rem, 8vw, 7rem); background: var(--navy); color: #f5f7fb; --ink: #f5f7fb; --muted: var(--soft-on-navy); }
+.band h2 { font-size: var(--step-head); margin-bottom: 1.25rem; }
+.band .two b::before { background: #7fa3f5; }
+.ask-wrap { padding-top: clamp(7rem, 12vw, 11rem); }
+.ask-wrap h2 { font-size: var(--step-head); margin-bottom: 1.25rem; }
+.ask { display: grid; grid-template-columns: 1fr auto; background: var(--surface); padding: 8px; }
+.ask:focus-within { outline: 2px solid var(--blue); outline-offset: 2px; }
+.ask input { background: none; border: 0; min-width: 0; padding-inline: .8rem; min-height: 3.25rem; }
+.ask input:focus { outline: none; }
+.ask input::placeholder { color: var(--muted); opacity: 1; }
+.button { min-height: 3.25rem; }
+.hint { margin-top: .75rem; font-size: var(--step-small); color: var(--muted); }
+
+.ways div { display: grid; grid-template-columns: 6rem 1fr; padding-block: .2rem; font-size: 1.0625rem; }
+.ways dt { color: var(--muted); }
+.ways a { text-underline-offset: .18em; overflow-wrap: anywhere; }
+
+.foot { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; padding: 22svh var(--margin) 30px; font-size: 1.0625rem; color: var(--muted); }
+.foot nav { display: flex; gap: 1.5rem; color: var(--ink); }
+.foot span:last-child { justify-self: end; }
+
+@media (hover: hover) and (pointer: fine) { .button:hover { background: #1b459f; } }
+@media (max-width: 1180px) {
+  .wide { grid-template-columns: 1fr; row-gap: 1.75rem; }
+  .preview { display: none; }
+  .ledger-pic { display: block; margin-bottom: .75rem; }
+  .ledger-pic img { width: 100%; height: auto; }
+}
+@media (max-width: 860px) {
+  :root { --left: 1.25rem; }
+  .wide { padding-right: 1.25rem; }
+  .opening { grid-template-columns: 1fr; padding-inline: 1.25rem; row-gap: 2rem; }
+  .opening .facts, .opening .text, .opening figure { grid-column: 1; margin: 0; }
+  .opening .text { order: -1; }
+  .opening figure { display: none; }
+  .opening .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 0; }
+  .opening .facts div + div { margin-top: 0; }
+  .wall { padding-inline: 1.25rem; }
+  .wall-inner { gap: 1.5rem; padding-top: 1.25rem; }
+  .doors { width: min(100%, 26rem); gap: .875rem; grid-template-columns: 1fr 1fr; }
+  .door-pic { aspect-ratio: 4 / 5; }
+  .row { grid-template-columns: 1fr auto; }
+  .row span { grid-column: 1 / -1; grid-row: 2; }
+  .foot { grid-template-columns: 1fr; padding-inline: 1.25rem; }
+  .foot span:last-child { justify-self: start; }
+}
+</style>
+</head>
+<body>
+<header class="wall">
+  <nav class="bar" aria-label="Principal"><span>Pianissola</span><a class="link" href="#conversa">Conversar</a></nav>
+  <div class="wall-inner">
+    <h1 data-rise style="--i:0">Gabriel Pianissola,<br>engenheiro de software</h1>
+    <div class="doors" data-rise style="--i:1">
+      <a class="door" href="#contratar">
+        <div class="door-pic me"><img src="../shared/gabriel.webp" alt="Retrato de Gabriel Pianissola, de camisa azul-marinho" width="1233" height="1276" fetchpriority="high"></div>
+        <strong>Quero contratar</strong><span>Trajetória e projetos</span>
+      </a>
+      <a class="door" href="#construir">
+        <div class="door-pic duo"><img src="../../images/projects/citria-preview-1200.webp" alt="Tela do Citria, sistema construído por Gabriel" width="1200" height="675" style="object-position:88% 50%"></div>
+        <strong>Quero construir</strong><span>Sistemas sob medida</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="opening" id="contratar">
+    <dl class="facts" data-reveal>
+        <div><dt>Agora</dt><dd>Kaffa, time de produto</dd></div>
+        <div><dt>Antes</dt><dd>Instituto SENAI de Inovação</dd></div>
+        <div><dt>Formação</dt><dd>Ciência da Computação</dd></div>
+        <div><dt>Idiomas</dt><dd>Português, inglês</dd></div>
+      </dl>
+    <div class="text">
+      <h2 data-reveal>Como penso</h2>
+      <p data-reveal>Comecei programando PIC e Arduino num time de robótica. Hoje atuo em web, mobile e desktop, sempre na camada onde o problema está. O que me interessa é a decisão que continua certa dois anos depois.</p>
+      <p data-reveal>No SENAI assumi um backend na metade do prazo, com nada feito, e entreguei em 6 meses um escopo estimado em 12. Na Kaffa sou a referência técnica em Android e reconstruí a conversão entre DWG e SVG.</p>
+    </div>
+    <figure data-reveal><img src="../shared/gabriel.webp" alt="" width="1233" height="1276" loading="lazy"></figure>
+  </section>
+
+  <section class="part wide" id="exemplo">
+    <div>
+    <h2 data-reveal>Uma decisão, com números</h2>
+    <p data-reveal>Arquivo pesado não deveria passar pelo backend. Com URLs assinadas o servidor só autoriza, e o cliente envia direto ao storage. Foi assim que resolvi o upload de uma plataforma estilo Drive. Mova os controles e veja o que muda.</p>
+    </div>
+    <div class="instrument" data-reveal>
+      <label for="size">Tamanho do arquivo <output id="size-out">500 MB</output></label>
+      <input id="size" type="range" min="50" max="2000" step="50" value="500">
+      <label for="users">Uploads ao mesmo tempo <output id="users-out">40</output></label>
+      <input id="users" type="range" min="1" max="200" value="40">
+      <div class="pipes">
+        <div class="pipe-row"><span>Passando pelo backend</span><b id="via">20 GB</b><div class="pipe"><i id="via-bar"></i></div></div>
+        <div class="pipe-row"><span>Com URL assinada</span><b id="direct">80 KB</b><div class="pipe"><i id="direct-bar"></i></div></div>
+      </div>
+      <p>Tráfego no backend, contando 2 KB por autorização assinada.</p>
+    </div>
+  </section>
+
+  <section class="part wide" id="projetos">
+    <div>
+    <h2 data-reveal>Projetos</h2>
+    <ul class="ledger">
+      <li data-reveal><div class="ledger-pic duo"><img src="../../images/projects/whatchu-preview-1200.webp" alt="Tela inicial do Whatchu" width="1200" height="630" loading="lazy"></div><a class="row" href="https://whatchu.pianissola.tech/" data-pic="whatchu">Whatchu<span>Full stack</span><time>2026</time></a><p>Sorteio ponderado para decidir o que assistir. JWT com refresh token, avatar via MinIO.</p></li>
+      <li data-reveal><div class="ledger-pic duo"><img src="../../images/projects/citria-preview-1200.webp" alt="Landing do Citria" width="1200" height="675" loading="lazy"></div><a class="row" href="https://citria.pianissola.tech/" data-pic="citria">Citria<span>Full stack e mobile</span><time>2026</time></a><p>Paciente e nutricionista. Código compartilhado entre web e mobile, testes com Testcontainers.</p></li>
+      <li data-reveal><div class="ledger-pic duo"><img src="../../images/projects/inside-preview-1200.webp" alt="Tela de login do Inside" width="1200" height="675" loading="lazy"></div><a class="row" href="https://inside.nomaicode.com/" data-pic="inside">Inside<span>Full stack</span><time>2026</time></a><p>Gestão da Nomai Code. Propostas versionadas, aceite que vira projeto, e-mails por outbox.</p></li>
+      <li data-reveal><div class="ledger-pic duo"><img src="../../images/projects/iris-preview-1200.webp" alt="Íris testando uma paleta" width="1200" height="675" loading="lazy"></div><a class="row" href="https://iris.nomaicode.com/" data-pic="iris">Íris<span>Front-end</span><time>2026</time></a><p>Laboratório de cores. Recolore SVG no navegador, com contraste WCAG calculado ao vivo.</p></li>
+    </ul>
+    </div>
+<div class="preview" aria-hidden="true">
+  <figure data-pic="whatchu" class="is-on"><div class="duo"><img src="../../images/projects/whatchu-preview-1200.webp" alt="" width="1200" height="630" loading="lazy"></div></figure>
+  <figure data-pic="citria"><div class="duo"><img src="../../images/projects/citria-preview-1200.webp" alt="" width="1200" height="675" loading="lazy"></div></figure>
+  <figure data-pic="inside"><div class="duo"><img src="../../images/projects/inside-preview-1200.webp" alt="" width="1200" height="675" loading="lazy"></div></figure>
+  <figure data-pic="iris"><div class="duo"><img src="../../images/projects/iris-preview-1200.webp" alt="" width="1200" height="675" loading="lazy"></div></figure>
+</div>
+  </section>
+
+  <section class="part wide" id="trajetoria">
+    <h2 data-reveal>Trajetória</h2>
+    <ul class="two">
+      <li data-reveal><b>Kaffa</b><em>2025, atual</em><span class="plain">Full stack: React, SWT, Android, GIS</span></li>
+      <li data-reveal><b>Instituto SENAI de Inovação</b><em>2021 a 2025</em><span class="plain">Backend principal: Django, FastAPI, Docker</span></li>
+      <li data-reveal><b>UNIP</b><em>2020 a 2023</em><span class="plain">Ciência da Computação</span></li>
+      <li data-reveal><b>ETEP</b><em>2016 a 2018</em><span class="plain">Técnico em Mecatrônica</span></li>
+    </ul>
+  </section>
+
+  <section class="wide band" id="construir">
+    <div>
+    <h2 data-reveal>Se você tem um sistema</h2>
+    <p data-reveal>Trabalho direto com quem precisa colocar um produto de pé ou destravar um que parou. Você fala com quem desenha e com quem escreve o código, porque é a mesma pessoa.</p>
+    </div>
+    <ul class="two">
+      <li data-reveal><b>Do zero a produção</b><em>Web e mobile</em><span class="plain">Arquitetura, backend, interface e deploy, com testes e documentação.</span></li>
+      <li data-reveal><b>Projeto atrasado</b><em>Resgate</em><span class="plain">Assumo o que travou, corto escopo com critério e entrego.</span></li>
+      <li data-reveal><b>Revisão de arquitetura</b><em>Diagnóstico</em><span class="plain">Olho o sistema que você tem e digo o que mexer e o que deixar.</span></li>
+    </ul>
+  </section>
+
+  <section class="wide ask-wrap" id="conversa">
+    <div>
+    <h2 data-reveal>Qual é a sua porta?</h2>
+    <form class="ask" id="ask" data-reveal>
+      <label class="sr-only" for="msg">Sua mensagem</label>
+      <input id="msg" placeholder="O que você precisa" autocomplete="off">
+      <button class="button" type="submit">Enviar</button>
+    </form>
+    <p class="hint" data-reveal>Me conte em uma frase. Isso abre seu e-mail com a mensagem pronta.</p>
+    </div>
+    <dl class="ways" data-reveal>
+      <div><dt>E-mail</dt><dd><a href="mailto:dell.pianissola@outlook.com">dell.pianissola@outlook.com</a></dd></div>
+      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/gabriel-n-pianissola/">gabriel-n-pianissola</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/DellPianissola">DellPianissola</a></dd></div>
+    </dl>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Gabriel Pianissola</span>
+  <nav aria-label="Rodapé"><a class="link" href="#contratar">Contratar</a><a class="link" href="#construir">Construir</a></nav>
+  <span>2026</span>
+</footer>
+
+<script src="../shared/base.js"></script>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const fmt = (kb) => kb >= 1e6 ? `${(kb / 1e6).toFixed(kb >= 1e7 ? 0 : 1)} GB` : kb >= 1e3 ? `${Math.round(kb / 1e3)} MB` : `${kb} KB`;
+  const KB_PER_SIGNATURE = 2;
+  const update = () => {
+    const mb = +$('size').value, n = +$('users').value;
+    const via = mb * 1000 * n, direct = KB_PER_SIGNATURE * n;
+    $('size-out').textContent = mb >= 1000 ? `${(mb / 1000).toFixed(mb % 1000 ? 2 : 0)} GB` : `${mb} MB`;
+    $('users-out').textContent = n;
+    $('via').textContent = fmt(via);
+    $('direct').textContent = fmt(direct);
+    $('via-bar').style.transform = `scaleX(${Math.max(via / (2000 * 1000 * 200), .012)})`;
+    $('direct-bar').style.transform = `scaleX(${Math.max(direct / (2000 * 1000 * 200), .004)})`;
+  };
+  ['size', 'users'].forEach((id) => $(id).addEventListener('input', update));
+  update();
+
+  const figs = [...document.querySelectorAll('.preview figure')];
+  document.querySelectorAll('.row').forEach((row) => {
+    const set = (on) => figs.forEach((f) => f.classList.toggle('is-on', on && f.dataset.pic === row.dataset.pic));
+    row.addEventListener('mouseenter', () => set(true));
+    row.addEventListener('focus', () => set(true));
+  });
+
+  $('ask').addEventListener('submit', (e) => {
+    e.preventDefault();
+    location.href = `mailto:dell.pianissola@outlook.com?subject=${encodeURIComponent('Contato pelo portfólio')}&body=${encodeURIComponent($('msg').value)}`;
+  });
+})();
+</script>
+</body>
+</html>

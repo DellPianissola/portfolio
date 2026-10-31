@@ -1,8 +1,9 @@
-// ── UI: navbar, hamburger, smooth scroll, seção ativa ────────
+// ── UI: navbar, hamburger, smooth scroll, seção ativa, entradas ─
 
 export function initUI() {
     const navMenu  = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinks = document.querySelectorAll('nav a, .foot a[href^="#"]');
+    const toggle   = document.getElementById('menu-toggle');
 
     // Smooth scroll + fecha menu mobile ao clicar
     navLinks.forEach(link => {
@@ -15,7 +16,7 @@ export function initUI() {
     });
 
     // Hamburger menu (mobile)
-    document.getElementById('menu-toggle').addEventListener('click', function() {
+    toggle.addEventListener('click', function() {
         navMenu.classList.toggle('open');
     });
 
@@ -32,7 +33,18 @@ export function initUI() {
                 });
             }
         });
-    }, { threshold: 0.35 });
+    }, { rootMargin: '-45% 0px -50% 0px' });
 
     sections.forEach(s => observer.observe(s));
+
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-in');
+            revealObserver.unobserve(entry.target);
+        });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
+
+    reveals.forEach(el => revealObserver.observe(el));
 }

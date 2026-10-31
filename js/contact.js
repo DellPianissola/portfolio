@@ -53,7 +53,7 @@ export function initContact() {
             const from = form.elements['email'].value.trim();
             const msg  = form.elements['message'].value.trim();
             const subject = encodeURIComponent(`${t('contact.mailtoSubject')}${name || t('contact.mailtoNoName')}`);
-            const body    = encodeURIComponent(`${msg}\n\n— ${name} <${from}>`);
+            const body    = encodeURIComponent(`${msg}\n\n${name} <${from}>`);
             window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
         });
         return;
