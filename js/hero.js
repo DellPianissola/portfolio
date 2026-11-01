@@ -1,7 +1,9 @@
+import { calm } from './media.js';
+
 const ROLE_INTERVAL = 2800;
 
 export function initHero() {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (calm.matches) return;
 
     const roles = [...document.querySelectorAll('.hero-role span')];
     let current = 0;

@@ -20,14 +20,21 @@ python -m http.server 8000
 ```
 portfolio/
 ├── index.html
+├── estudo-de-caso.html
 ├── style.css
 ├── config.js
 ├── js/
 │   ├── main.js
 │   ├── i18n.js
+│   ├── media.js
 │   ├── ui.js
+│   ├── hero.js
+│   ├── projects.js
+│   ├── live.js
 │   ├── experience.js
-│   └── contact.js
+│   ├── contact.js
+│   ├── case.js
+│   └── cases.js
 └── images/
     ├── profile/
     └── projects/

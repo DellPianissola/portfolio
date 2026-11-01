@@ -1,4 +1,4 @@
-// ── UI: navbar, hamburger, trilho horizontal, seção ativa, entradas ─
+import { calm } from './media.js';
 
 export function initUI() {
     const navMenu = document.getElementById('nav-menu');
@@ -30,7 +30,7 @@ export function initUI() {
 
     function scrollToY(to) {
         cancelAnimationFrame(tween);
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return scrollTo(0, to);
+        if (calm.matches) return scrollTo(0, to);
 
         const from = scrollY;
         const distance = to - from;

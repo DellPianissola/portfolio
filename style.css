@@ -203,7 +203,6 @@ main:focus { outline: none; }
 .proj-cta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
 .proj-cta .button { padding-inline: 1.25rem; }
 .proj-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; max-width: 80rem; margin: 3.5rem auto 0; }
-html:not(.js) .proj-strip { display: none; }
 .proj-thumb { display: block; text-align: left; }
 .proj-bar { display: block; height: 3px; margin-bottom: 0.7rem; overflow: hidden; background: rgba(29, 34, 66, 0.12); }
 .proj-bar::before { content: ""; display: block; height: 100%; background: var(--vivid); transform: scaleX(0); transform-origin: 0 50%; transition: transform 600ms var(--ease-out); }

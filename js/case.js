@@ -1,5 +1,6 @@
 import { initI18n, getLang, t } from './i18n.js';
 import { logoUrl } from './projects.js';
+import { calm } from './media.js';
 import { CASES, LAYERS } from './cases.js';
 
 const currentSlug = () => location.hash.slice(1);
@@ -8,7 +9,7 @@ const GENERIC_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 
 const paragraphs = texts => texts.map(text => `<p>${text}</p>`).join('');
 
-const calm = matchMedia('(prefers-reduced-motion: reduce)');
+const moves = () => !calm.matches && !navigator.connection?.saveData;
 
 function stackMarkup(item, uses) {
     return LAYERS.map(([key, names]) => {
@@ -42,7 +43,7 @@ function storyMarkup(slug, item, copy) {
             <div class="story-steps">${steps.map(step => `<section class="story-step">${step}</section>`).join('')}</div>
             <div class="story-stage">
                 <div class="story-frame">
-                    <video src="images/projects/video/${slug}.mp4" poster="images/projects/video/${slug}.jpg" muted loop playsinline preload="auto" ${calm.matches ? '' : 'autoplay'} aria-label="${t(`projects.${slug}Alt`)}"></video>
+                    <video src="images/projects/video/${slug}.mp4" poster="images/projects/video/${slug}.jpg" muted loop playsinline preload="metadata" ${moves() ? 'autoplay' : ''} aria-label="${t('case.video')} ${item.name}"></video>
                 </div>
             </div>
         </div>`;

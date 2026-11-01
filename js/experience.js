@@ -1,3 +1,52 @@
+import { calm, compact as sheet } from './media.js';
+
+const JOBS = [
+    { id: 'kaffa', name: 'Kaffa', metric: true, chips: ['React', 'SWT', 'Android', 'GIS'], tags: ['Kotlin', 'Java', 'Nomad', 'React', 'SWT', 'Android', 'GIS'] },
+    { id: 'senai', metric: true, chips: ['Django', 'FastAPI', 'React Native', 'Docker'], tags: ['Django REST Framework', 'FastAPI', 'SSE', 'Google Cloud Storage', 'MinIO', 'React Native', 'Docker', 'pytest'] },
+    { id: 'unip', name: 'UNIP', edu: true, chips: ['MySQL', 'React', 'Next.js'], tags: ['MySQL', 'React', 'Next.js'] },
+    { id: 'etep', name: 'ETEP', edu: true, chips: ['C++', 'Basic', 'Arduino'], tags: ['C++', 'Basic', 'Arduino'] },
+];
+
+const words = list => list.map(word => `<span>${word}</span>`).join(' ');
+
+const jobMarkup = ({ id, name, edu, metric, chips, tags }) => {
+    const key = field => `experience.${id}${field}`;
+    const title = name ?? '';
+    const titleKey = name ? '' : `data-i18n="${key('Name')}"`;
+    return `
+    <li class="xp${edu ? ' is-edu' : ''}">
+        <div class="card">
+            <h3><button type="button" class="xp-toggle" aria-expanded="false" aria-controls="xp-${id}">
+                <span class="xp-head"><span class="xp-name" ${titleKey}>${title}</span><time data-i18n="${key('Date')}"></time></span>
+                <span class="xp-role" data-i18n="${key('Role')}"></span>
+                <span class="xp-text" data-i18n="${key('Text')}"></span>
+                <span class="xp-foot"><span class="xp-chips">${words(chips)}</span><span class="xp-cue"><span data-i18n="experience.open"></span><span class="xp-arrow" aria-hidden="true"></span></span></span>
+            </button></h3>
+        </div>
+        <div class="xp-panel" id="xp-${id}">
+            <div class="xp-side">
+                <div class="xp-side-top">
+                    <span data-i18n="${key('Date')}"></span>
+                    <button type="button" class="xp-close"><span data-i18n="experience.closePanel"></span> <i aria-hidden="true">×</i></button>
+                </div>
+                <p class="xp-title" ${titleKey}>${title}</p>
+                <p class="xp-side-role" data-i18n="${key('Role')}"></p>
+                <p class="xp-side-text" data-i18n="${key('Text')}"></p>
+                ${metric ? `<p class="xp-metric"><b data-i18n="${key('MetricValue')}"></b><span data-i18n="${key('Metric')}"></span></p>` : ''}
+            </div>
+            <div class="xp-body">
+                <p class="xp-label" data-i18n="experience.behind"></p>
+                <ol class="decisions" data-i18n-html="${key('Decisions')}"></ol>
+                <p class="xp-tags">${words(tags)}</p>
+            </div>
+        </div>
+    </li>`;
+};
+
+export function renderExperience() {
+    document.querySelector('.timeline').innerHTML = JOBS.map(jobMarkup).join('');
+}
+
 const MORPH = { duration: 750, easing: 'cubic-bezier(0.76, 0, 0.24, 1)' };
 const REVEAL_GAP = 350;
 const CONTENT_FADE = 200;
@@ -5,8 +54,6 @@ const CARD_FADE = 250;
 
 export function initExperience() {
     const items = [...document.querySelectorAll('.xp')];
-    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const sheet = matchMedia('(max-width: 860px)');
     const morphs = new Map();
 
     let open = null;
@@ -91,7 +138,7 @@ export function initExperience() {
         setOpen(item, true);
         item.querySelector('.xp-close').focus({ preventScroll: true });
 
-        if (calm || sheet.matches) return;
+        if (calm.matches || sheet.matches) return;
 
         const morph ={ frames: buildFrames(item, closed), running: [], fades: [] };
         morphs.set(item, morph);
@@ -124,7 +171,7 @@ export function initExperience() {
         if (sheet.matches && !e.target.closest('.xp-panel, .xp-toggle')) dismiss();
     });
 
-    if (calm) {
+    if (calm.matches) {
         items.forEach(item => item.classList.add('is-in'));
         return;
     }

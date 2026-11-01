@@ -1,5 +1,3 @@
-// ── Contato: copiar e-mail + chat que envia por EmailJS + reCAPTCHA ─
-
 import { t } from './i18n.js';
 
 const REPLY_DELAY = 1100;
@@ -11,7 +9,6 @@ export function initContact() {
     const { EMAIL, EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID, RECAPTCHA_SITE_KEY } = cfg;
 
-    // ── Copiar e-mail ─────────────────────────────────────────
     const copyBtn   = document.getElementById('copy-email');
     const copyStatus = document.getElementById('copy-email-status');
     if (copyBtn) {
@@ -134,7 +131,6 @@ export function initContact() {
         window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     }
 
-    // reCAPTCHA v2 Invisible
     let recaptchaWidgetId = null;
 
     function renderRecaptcha() {

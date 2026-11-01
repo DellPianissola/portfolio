@@ -1,5 +1,6 @@
+import { wide } from './media.js';
+
 const FRAME_WIDTH = 1280;
-const wide = matchMedia('(min-width: 1041px) and (prefers-reduced-motion: no-preference)');
 
 export async function goLive(shot) {
     if (!shot?.dataset.live || !wide.matches || shot.querySelector('iframe')) return;
