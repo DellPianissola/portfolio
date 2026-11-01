@@ -60,11 +60,45 @@ export function initProjects() {
         stack.replaceWith(stackGrid(stack.textContent.split(', ')));
     });
 
-    thumbs.forEach((thumb, i) => thumb.addEventListener('click', () => show(i)));
+    const deck = document.querySelector('.proj');
+    const swipeable = matchMedia('(max-width: 860px)');
+    const calm = matchMedia('(prefers-reduced-motion: reduce)');
+
+    const strip = document.querySelector('.proj-strip');
+    const stopAuto = () => strip.classList.remove('is-auto');
+
+    const go = index => {
+        show(index);
+        if (!swipeable.matches) return;
+        deck.scrollTo({ left: items[current].offsetLeft - items[0].offsetLeft, behavior: calm.matches ? 'auto' : 'smooth' });
+    };
+
+    thumbs.forEach((thumb, i) => thumb.addEventListener('click', () => {
+        stopAuto();
+        go(i);
+    }));
+
+    strip.addEventListener('animationend', e => {
+        if (e.animationName === 'proj-dwell') go(current + 1);
+    });
+
+    deck.addEventListener('touchstart', stopAuto, { passive: true });
+
+    new IntersectionObserver(([entry]) => {
+        strip.classList.toggle('is-auto', entry.isIntersecting);
+    }, { threshold: 0.4 }).observe(deck);
+
+    const slides = new IntersectionObserver(entries => {
+        if (!swipeable.matches) return;
+        entries.filter(entry => entry.isIntersecting).forEach(entry => show(items.indexOf(entry.target)));
+    }, { root: deck, threshold: 0.6 });
+
+    items.forEach(item => slides.observe(item));
 
     document.querySelectorAll('[data-proj-step]').forEach(button => {
         button.addEventListener('click', () => {
             const step = button.dataset.projStep;
+            stopAuto();
             show(current + Number(step));
             items[current].querySelector(`[data-proj-step="${step}"]`).focus();
         });

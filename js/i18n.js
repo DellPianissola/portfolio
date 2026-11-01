@@ -5,13 +5,14 @@ const DEFAULT = 'pt';
 const dict = {
     pt: {
         'meta.title': 'Gabriel Pianissola',
-        'meta.description': 'Gabriel Pianissola, engenheiro de software full stack. Projetos, decisões técnicas e trajetória em web, mobile e desktop.',
+        'meta.description': 'Gabriel Pianissola, engenheiro de software full stack. Projetos, decisões técnicas e trajetória em web e mobile.',
         'meta.ogTitle': 'Gabriel Pianissola, engenheiro de software',
         'meta.ogDescription': 'Full stack com foco em arquitetura de software. Projetos, decisões técnicas e trajetória.',
         'meta.ogImageAlt': 'Gabriel Pianissola, engenheiro de software',
         'meta.ogLocale': 'pt_BR',
 
         'nav.mainAria': 'Navegação principal',
+        'nav.skip': 'Pular para o conteúdo',
         'nav.about': 'Sobre',
         'nav.how': 'Como trabalho',
         'nav.projects': 'Projetos',
@@ -25,7 +26,6 @@ const dict = {
         'nav.hintA': 'Role para baixo',
         'nav.hintB': 'a página anda para o lado',
 
-        'hero.role0': 'Engenheiro de software',
         'hero.role1': 'Cientista da computação',
         'hero.role2': 'Arquiteto de soluções',
         'hero.role3': 'Full stack developer',
@@ -37,12 +37,12 @@ const dict = {
 
         'about.title': 'Sobre mim',
         'about.photoAlt': 'Gabriel Pianissola sorrindo, de braços cruzados',
-        'about.text1': 'Sou desenvolvedor full stack com foco em arquitetura de software. Atuo de ponta a ponta em projetos web, mobile e desktop.',
+        'about.text1': 'Sou desenvolvedor full stack com foco em arquitetura de software. Atuo de ponta a ponta em projetos web e mobile.',
         'about.text2': 'Sempre avalio a melhor forma de atacar cada problema, com eficiência e no melhor tempo possível, construindo soluções duráveis e com muita atenção aos detalhes.',
-        'about.stat1Value': '+6 anos',
+        'about.stat1Value': '+5 anos',
         'about.stat1Label': 'construindo sistemas',
-        'about.stat2Value': '3 frentes',
-        'about.stat2Label': 'web, mobile e desktop',
+        'about.stat2Value': 'Versátil',
+        'about.stat2Label': 'web, API, arquitetura e mais',
         'about.stat3Value': 'PT e EN',
         'about.stat3Label': 'português e inglês no dia a dia',
 
@@ -132,7 +132,7 @@ const dict = {
         'contact.emailTerm': 'E-mail',
         'contact.emailLabel': 'dell.pianissola@outlook.com',
         'contact.emailCopied': 'Copiado!',
-        'contact.emailAria': 'Copiar e-mail',
+        'contact.copy': 'Copiar',
         'contact.chatStatus': 'Responde em até dois dias úteis',
         'contact.chatStep': '{n} de 3',
         'contact.chatHello': 'Oi! Aqui é o Gabriel. Como posso te chamar?',
@@ -162,13 +162,14 @@ const dict = {
 
     en: {
         'meta.title': 'Gabriel Pianissola',
-        'meta.description': 'Gabriel Pianissola, full stack software engineer. Projects, technical decisions and background across web, mobile and desktop.',
+        'meta.description': 'Gabriel Pianissola, full stack software engineer. Projects, technical decisions and background across web and mobile.',
         'meta.ogTitle': 'Gabriel Pianissola, software engineer',
         'meta.ogDescription': 'Full stack developer focused on software architecture. Projects, technical decisions and background.',
         'meta.ogImageAlt': 'Gabriel Pianissola, software engineer',
         'meta.ogLocale': 'en_US',
 
         'nav.mainAria': 'Main navigation',
+        'nav.skip': 'Skip to content',
         'nav.about': 'About',
         'nav.how': 'How I work',
         'nav.projects': 'Projects',
@@ -182,7 +183,6 @@ const dict = {
         'nav.hintA': 'Scroll down',
         'nav.hintB': 'the page moves sideways',
 
-        'hero.role0': 'Software engineer',
         'hero.role1': 'Computer scientist',
         'hero.role2': 'Solutions architect',
         'hero.role3': 'Full stack developer',
@@ -194,12 +194,12 @@ const dict = {
 
         'about.title': 'About me',
         'about.photoAlt': 'Gabriel Pianissola smiling, arms crossed',
-        'about.text1': 'I am a full stack developer focused on software architecture. I work end to end on web, mobile and desktop projects.',
+        'about.text1': 'I am a full stack developer focused on software architecture. I work end to end on web and mobile projects.',
         'about.text2': 'I always weigh the best way to tackle each problem, efficiently and in the best possible time, building durable solutions with close attention to detail.',
-        'about.stat1Value': '6+ years',
+        'about.stat1Value': '5+ years',
         'about.stat1Label': 'building systems',
-        'about.stat2Value': '3 fronts',
-        'about.stat2Label': 'web, mobile and desktop',
+        'about.stat2Value': 'Versatile',
+        'about.stat2Label': 'web, APIs, architecture and more',
         'about.stat3Value': 'PT and EN',
         'about.stat3Label': 'Portuguese and English day to day',
 
@@ -289,7 +289,7 @@ const dict = {
         'contact.emailTerm': 'Email',
         'contact.emailLabel': 'dell.pianissola@outlook.com',
         'contact.emailCopied': 'Copied!',
-        'contact.emailAria': 'Copy email',
+        'contact.copy': 'Copy',
         'contact.chatStatus': 'Replies within two business days',
         'contact.chatStep': '{n} of 3',
         'contact.chatHello': 'Hi! Gabriel here. What should I call you?',

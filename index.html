@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gabriel Pianissola, engenheiro de software full stack. Projetos, decisões técnicas e trajetória em web, mobile e desktop.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Gabriel Pianissola, engenheiro de software full stack. Projetos, decisões técnicas e trajetória em web e mobile.">
     <meta name="author" content="Gabriel Pianissola">
     <meta name="theme-color" content="#1d2242">
     <!-- CONFIG: ao trocar de domínio, atualize as 4 URLs abaixo + sitemap.xml + robots.txt -->
@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="#conteudo" class="skip" data-i18n="nav.skip">Pular para o conteúdo</a>
     <nav class="bar" data-i18n-attr="aria-label:nav.mainAria">
         <a href="#home" class="bar-logo" data-i18n-attr="aria-label:nav.logoAria">Gabriel Pianissola</a>
 
@@ -54,13 +55,13 @@
                 <button type="button" class="lang-opt" data-lang="pt" data-i18n-attr="aria-label:nav.langPtAria">PT</button>
                 <button type="button" class="lang-opt" data-lang="en" data-i18n-attr="aria-label:nav.langEnAria">EN</button>
             </div>
-            <button id="menu-toggle" type="button" data-i18n-attr="aria-label:nav.menuAria" aria-label="Abrir menu">
+            <button id="menu-toggle" type="button" data-i18n-attr="aria-label:nav.menuAria" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <main>
+    <main id="conteudo" tabindex="-1">
         <div class="pan">
             <div class="pan-view">
                 <div class="pan-track">
@@ -79,8 +80,7 @@
                     <div class="hero-text">
                         <h1 data-rise style="--i:0">Gabriel<br>Pianissola</h1>
                         <p class="hero-role" data-rise style="--i:1">
-                            <span class="is-on" data-i18n="hero.role0">Engenheiro de software</span>
-                            <span data-i18n="hero.role1">Cientista da computação</span>
+                            <span class="is-on" data-i18n="hero.role1">Cientista da computação</span>
                             <span data-i18n="hero.role2">Arquiteto de soluções</span>
                             <span data-i18n="hero.role3">Full stack developer</span>
                             <span data-i18n="hero.role4">Técnico mecatrônico</span>
@@ -101,11 +101,11 @@
                     <div class="about-text">
                         <div class="grid grid--corner" aria-hidden="true"><i class="grid-lines"></i></div>
                         <h2 data-reveal data-i18n="about.title">Sobre mim</h2>
-                        <p data-reveal style="--i:1" data-i18n="about.text1">Sou desenvolvedor full stack com foco em arquitetura de software. Atuo de ponta a ponta em projetos web, mobile e desktop.</p>
+                        <p data-reveal style="--i:1" data-i18n="about.text1">Sou desenvolvedor full stack com foco em arquitetura de software. Atuo de ponta a ponta em projetos web e mobile.</p>
                         <p data-reveal style="--i:2" data-i18n="about.text2">Sempre avalio a melhor forma de atacar cada problema, com eficiência e no melhor tempo possível, construindo soluções duráveis e com muita atenção aos detalhes.</p>
                         <div class="numbers" data-reveal style="--i:3">
-                            <div><b data-i18n="about.stat1Value">+6 anos</b><span data-i18n="about.stat1Label">construindo sistemas</span></div>
-                            <div><b data-i18n="about.stat2Value">3 frentes</b><span data-i18n="about.stat2Label">web, mobile e desktop</span></div>
+                            <div><b data-i18n="about.stat1Value">+5 anos</b><span data-i18n="about.stat1Label">construindo sistemas</span></div>
+                            <div><b data-i18n="about.stat2Value">Versátil</b><span data-i18n="about.stat2Label">web, API, arquitetura e mais</span></div>
                             <div><b data-i18n="about.stat3Value">PT e EN</b><span data-i18n="about.stat3Label">português e inglês no dia a dia</span></div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                             <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m14 5-4 14"/></svg></span>
                             <div>
                                 <h3 data-i18n="how.skill1Title">Full stack developer</h3>
-                                <p class="skill-tools"><span>React</span> <span>Next.js</span> <span>TypeScript</span> <span>Node.js</span> <span>NestJS</span> <span>Django REST Framework</span> <span>FastAPI</span> <span>Spring Boot</span> <span>Kotlin</span> <span>Java</span></p>
+                                <p class="skill-tools"><span>React</span> <span>Next.js</span> <span>TypeScript</span> <span>Node.js</span> <span>NestJS</span> <span>Python</span> <span>Django REST Framework</span> <span>FastAPI</span> <span>Spring Boot</span> <span>Kotlin</span> <span>Java</span></p>
                             </div>
                             <span class="skill-num">01</span>
                         </div>
@@ -205,7 +205,7 @@
                             <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 4-6 2.5v14L9 18l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v14"/><path d="M15 6.5v14"/></svg></span>
                             <div>
                                 <h3 data-i18n="how.skill7Title">Mapas e formatos gráficos</h3>
-                                <p class="skill-tools"><span>GIS</span> <span>SWT</span> <span>DWG</span></p>
+                                <p class="skill-tools"><span>GIS</span> <span>Google Maps API</span> <span>SWT</span> <span>DWG</span></p>
                             </div>
                             <span class="skill-num">07</span>
                         </div>
@@ -228,11 +228,10 @@
                             </div>
                             <div class="browser-shot"><img src="images/projects/whatchu-preview-1200.webp" srcset="images/projects/whatchu-preview-1200.webp 1x, images/projects/whatchu-preview-2400.webp 2x" alt="Tela inicial do Whatchu mostrando o sorteio de um título" data-i18n-attr="alt:projects.whatchuAlt" width="1200" height="630" loading="lazy"></div>
                         </div>
-                        <h3 class="proj-tag">Whatchu <small data-i18n="projects.whatchuType">Full stack</small></h3>
                     </div>
                     <div class="proj-info">
                         <div class="proj-nav">
-                            <span class="proj-count">01 / 04</span>
+                            <h3 class="proj-tag">Whatchu <small data-i18n="projects.whatchuType">Full stack</small></h3>
                             <span class="proj-arrows">
                                 <button type="button" data-proj-step="-1" data-i18n-attr="aria-label:projects.prevAria" aria-label="Projeto anterior">←</button>
                                 <button type="button" data-proj-step="1" data-i18n-attr="aria-label:projects.nextAria" aria-label="Próximo projeto">→</button>
@@ -257,11 +256,10 @@
                             </div>
                             <div class="browser-shot"><img src="images/projects/citria-preview-1200.webp" srcset="images/projects/citria-preview-1200.webp 1x, images/projects/citria-preview-2400.webp 2x" alt="Landing do Citria com o app do paciente mostrando a refeição do momento" data-i18n-attr="alt:projects.citriaAlt" width="1200" height="675" loading="lazy"></div>
                         </div>
-                        <h3 class="proj-tag">Citria <small data-i18n="projects.citriaType">Full stack e mobile</small></h3>
                     </div>
                     <div class="proj-info">
                         <div class="proj-nav">
-                            <span class="proj-count">02 / 04</span>
+                            <h3 class="proj-tag">Citria <small data-i18n="projects.citriaType">Full stack e mobile</small></h3>
                             <span class="proj-arrows">
                                 <button type="button" data-proj-step="-1" data-i18n-attr="aria-label:projects.prevAria" aria-label="Projeto anterior">←</button>
                                 <button type="button" data-proj-step="1" data-i18n-attr="aria-label:projects.nextAria" aria-label="Próximo projeto">→</button>
@@ -285,11 +283,10 @@
                             </div>
                             <div class="browser-shot"><img src="images/projects/inside-preview-1200.webp" srcset="images/projects/inside-preview-1200.webp 1x, images/projects/inside-preview-2400.webp 2x" alt="Tela de login do Inside" data-i18n-attr="alt:projects.insideAlt" width="1200" height="675" loading="lazy"></div>
                         </div>
-                        <h3 class="proj-tag">Inside <small data-i18n="projects.insideType">Full stack</small></h3>
                     </div>
                     <div class="proj-info">
                         <div class="proj-nav">
-                            <span class="proj-count">03 / 04</span>
+                            <h3 class="proj-tag">Inside <small data-i18n="projects.insideType">Full stack</small></h3>
                             <span class="proj-arrows">
                                 <button type="button" data-proj-step="-1" data-i18n-attr="aria-label:projects.prevAria" aria-label="Projeto anterior">←</button>
                                 <button type="button" data-proj-step="1" data-i18n-attr="aria-label:projects.nextAria" aria-label="Próximo projeto">→</button>
@@ -313,11 +310,10 @@
                             </div>
                             <div class="browser-shot"><img src="images/projects/iris-preview-1200.webp" srcset="images/projects/iris-preview-1200.webp 1x, images/projects/iris-preview-2400.webp 2x" alt="Íris testando uma paleta de cores sobre o mockup de um site" data-i18n-attr="alt:projects.irisAlt" width="1200" height="675" loading="lazy"></div>
                         </div>
-                        <h3 class="proj-tag">Íris <small data-i18n="projects.irisType">Front-end</small></h3>
                     </div>
                     <div class="proj-info">
                         <div class="proj-nav">
-                            <span class="proj-count">04 / 04</span>
+                            <h3 class="proj-tag">Íris <small data-i18n="projects.irisType">Front-end</small></h3>
                             <span class="proj-arrows">
                                 <button type="button" data-proj-step="-1" data-i18n-attr="aria-label:projects.prevAria" aria-label="Projeto anterior">←</button>
                                 <button type="button" data-proj-step="1" data-i18n-attr="aria-label:projects.nextAria" aria-label="Próximo projeto">→</button>
@@ -486,9 +482,9 @@
                 <h2 data-reveal data-i18n="contact.title">Vamos conversar</h2>
                 <p class="contact-line" data-reveal style="--i:1" data-i18n="contact.line">Tem uma vaga ou um sistema para construir? Puxa assunto por aqui.</p>
                 <dl class="ways" data-reveal style="--i:2">
-                    <div><dt data-i18n="contact.emailTerm">E-mail</dt><dd><button id="copy-email" type="button" class="copy" data-i18n-attr="aria-label:contact.emailAria" aria-label="Copiar e-mail"><span id="copy-email-label" data-i18n="contact.emailLabel">dell.pianissola@outlook.com</span></button></dd></div>
-                    <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer">gabriel-n-pianissola</a></dd></div>
-                    <div><dt>GitHub</dt><dd><a href="https://github.com/DellPianissola" target="_blank" rel="noopener noreferrer">DellPianissola</a></dd></div>
+                    <div><dt><svg class="ways-icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span data-i18n="contact.emailTerm">E-mail</span></dt><dd class="ways-email"><a href="mailto:dell.pianissola@outlook.com" data-i18n="contact.emailLabel">dell.pianissola@outlook.com</a><button id="copy-email" type="button" class="copy"><svg class="copy-idle" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="copy-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span id="copy-email-label" data-i18n="contact.copy">Copiar</span></button><span id="copy-email-status" class="visually-hidden" role="status"></span></dd></div>
+                    <div><dt><svg class="ways-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/gabriel-n-pianissola/" target="_blank" rel="noopener noreferrer">gabriel-n-pianissola</a></dd></div>
+                    <div><dt><svg class="ways-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-8-2"/></svg>GitHub</dt><dd><a href="https://github.com/DellPianissola" target="_blank" rel="noopener noreferrer">DellPianissola</a></dd></div>
                 </dl>
             </div>
             <div class="chat-wrap" data-reveal style="--i:1">

@@ -14,6 +14,11 @@ export function initUI() {
     let panned = false;
     let tween = 0;
 
+    const closeMenu = () => {
+        navMenu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
     const clamp = n => Math.min(1, Math.max(0, n));
     const panProgress = () => clamp((bar.offsetHeight - pan.getBoundingClientRect().top) / Math.max(1, pan.offsetHeight - (innerHeight - bar.offsetHeight)));
 
@@ -46,8 +51,13 @@ export function initUI() {
         track.style.transform = panned ? `translateX(${-progress * 50}%)` : '';
 
         let active = progress > 0.5 ? 'sobre' : 'home';
+        let closest = -Infinity;
         for (const id of panned ? sectionIds.slice(1) : sectionIds) {
-            if (document.getElementById(id).getBoundingClientRect().top <= innerHeight * 0.45) active = id;
+            const top = document.getElementById(id).getBoundingClientRect().top;
+            if (top <= innerHeight * 0.45 && top > closest) {
+                closest = top;
+                active = id;
+            }
         }
         navAnchors.forEach(a => a.classList.toggle('nav-active', a.getAttribute('href') === `#${active}`));
 
@@ -73,13 +83,22 @@ export function initUI() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            navMenu.classList.remove('open');
-            scrollToY(targetY(this.getAttribute('href').substring(1)));
+            closeMenu();
+            const id = this.getAttribute('href').substring(1);
+            if (id === 'conteudo') return document.getElementById(id).focus();
+            scrollToY(targetY(id));
         });
     });
 
     toggle.addEventListener('click', function() {
-        navMenu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(navMenu.classList.toggle('open')));
+    });
+
+    addEventListener('keydown', e => {
+        if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+            closeMenu();
+            toggle.focus();
+        }
     });
 
     document.querySelectorAll('[data-spot]').forEach(area => {

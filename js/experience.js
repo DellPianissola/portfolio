@@ -6,6 +6,7 @@ const CARD_FADE = 250;
 export function initExperience() {
     const items = [...document.querySelectorAll('.xp')];
     const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sheet = matchMedia('(max-width: 860px)');
     const morphs = new Map();
 
     let open = null;
@@ -90,9 +91,9 @@ export function initExperience() {
         setOpen(item, true);
         item.querySelector('.xp-close').focus({ preventScroll: true });
 
-        if (calm) return;
+        if (calm || sheet.matches) return;
 
-        const morph = { frames: buildFrames(item, closed), running: [], fades: [] };
+        const morph ={ frames: buildFrames(item, closed), running: [], fades: [] };
         morphs.set(item, morph);
         item.classList.add('is-morphing');
         morph.fades = [fadeOutCard(item)];
@@ -117,6 +118,10 @@ export function initExperience() {
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') dismiss();
+    });
+
+    document.addEventListener('click', e => {
+        if (sheet.matches && !e.target.closest('.xp-panel, .xp-toggle')) dismiss();
     });
 
     if (calm) {
