@@ -1,3 +1,5 @@
+import { goLive } from './live.js';
+
 const LOGOS = {
     'React': 'react',
     'React Native': 'react',
@@ -26,18 +28,19 @@ export const logoUrl = name => LOGOS[name] && `https://cdn.simpleicons.org/${LOG
 function stackGrid(names) {
     const grid = document.createElement('div');
     grid.className = 'stack-grid';
-    names.forEach((name, i) => {
+    names.forEach(name => {
         const tile = document.createElement('div');
         tile.className = 'stack-tile';
-        tile.style.setProperty('--i', i);
 
-        const logo = new Image(28, 28);
+        const logo = new Image(24, 24);
         logo.src = logoUrl(name);
-        logo.alt = '';
+        logo.alt = name;
+        logo.title = name;
         logo.loading = 'lazy';
 
         const label = document.createElement('span');
         label.textContent = name;
+        label.setAttribute('aria-hidden', 'true');
 
         tile.append(logo, label);
         grid.append(tile);
@@ -48,12 +51,16 @@ function stackGrid(names) {
 export function initProjects() {
     const items  = [...document.querySelectorAll('.proj-item')];
     const thumbs = [...document.querySelectorAll('.proj-thumb')];
+    const strip = document.querySelector('.proj-strip');
     let current = 0;
 
     const show = index => {
         current = (index + items.length) % items.length;
         items.forEach((item, i) => item.classList.toggle('is-active', i === current));
-        thumbs.forEach((thumb, i) => thumb.setAttribute('aria-pressed', String(i === current)));
+        thumbs.forEach((thumb, i) => {
+            thumb.setAttribute('aria-pressed', String(i === current));
+            thumb.classList.toggle('is-past', i < current);
+        });
     };
 
     document.querySelectorAll('.stack').forEach(stack => {
@@ -64,8 +71,7 @@ export function initProjects() {
     const swipeable = matchMedia('(max-width: 860px)');
     const calm = matchMedia('(prefers-reduced-motion: reduce)');
 
-    const strip = document.querySelector('.proj-strip');
-    const stopAuto = () => strip.classList.remove('is-auto');
+    const stopAuto =() => strip.classList.remove('is-auto');
 
     const go = index => {
         show(index);
@@ -88,19 +94,18 @@ export function initProjects() {
         strip.classList.toggle('is-auto', entry.isIntersecting);
     }, { threshold: 0.4 }).observe(deck);
 
+    const preload = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        preload.disconnect();
+        document.querySelectorAll('.proj [data-live]').forEach(goLive);
+    }, { rootMargin: '150% 0px' });
+
+    preload.observe(deck);
+
     const slides = new IntersectionObserver(entries => {
         if (!swipeable.matches) return;
         entries.filter(entry => entry.isIntersecting).forEach(entry => show(items.indexOf(entry.target)));
     }, { root: deck, threshold: 0.6 });
 
     items.forEach(item => slides.observe(item));
-
-    document.querySelectorAll('[data-proj-step]').forEach(button => {
-        button.addEventListener('click', () => {
-            const step = button.dataset.projStep;
-            stopAuto();
-            show(current + Number(step));
-            items[current].querySelector(`[data-proj-step="${step}"]`).focus();
-        });
-    });
 }
