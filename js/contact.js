@@ -13,16 +13,13 @@ export function initContact() {
 
     // ── Copiar e-mail ─────────────────────────────────────────
     const copyBtn   = document.getElementById('copy-email');
-    const copyLabel = document.getElementById('copy-email-label');
     const copyStatus = document.getElementById('copy-email-status');
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(EMAIL).then(() => {
-                copyLabel.textContent = t('contact.emailCopied');
                 copyStatus.textContent = t('contact.emailCopied');
                 copyBtn.classList.add('copied');
                 setTimeout(() => {
-                    copyLabel.textContent = t('contact.copy');
                     copyStatus.textContent = '';
                     copyBtn.classList.remove('copied');
                 }, 2000);

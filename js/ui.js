@@ -102,11 +102,13 @@ export function initUI() {
     });
 
     document.querySelectorAll('[data-spot]').forEach(area => {
-        const spot = area.querySelector('.grid-spot');
+        const spots = document.querySelectorAll(area.dataset.spot);
         area.addEventListener('mousemove', e => {
-            const rect = area.getBoundingClientRect();
-            spot.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-            spot.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            spots.forEach(spot => {
+                const rect = spot.getBoundingClientRect();
+                spot.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+                spot.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            });
         });
     });
 

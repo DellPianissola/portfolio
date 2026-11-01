@@ -11,13 +11,17 @@ const section = (titleKey, body, order) => `
         <div>${body}</div>
     </section>`;
 
+const GENERIC_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg>';
+
+const paragraphs = texts => texts.map(text => `<p>${text}</p>`).join('');
+
 function stackMarkup(item, uses) {
     return LAYERS.map(([key, names]) => {
         const tools = item.stack.filter(name => names.includes(name));
         if (!tools.length) return '';
         const cards = tools.map(name => `
             <div class="case-tool">
-                <img src="${logoUrl(name)}" alt="" width="28" height="28" loading="lazy">
+                ${logoUrl(name) ? `<img src="${logoUrl(name)}" alt="" width="28" height="28" loading="lazy">` : GENERIC_ICON}
                 <b>${name}</b>
                 ${uses[name] ? `<span>${uses[name]}</span>` : ''}
             </div>`).join('');
@@ -33,12 +37,13 @@ function render() {
     const copy = item[getLang()];
     const next = slugs[(slugs.indexOf(slug) + 1) % slugs.length];
     const decisions = copy.decisions.map(([title, text]) => `<li><strong>${title}</strong><span>${text}</span></li>`).join('');
+    const architecture = copy.architecture.map(([term, text]) => `<div><dt>${term}</dt><dd>${text}</dd></div>`).join('');
     const sections = [
-        copy.problem && ['case.problem', `<p>${copy.problem}</p>`],
-        ['case.decisions', `<ol class="decisions">${decisions}</ol>`],
+        ['case.problem', paragraphs(copy.problem)],
+        ['case.solution', paragraphs(copy.solution)],
+        ['case.architecture', `<dl class="case-arch">${architecture}</dl><div class="case-layer"><h3>${t('case.decisions')}</h3><ol class="decisions">${decisions}</ol></div>`],
         ['case.stack', stackMarkup(item, copy.uses)],
-        copy.result && ['case.result', `<p>${copy.result}</p>`],
-    ].filter(Boolean);
+    ];
 
     document.title = `${item.name} | ${t('case.title')}`;
     document.getElementById('case').innerHTML = `

@@ -21,7 +21,7 @@ const LOGOS = {
     'pnpm': 'pnpm',
 };
 
-export const logoUrl = name => `https://cdn.simpleicons.org/${LOGOS[name]}/1d2242`;
+export const logoUrl = name => LOGOS[name] && `https://cdn.simpleicons.org/${LOGOS[name]}/1d2242`;
 
 function stackGrid(names) {
     const grid = document.createElement('div');
