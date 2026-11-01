@@ -1,5 +1,7 @@
 const MORPH = { duration: 750, easing: 'cubic-bezier(0.76, 0, 0.24, 1)' };
 const REVEAL_GAP = 350;
+const CONTENT_FADE = 200;
+const CARD_FADE = 250;
 
 export function initExperience() {
     const items = [...document.querySelectorAll('.xp')];
@@ -39,10 +41,27 @@ export function initExperience() {
         return Promise.all(morph.running.map(animation => animation.finished));
     };
 
+    const clearFades = morph => {
+        morph.fades.forEach(animation => animation.cancel());
+        morph.fades = [];
+    };
+
+    const fadeOutContent = item => [...item.querySelectorAll('.xp-side > *, .xp-body')].map(element =>
+        element.animate({ opacity: [1, 0] }, { duration: CONTENT_FADE, fill: 'forwards' }));
+
+    const fadeInCard = item => item.querySelector('.card').animate(
+        [{ opacity: 0, offset: 0 }, { opacity: 0, offset: 0.6 }, { opacity: 1, offset: 1 }],
+        { duration: MORPH.duration, fill: 'forwards' });
+
+    const fadeOutCard = item => item.querySelector('.card').animate(
+        { opacity: [1, 0] }, { duration: CARD_FADE, fill: 'forwards' });
+
     const retract = item => {
         const morph = morphs.get(item);
         const settle = () => {
             setOpen(item, false);
+            item.classList.remove('is-morphing');
+            if (morph) clearFades(morph);
             morphs.delete(item);
         };
 
@@ -50,6 +69,10 @@ export function initExperience() {
             settle();
             return Promise.resolve();
         }
+
+        clearFades(morph);
+        item.classList.add('is-morphing');
+        morph.fades = [...fadeOutContent(item), fadeInCard(item)];
 
         if (morph.running.some(animation => animation.playState === 'running')) {
             morph.running.forEach(animation => animation.reverse());
@@ -67,11 +90,16 @@ export function initExperience() {
         setOpen(item, true);
         item.querySelector('.xp-close').focus({ preventScroll: true });
 
-        if (calm) return item.scrollIntoView({ block: 'nearest' });
+        if (calm) return;
 
-        morphs.set(item, { frames: buildFrames(item, closed), running: [] });
+        const morph = { frames: buildFrames(item, closed), running: [], fades: [] };
+        morphs.set(item, morph);
+        item.classList.add('is-morphing');
+        morph.fades = [fadeOutCard(item)];
         play(item, 'normal').then(() => {
-            if (open === item) item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            if (open !== item) return;
+            item.classList.remove('is-morphing');
+            clearFades(morph);
         });
     };
 

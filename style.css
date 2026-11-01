@@ -157,16 +157,13 @@ p { text-wrap: pretty; }
 
 .how { background: var(--tint); }
 .how-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; max-width: 76rem; margin-inline: auto; align-items: start; }
-.terminal { position: sticky; top: 6rem; background: var(--navy); color: var(--white); box-shadow: 0 24px 60px rgba(29, 34, 66, 0.25); }
+.terminal-wrap { position: sticky; top: 6rem; }
+.terminal { background: var(--navy); color: var(--white); box-shadow: 0 24px 60px rgba(29, 34, 66, 0.25); }
 .terminal-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem 1.25rem; background: var(--navy-deep); font-size: var(--step-tiny); font-weight: 700; }
-.terminal-bar button { text-decoration: underline; text-underline-offset: 0.25em; }
 .manifest { padding: 1.5rem 1.5rem 2rem; font-family: var(--mono); font-size: var(--step-small); line-height: 1.75; color: var(--sky); }
 .manifest p { font-weight: 500; white-space: pre-wrap; }
 .manifest .man-h:not(:first-child) { margin-top: 1.75em; }
 .manifest .man-h { color: var(--white); font-weight: 800; }
-.man-rest { visibility: hidden; }
-.manifest .is-current .man-typed::after, .manifest.is-done p:last-child::after { content: ""; display: inline-block; width: 0.55em; height: 1.1em; margin-right: -0.55em; vertical-align: -0.2em; background: var(--sky); }
-.manifest.is-done p:last-child::after { margin-left: 2px; }
 
 .skills { list-style: none; padding: 0; border-bottom: 1px solid var(--rule); }
 .skills > li { border-top: 1px solid var(--rule); }
@@ -231,10 +228,14 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
 .is-edu .card { background: var(--tint); color: var(--ink); }
 .xp-toggle { display: block; width: 100%; padding: 1.5rem 1.75rem; color: inherit; font: inherit; text-align: left; }
 .xp-toggle span { display: block; }
-.xp-name { font-size: var(--step-lead); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
-.xp-role { margin-block: 0.15rem 0.5rem; font-size: 1rem; font-weight: 500; letter-spacing: 0; line-height: 1.5; }
-.xp-text { font-size: 1rem; font-weight: 400; letter-spacing: 0; line-height: 1.5; }
-.xp-toggle .xp-cue { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.9rem; font-size: var(--step-small); font-weight: 700; letter-spacing: 0; }
+.xp-name { font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.xp-role { margin-block: 0.25rem 0.75rem; font-size: 1rem; font-weight: 700; letter-spacing: 0; line-height: 1.4; }
+.is-edu .xp-role { color: var(--vivid); }
+.xp-text { font-size: var(--step-small); font-weight: 400; letter-spacing: 0; line-height: 1.55; color: rgba(255, 255, 255, 0.88); }
+.is-edu .xp-text { color: var(--muted); }
+.xp-toggle .xp-cue { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.1rem; font-size: var(--step-small); font-weight: 700; letter-spacing: 0; }
+.is-edu .xp-toggle .xp-cue { color: var(--vivid); }
+.xp-arrow { transition: transform var(--t-ui) var(--ease-out); }
 .xp-arrow::before { content: "→"; }
 .xp:nth-child(even) .xp-arrow::before { content: "←"; }
 
@@ -243,6 +244,8 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
 .js .xp.is-open .xp-panel { display: grid; }
 .js .xp.is-open .card { visibility: hidden; }
 .js .xp.is-open time { visibility: hidden; }
+.js .xp.is-morphing .card, .js .xp.is-morphing time { visibility: visible; }
+.js .xp.is-morphing .card { position: relative; z-index: 3; pointer-events: none; }
 .xp-side, .xp-body { grid-row: 1; padding: clamp(1.5rem, 3vw, 2.5rem); }
 .xp-side { grid-column: 1; display: flex; flex-direction: column; gap: 0.5rem; background: var(--vivid); }
 .xp-body { grid-column: 2; }
@@ -342,6 +345,8 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
     .skill:hover .skill-num { color: var(--vivid); }
     .browser-bar a:hover { text-decoration: underline; }
     .bar-back:hover { color: var(--sky); }
+    .xp-toggle:hover .xp-arrow { transform: translateX(4px); }
+    .xp:nth-child(even) .xp-toggle:hover .xp-arrow { transform: translateX(-4px); }
     .case-next:hover i { transform: translateX(8px); }
     .proj-arrows button:hover { background: var(--navy); color: var(--white); }
     .stack-tile:hover { transform: translateY(-4px); background: var(--white); box-shadow: 0 12px 28px rgba(29, 34, 66, 0.14); }
@@ -361,7 +366,11 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
     .grid-lines, .grid-cells { animation: grid-drift 28s linear infinite; }
     .grid-cells span { animation: cell-pulse var(--t) ease-in-out var(--w) infinite; }
 
-    .manifest.is-done p:last-child::after { animation: blink 1s steps(1) infinite; }
+
+    .js .terminal { clip-path: inset(-6rem); transition: clip-path 900ms var(--ease-wipe); }
+    .js .terminal-wrap:not(.is-in) .terminal { clip-path: inset(0 0 calc(100% - 3.125rem) 0); }
+    .js .terminal-wrap:not(.is-in) .manifest p { opacity: 0; }
+    .terminal-wrap.is-in .manifest p { animation: pop-in 500ms var(--ease-out) both; animation-delay: calc(var(--l, 0) * 50ms + 200ms); }
 
     .proj.is-in .is-active .browser-shot { animation: expand-x 900ms var(--ease-wipe) both; }
     .proj.is-in .is-active .browser-shot img { animation: arrive 1200ms var(--ease-expo) both; }
@@ -378,6 +387,7 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
     .js .xp:nth-child(even):not(.is-in) .card { clip-path: inset(-0.5rem 100% -0.5rem -0.5rem); transform: translateX(-3rem); }
     .js .xp time { transition: opacity 600ms ease calc(var(--d, 0ms) + 900ms); }
     .js .xp:not(.is-in) time { opacity: 0; }
+    .xp.is-open .xp-side-top, .xp.is-open .xp-label { animation: pop-in 500ms var(--ease-out) 350ms both; }
     .xp.is-open .xp-title { animation: pop-in 600ms var(--ease-out) 450ms both; }
     .xp.is-open .xp-side-role { animation: pop-in 600ms var(--ease-out) 520ms both; }
     .xp.is-open .xp-side-text { animation: pop-in 600ms var(--ease-out) 580ms both; }
@@ -404,7 +414,6 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
 @keyframes pop-in { from { opacity: 0; transform: translateY(14px); } }
 @keyframes grid-drift { to { transform: translate(var(--grid-size), var(--grid-size)); } }
 @keyframes cell-pulse { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
-@keyframes blink { 50% { opacity: 0; } }
 @keyframes expand-x { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgba(169, 195, 251, 0.7); } 100% { box-shadow: 0 0 0 12px rgba(169, 195, 251, 0); } }
 @keyframes bounce-dot { 0%, 80%, 100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-4px); opacity: 1; } }
@@ -426,7 +435,7 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
     #nav-menu.open { display: flex; }
     #nav-menu a { display: block; padding-block: 0.7rem; }
     .how-grid, .proj-item, .case-hero { grid-template-columns: 1fr; }
-    .terminal { position: static; }
+    .terminal-wrap { position: static; }
 }
 
 @media (max-width: 860px) {
@@ -443,13 +452,12 @@ html:not(.js) .proj-strip, html:not(.js) .proj-nav { display: none; }
     .timeline::before { left: 2px; margin-left: 0; }
     .xp { grid-template-columns: minmax(0, 1fr); padding: 0 0 1.75rem 1.75rem; }
     .xp::after { left: 2px; margin-left: -7px; top: 0.2rem; }
-    .xp time, .xp:nth-child(even) time { grid-row: auto; grid-column: 1; padding: 0 0 0.4rem; text-align: left; }
-    .xp .card, .xp:nth-child(even) .card { grid-row: auto; grid-column: 1; }
+    .xp time, .xp:nth-child(even) time { grid-row: 1; grid-column: 1; padding: 0 0 0.4rem; text-align: left; }
+    .xp .card, .xp:nth-child(even) .card { grid-row: 2; grid-column: 1; }
     .xp:nth-child(even) .xp-arrow::before { content: "→"; }
     .js .xp:not(.is-in) .card, .js .xp:nth-child(even):not(.is-in) .card { clip-path: inset(-0.5rem 100% -0.5rem -0.5rem); transform: translateX(-1.75rem); }
     .xp-panel { grid-template-columns: minmax(0, 1fr); }
-    .js .xp-panel { grid-row: auto; }
-    .js .xp.is-open .card, .js .xp.is-open time { display: none; }
+    .js .xp-panel { grid-row: 2; }
     .xp-side, .xp-body, .xp:nth-child(even) .xp-side, .xp:nth-child(even) .xp-body { grid-row: auto; grid-column: 1; }
     .chat-log { height: 20rem; }
     .chat-send { padding: 0 1rem; }
