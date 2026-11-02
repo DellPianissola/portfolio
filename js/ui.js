@@ -8,8 +8,9 @@ export function initUI() {
     const view    = document.querySelector('.pan-view');
     const track   = document.querySelector('.pan-track');
     const hint    = document.querySelector('.pan-hint');
+    const heroName = document.querySelector('.hero h1');
     const navAnchors = document.querySelectorAll('#nav-menu a');
-    const sectionIds = ['sobre', 'como-trabalho', 'projetos', 'experiencia', 'contato'];
+    const sectionIds = ['sobre', 'projetos', 'experiencia', 'como-trabalho', 'contato'];
 
     let panned = false;
     let tween = 0;
@@ -49,6 +50,9 @@ export function initUI() {
     function update() {
         const progress = panned ? panProgress() : 0;
         track.style.transform = panned ? `translateX(${-progress * 50}%)` : '';
+
+        const name = heroName.getBoundingClientRect();
+        bar.classList.toggle('has-brand', name.right < 0 || name.bottom < bar.offsetHeight);
 
         let active = progress > 0.5 ? 'sobre' : 'home';
         let closest = -Infinity;

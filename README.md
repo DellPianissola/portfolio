@@ -22,6 +22,12 @@ O chat depende do Worker, de `wrangler login` e dos secrets `ANTHROPIC_API_KEY` 
 npx wrangler dev
 ```
 
+Os PDFs do currículo saem de `cv/cv.html`, com o Microsoft Edge (`EDGE_PATH` troca o executável). A pasta `cv/` está fora do deploy em `.assetsignore`:
+
+```bash
+npm run cv
+```
+
 ## Estrutura
 
 ```
@@ -32,6 +38,9 @@ portfolio/
 ├── config.js
 ├── wrangler.jsonc
 ├── _headers
+├── cv/
+│   ├── cv.html
+│   └── build.js
 ├── worker/
 │   ├── index.js
 │   └── knowledge.md

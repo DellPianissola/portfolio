@@ -2,7 +2,7 @@ const STORAGE_KEY = 'lang';
 const SUPPORTED = ['pt', 'en'];
 const DEFAULT = 'pt';
 
-const dict = {
+export const dict = {
     pt: {
         'meta.title': 'Gabriel Pianissola',
         'meta.description': 'Gabriel Pianissola, engenheiro de software full stack. Projetos, decisões técnicas e trajetória em web e mobile.',
@@ -111,10 +111,10 @@ const dict = {
         'experience.behind': 'Detalhes',
         'experience.kaffaMetricValue': '16 GB → 1,5 GB',
         'experience.kaffaMetric': 'é o tamanho da base necessária para rodar o app, mais de 90% menor',
-        'experience.senaiMetricValue': '2x mais rápido',
-        'experience.senaiMetric': 'projeto de 1 ano entregue em 6 meses, além do escopo pedido',
+        'experience.senaiMetricValue': '12 meses em 6',
+        'experience.senaiMetric': 'entrei com metade do prazo já corrido e o backend na estaca zero, e entregamos além do escopo pedido',
         'experience.kaffaDecisions': '<li><strong>Base do app de 16 GB para 1,5 GB</strong><span>Criei a solução que reduziu em mais de 90% a base necessária para rodar o app.</span></li><li><strong>Import de DWG além do limite</strong><span>Otimizei a importação para o canvas SWT: com carregamento em pacotes, o sistema passou do limite máximo de tamanho do arquivo e ainda reduziu a latência ao mover o mapa.</span></li><li><strong>IA no fluxo com o QA</strong><span>Integrei IA ao desenvolvimento para gerar documentação que deixa mais prático testar bugs e histórias de usuário, diminuindo o gargalo de testes do time de QA.</span></li><li><strong>Referência técnica em Android</strong><span>Responsável pela camada Android do produto dentro do time.</span></li>',
-        'experience.senaiDecisions': '<li><strong>Projeto de 1 ano entregue na metade do tempo</strong><span>Cheguei com 6 meses de projeto já corridos, assumi a arquitetura e o backend inteiro e entregamos mais do que havia sido pedido.</span></li><li><strong>Comunicação assíncrona com SSE</strong><span>Back e front em Django REST Framework conversando por Server-Sent Events, com documentação para o cliente evoluir sozinho.</span></li><li><strong>API do time de IA</strong><span>Assumi a API em FastAPI e integrei ao backend os algoritmos que calculam KPIs e outras inferências.</span></li><li><strong>Envio de grandes arquivos</strong><span>Arquitetura de upload direto com URLs assinadas: em um projeto com Google Cloud Storage, em outro com MinIO, de forma otimizada.</span></li>',
+        'experience.senaiDecisions': '<li><strong>12 meses de backend feitos em 6</strong><span>O projeto tinha 1 ano de prazo. Entrei depois de 6 meses, com o backend na estaca zero, assumi a arquitetura e o backend inteiro e entregamos mais do que havia sido pedido.</span></li><li><strong>Comunicação assíncrona com SSE</strong><span>Back e front em Django REST Framework conversando por Server-Sent Events, com documentação para o cliente evoluir sozinho.</span></li><li><strong>API do time de IA</strong><span>Assumi a API em FastAPI e integrei ao backend os algoritmos que calculam KPIs e outras inferências.</span></li><li><strong>Envio de grandes arquivos</strong><span>Arquitetura de upload direto com URLs assinadas: em um projeto com Google Cloud Storage, em outro com MinIO, de forma otimizada.</span></li>',
         'experience.unipDecisions': '<li><strong>TCC testado em sala de aula</strong><span>Meu TCC foi validado em uma escola particular de ensino fundamental I, com engajamento dos estudantes.</span></li>',
         'experience.etepDecisions': '<li><strong>Competição FIRST</strong><span>No time de programação, responsável pelo algoritmo que levava o robô a completar os desafios com sensores, em cenários bem variáveis que exigiam um sistema responsivo.</span></li><li><strong>Tarefa autônoma inédita</strong><span>Concluímos com êxito uma tarefa feita de forma autônoma pelo robô, responsabilidade do time de programação e algo que a equipe nunca tinha conseguido.</span></li><li><strong>Programação embarcada</strong><span>Diversos projetos em PIC Basic e Arduino.</span></li>',
         'experience.kaffaDate': '2025, atual',
@@ -134,6 +134,9 @@ const dict = {
         'contact.title': 'Vamos conversar',
         'contact.line': 'Tem uma vaga ou um sistema para construir? Puxa assunto por aqui.',
         'contact.emailTerm': 'E-mail',
+        'contact.cvTerm': 'Currículo',
+        'contact.cvLabel': 'Baixar PDF',
+        'contact.cvFile': 'cv/gabriel-pianissola-cv-pt.pdf',
         'contact.emailCopied': 'Copiado!',
         'contact.copy': 'Copiar',
         'contact.chatName': 'Dell',
@@ -277,10 +280,10 @@ const dict = {
         'experience.behind': 'Details',
         'experience.kaffaMetricValue': '16 GB → 1.5 GB',
         'experience.kaffaMetric': 'is the size of the base needed to run the app, more than 90% smaller',
-        'experience.senaiMetricValue': '2x faster',
-        'experience.senaiMetric': '1-year project delivered in 6 months, beyond the requested scope',
+        'experience.senaiMetricValue': '12 months in 6',
+        'experience.senaiMetric': 'joined with half the deadline gone and the backend at square one, and we delivered beyond the requested scope',
         'experience.kaffaDecisions': "<li><strong>App base from 16 GB to 1.5 GB</strong><span>Built the solution that cut the base needed to run the app by more than 90%.</span></li><li><strong>DWG import past the limit</strong><span>Optimized the import into the SWT canvas: loading in chunks took the system past its maximum file size and also reduced latency when moving the map.</span></li><li><strong>AI in the QA workflow</strong><span>Brought AI into development to generate documentation that makes testing bugs and user stories easier, reducing the QA team's testing bottleneck.</span></li><li><strong>Technical reference for Android</strong><span>Responsible for the product's Android layer within the team.</span></li>",
-        'experience.senaiDecisions': "<li><strong>1-year project delivered in half the time</strong><span>Joined with 6 months already gone, took over the architecture and the entire backend, and we delivered more than was asked for.</span></li><li><strong>Async communication with SSE</strong><span>Back and front in Django REST Framework talking through Server-Sent Events, documented so the client could evolve it alone.</span></li><li><strong>The AI team's API</strong><span>Took over the FastAPI service and integrated the algorithms that calculate KPIs and other inferences into the backend.</span></li><li><strong>Sending large files</strong><span>Direct upload architecture with signed URLs: Google Cloud Storage on one project, MinIO on another, in an optimized way.</span></li>",
+        'experience.senaiDecisions': "<li><strong>12 months of backend done in 6</strong><span>The project had a 1-year deadline. I joined after 6 months, with the backend at square one, took over the architecture and the entire backend, and we delivered more than was asked for.</span></li><li><strong>Async communication with SSE</strong><span>Back and front in Django REST Framework talking through Server-Sent Events, documented so the client could evolve it alone.</span></li><li><strong>The AI team's API</strong><span>Took over the FastAPI service and integrated the algorithms that calculate KPIs and other inferences into the backend.</span></li><li><strong>Sending large files</strong><span>Direct upload architecture with signed URLs: Google Cloud Storage on one project, MinIO on another, in an optimized way.</span></li>",
         'experience.unipDecisions': '<li><strong>Capstone tested in the classroom</strong><span>My capstone was validated at a private elementary school, with student engagement.</span></li>',
         'experience.etepDecisions': '<li><strong>FIRST competition</strong><span>On the programming team, responsible for the algorithm that got the robot through the challenges using sensors, in highly variable scenarios that required a responsive system.</span></li><li><strong>A first autonomous task</strong><span>We completed a task the robot performed autonomously, the responsibility of the programming team and something the team had never achieved.</span></li><li><strong>Embedded programming</strong><span>Several projects in PIC Basic and Arduino.</span></li>',
         'experience.kaffaDate': '2025, present',
@@ -300,6 +303,9 @@ const dict = {
         'contact.title': 'Let\'s talk',
         'contact.line': 'Got a role or a system to build? Start the conversation here.',
         'contact.emailTerm': 'Email',
+        'contact.cvTerm': 'Resume',
+        'contact.cvLabel': 'Download PDF',
+        'contact.cvFile': 'cv/gabriel-pianissola-cv-en.pdf',
         'contact.emailCopied': 'Copied!',
         'contact.copy': 'Copy',
         'contact.chatName': 'Dell',

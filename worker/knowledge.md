@@ -48,7 +48,7 @@ React na web, SWT no desktop, Android, backend em Kotlin e Java no servidor Noma
 
 Arquitetura e backend em projetos de inovação, com Django REST Framework, FastAPI, React Native e Docker, com o Django testado em pytest.
 
-- Entrou em um projeto de 1 ano com 6 meses já corridos, assumiu a arquitetura e todo o backend, e o time entregou mais do que o pedido.
+- Entrou em um projeto de 1 ano com 6 meses já corridos e o backend na estaca zero, assumiu a arquitetura e todo o backend, fez em 6 meses o previsto para 12, e o time entregou mais do que o pedido.
 - Fez back e front se comunicarem por Server-Sent Events, com documentação para o cliente evoluir sozinho.
 - Assumiu a API em FastAPI do time de IA e integrou os algoritmos de KPIs e inferências.
 - Criou upload direto de grandes arquivos com URLs assinadas, com Google Cloud Storage e MinIO.

@@ -90,7 +90,7 @@ export function initProjects() {
         preload.disconnect();
         document.querySelectorAll('.proj [data-live]').forEach(goLive);
         deck.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
-    }, { rootMargin: '150% 0px' });
+    }, { rootMargin: '50% 0px' });
 
     preload.observe(deck);
 
