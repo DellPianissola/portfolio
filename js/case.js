@@ -1,5 +1,5 @@
 import { initI18n, getLang, t } from './i18n.js';
-import { logoUrl } from './projects.js';
+import { externalButton, logoUrl } from './project-parts.js';
 import { calm } from './media.js';
 import { CASES, LAYERS } from './cases.js';
 
@@ -31,8 +31,8 @@ function storyMarkup(slug, item, copy) {
          <h1>${item.name}</h1>
          <p>${t(`projects.${slug}Desc`)}</p>
          <div class="case-actions">
-             <a class="button" href="${item.url}" target="_blank" rel="noopener">${t('projects.visit')}</a>
-             ${item.github ? `<a class="button button--line" href="${item.github}" target="_blank" rel="noopener">${t('projects.code')}</a>` : ''}
+             ${externalButton(item.url, 'projects.visit')}
+             ${item.github ? externalButton(item.github, 'projects.code', true) : ''}
          </div>
          <span class="story-hint">${t('nav.hint')} ↓</span>`,
         `<h2>${t('case.problem')}</h2>${paragraphs(copy.problem)}`,
@@ -43,7 +43,7 @@ function storyMarkup(slug, item, copy) {
             <div class="story-steps">${steps.map(step => `<section class="story-step">${step}</section>`).join('')}</div>
             <div class="story-stage">
                 <div class="story-frame">
-                    <video src="images/projects/video/${slug}.mp4" poster="images/projects/video/${slug}.jpg" muted loop playsinline preload="metadata" ${moves() ? 'autoplay' : ''} aria-label="${t('case.video')} ${item.name}"></video>
+                    <video src="images/projects/video/${slug}.mp4" poster="images/projects/video/${slug}.webp" muted loop playsinline preload="metadata" ${moves() ? 'autoplay' : ''} aria-label="${t('case.video')} ${item.name}"></video>
                 </div>
             </div>
         </div>`;

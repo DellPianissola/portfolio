@@ -1,31 +1,7 @@
 import { CASES } from './cases.js';
 import { goLive } from './live.js';
 import { calm, compact } from './media.js';
-
-const LOGOS = {
-    'React': 'react',
-    'React Native': 'react',
-    'Vite': 'vite',
-    'Node.js': 'nodedotjs',
-    'Express': 'express',
-    'Prisma': 'prisma',
-    'PostgreSQL': 'postgresql',
-    'MinIO': 'minio',
-    'Vitest': 'vitest',
-    'Docker': 'docker',
-    'Expo': 'expo',
-    'Mantine': 'mantine',
-    'NestJS': 'nestjs',
-    'Jest': 'jest',
-    'Java': 'openjdk',
-    'Spring Boot': 'springboot',
-    'Tailwind': 'tailwindcss',
-    'TypeScript': 'typescript',
-    'Cloudflare': 'cloudflare',
-    'pnpm': 'pnpm',
-};
-
-export const logoUrl = name => LOGOS[name] && `https://cdn.simpleicons.org/${LOGOS[name]}/1d2242`;
+import { externalButton, logoUrl } from './project-parts.js';
 
 const stackLogos = names => names.filter(logoUrl).map(name => `
     <div class="stack-tile"><img src="${logoUrl(name)}" alt="${name}" title="${name}" width="24" height="24" loading="lazy"><span aria-hidden="true">${name}</span></div>`).join('');
@@ -40,7 +16,7 @@ const card = ([slug, item], i) => `
                     <span class="mono">${item.host}</span>
                     <a href="${item.url}" target="_blank" rel="noopener" data-i18n="projects.open"></a>
                 </div>
-                <div class="browser-shot"${canFrame(item) ? ` data-live="${item.url}"` : ''}><img src="images/projects/${slug}-live.jpg" alt="" data-i18n-attr="alt:projects.${slug}Alt" width="1280" height="800"></div>
+                <div class="browser-shot"${canFrame(item) ? ` data-live="${item.url}"` : ''}><img src="images/projects/${slug}-live.webp" alt="" data-i18n-attr="alt:projects.${slug}Alt" width="1280" height="800" loading="lazy" decoding="async"></div>
             </div>
         </div>
         <div class="proj-info">
@@ -50,8 +26,8 @@ const card = ([slug, item], i) => `
             <div class="stack-grid">${stackLogos(item.stack)}</div>
             <div class="proj-cta">
                 <a class="button" href="estudo-de-caso.html#${slug}" data-i18n="projects.case"></a>
-                <a class="button button--line" href="${item.url}" target="_blank" rel="noopener" data-i18n="projects.visit"></a>
-                ${item.github ? `<a class="button button--line" href="${item.github}" target="_blank" rel="noopener" data-i18n="projects.code"></a>` : ''}
+                ${externalButton(item.url, 'projects.visit', true)}
+                ${item.github ? externalButton(item.github, 'projects.code', true) : ''}
             </div>
         </div>
     </article>`;
@@ -113,6 +89,7 @@ export function initProjects() {
         if (!entry.isIntersecting) return;
         preload.disconnect();
         document.querySelectorAll('.proj [data-live]').forEach(goLive);
+        deck.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
     }, { rootMargin: '150% 0px' });
 
     preload.observe(deck);

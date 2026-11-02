@@ -16,7 +16,7 @@ cd portfolio
 python -m http.server 8000
 ```
 
-O chat depende do Worker e de `wrangler login`:
+O chat depende do Worker, de `wrangler login` e dos secrets `ANTHROPIC_API_KEY` e `VISITOR_SALT` (localmente, em `.dev.vars`):
 
 ```bash
 npx wrangler dev
@@ -31,6 +31,7 @@ portfolio/
 ├── style.css
 ├── config.js
 ├── wrangler.jsonc
+├── _headers
 ├── worker/
 │   ├── index.js
 │   └── knowledge.md
@@ -44,9 +45,14 @@ portfolio/
 │   ├── live.js
 │   ├── experience.js
 │   ├── contact.js
+│   ├── chat.js
+│   ├── chat-limits.js
+│   ├── delivery.js
 │   ├── case.js
-│   └── cases.js
+│   ├── cases.js
+│   └── project-parts.js
 └── images/
     ├── profile/
-    └── projects/
+    ├── projects/
+    └── stack/
 ```

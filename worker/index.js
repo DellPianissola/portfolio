@@ -1,9 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import SYSTEM_PROMPT from './knowledge.md';
+import { CHAT_CLOSED, MAX_CHARS, MAX_HISTORY } from '../js/chat-limits.js';
 
 const MODEL = 'claude-haiku-5-5';
-const MAX_MESSAGES = 10;
-const MAX_CHARS = 1000;
 const MAX_TOKENS = 1024;
 const PURPOSES = ['empresa', 'projeto', 'outro'];
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,13 +44,13 @@ const isSameOrigin = (request, url) => {
 const isValidHistory = messages =>
     Array.isArray(messages)
     && messages.length > 0
-    && messages.length <= MAX_MESSAGES
-    && messages.at(-1).role === 'user'
-    && messages.every(({ role, content }) =>
-        ['user', 'assistant'].includes(role)
-        && typeof content === 'string'
-        && content.length > 0
-        && content.length <= MAX_CHARS);
+    && messages.length <= MAX_HISTORY
+    && messages.every(message =>
+        ['user', 'assistant'].includes(message?.role)
+        && typeof message.content === 'string'
+        && message.content.length > 0
+        && message.content.length <= MAX_CHARS)
+    && messages.at(-1).role === 'user';
 
 const isContact = value =>
     EMAIL.test(value) || value.replace(/\D/g, '').length >= MIN_PHONE_DIGITS;
@@ -68,9 +67,10 @@ const textOf = content => content
     .map(block => block.text)
     .join('');
 
-const visitorId = async request => {
-    const ip = new TextEncoder().encode(request.headers.get('CF-Connecting-IP') ?? 'local');
-    const digest = await crypto.subtle.digest('SHA-256', ip);
+const visitorId = async (request, env) => {
+    const encoder = new TextEncoder();
+    const key = await crypto.subtle.importKey('raw', encoder.encode(env.VISITOR_SALT), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+    const digest = await crypto.subtle.sign('HMAC', key, encoder.encode(request.headers.get('CF-Connecting-IP') ?? 'local'));
     return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 };
 
@@ -90,7 +90,7 @@ async function takeDailyMessage(env, visitor) {
 async function chat(request, env, visitor) {
     const { messages } = await request.json().catch(() => ({}));
     if (!isValidHistory(messages)) return json({ error: 'invalid' }, 400);
-    if (!await takeDailyMessage(env, visitor)) return json({ error: 'quota' }, 429);
+    if (!await takeDailyMessage(env, visitor)) return json({ error: CHAT_CLOSED.quota }, 429);
 
     const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
     const response = await client.messages.create({
@@ -108,7 +108,7 @@ async function chat(request, env, visitor) {
     const call = response.content.find(({ type }) => type === 'tool_use');
     if (call?.name === END_CONVERSATION.name) {
         await block(env, visitor);
-        return json({ error: 'blocked' }, 403);
+        return json({ error: CHAT_CLOSED.blocked }, 403);
     }
 
     const draft = toDraft(call);
@@ -124,10 +124,10 @@ export default {
         if (!['GET', 'POST'].includes(request.method)) return json({ error: 'method' }, 405);
         if (!isSameOrigin(request, url) && request.method === 'POST') return json({ error: 'origin' }, 403);
 
-        const visitor = await visitorId(request);
+        const visitor = await visitorId(request, env);
         const blocked = await isBlocked(env, visitor);
         if (request.method === 'GET') return json({ blocked });
-        if (blocked) return json({ error: 'blocked' }, 403);
+        if (blocked) return json({ error: CHAT_CLOSED.blocked }, 403);
 
         const { success } = await env.CHAT_LIMIT.limit({ key: visitor });
         if (!success) return json({ error: 'rate' }, 429);
