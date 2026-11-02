@@ -30,6 +30,8 @@ export const logoUrl = name => LOGOS[name] && `https://cdn.simpleicons.org/${LOG
 const stackLogos = names => names.filter(logoUrl).map(name => `
     <div class="stack-tile"><img src="${logoUrl(name)}" alt="${name}" title="${name}" width="24" height="24" loading="lazy"><span aria-hidden="true">${name}</span></div>`).join('');
 
+const canFrame = item => !item.frameOrigins || item.frameOrigins.includes(location.origin);
+
 const card = ([slug, item], i) => `
     <article class="proj-item${i ? '' : ' is-active'}">
         <div class="proj-media">
@@ -38,7 +40,7 @@ const card = ([slug, item], i) => `
                     <span class="mono">${item.host}</span>
                     <a href="${item.url}" target="_blank" rel="noopener" data-i18n="projects.open"></a>
                 </div>
-                <div class="browser-shot" data-live="${item.url}"><img src="images/projects/${slug}-live.jpg" alt="" data-i18n-attr="alt:projects.${slug}Alt" width="1280" height="800" loading="lazy"></div>
+                <div class="browser-shot"${canFrame(item) ? ` data-live="${item.url}"` : ''}><img src="images/projects/${slug}-live.jpg" alt="" data-i18n-attr="alt:projects.${slug}Alt" width="1280" height="800"></div>
             </div>
         </div>
         <div class="proj-info">

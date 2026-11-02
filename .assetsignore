@@ -1,0 +1,14 @@
+worker/
+wrangler.jsonc
+.assetsignore
+.wrangler/
+.dev.vars
+NOTES.md
+README.md
+node_modules/
+package.json
+package-lock.json
+.claude/
+.vscode/
+.impeccable/
+.gitignore

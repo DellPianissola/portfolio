@@ -12,6 +12,7 @@ export const CASES = {
         name: 'Citria',
         host: 'citria.pianissola.tech',
         url: 'https://citria.pianissola.tech/',
+        frameOrigins: ['https://portfolio.dell-pianissola.workers.dev', 'http://localhost:3000'],
         github: '',
         stack: ['React Native', 'Expo', 'React', 'Vite', 'Mantine', 'NestJS', 'Prisma', 'PostgreSQL', 'Garage', 'Jest', 'Testcontainers', 'Docker'],
         pt: {

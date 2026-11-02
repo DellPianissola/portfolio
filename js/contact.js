@@ -1,8 +1,8 @@
 import { t } from './i18n.js';
 
-const REPLY_DELAY = 1100;
-const FIELDS = ['name', 'email', 'message'];
-const REPLIES = ['contact.chatAskEmail', 'contact.chatAskMessage'];
+const MAX_HISTORY = 10;
+const MAX_CHARS = 1000;
+const CLOSED_ERRORS = ['blocked', 'quota'];
 
 export function initContact() {
     const cfg = window.APP_CONFIG || {};
@@ -29,8 +29,9 @@ export function initContact() {
     const form     = document.getElementById('contact-form');
     const logEl    = document.getElementById('chat-log');
     const input    = document.getElementById('chat-input');
-    const stepEl   = document.getElementById('chat-step');
     const quick    = document.getElementById('chat-quick');
+    const confirm  = document.getElementById('chat-confirm');
+    const preview  = document.getElementById('chat-preview');
     const done     = document.getElementById('chat-done');
     const restart  = document.getElementById('chat-restart');
     const honeypot = document.getElementById('contact-website');
@@ -38,15 +39,18 @@ export function initContact() {
 
     const canSend = typeof emailjs !== 'undefined';
     let log = [];
-    let step = 0;
+    let draft = null;
+    let finished = false;
+    let closed = false;
     let typing = false;
     let typingEl = null;
 
-    const bubbleText = entry => entry.text ?? t(entry.key).replace('{name}', entry.name ?? '');
+    const bubbleText = entry => entry.text ?? t(entry.key);
+    const isVisitor = entry => entry.role === 'user';
 
     function bubble(entry, animate) {
         const row = document.createElement('div');
-        row.className = entry.key ? 'chat-row' : 'chat-row is-me';
+        row.className = isVisitor(entry) ? 'chat-row is-me' : 'chat-row';
         const text = document.createElement('p');
         text.textContent = bubbleText(entry);
         text.classList.toggle('is-new', animate);
@@ -82,43 +86,83 @@ export function initContact() {
         syncControls();
     }
 
+    const purposeLabel = () => t(`contact.purpose.${draft.purpose}`);
+
     function syncControls() {
-        const finished = step >= FIELDS.length;
-        const placeholder = finished ? '' : t(`contact.chatPh${step}`);
+        const placeholder = t('contact.chatPlaceholder');
 
-        stepEl.textContent = t('contact.chatStep').replace('{n}', Math.min(step, FIELDS.length));
-        form.hidden = finished;
+        form.hidden = finished || closed || Boolean(draft);
+        confirm.hidden = !draft || typing;
         done.hidden = !finished || typing;
-        quick.hidden = step !== 2 || typing;
+        quick.hidden = closed || log.some(isVisitor);
 
-        input.type = step === 1 ? 'email' : 'text';
-        input.autocomplete = ['name', 'email', 'off'][step] ?? 'off';
+        if (draft) preview.textContent = `${purposeLabel()}: ${draft.summary} (${draft.name}, ${draft.contact})`;
+
         input.placeholder = placeholder;
         input.setAttribute('aria-label', placeholder);
     }
 
-    function reply(key, extra = {}) {
-        setTyping(false);
-        add({ key, ...extra });
-    }
-
     function finishWith(key) {
-        reply(key);
+        setTyping(false);
+        add({ key });
+        finished = true;
+        draft = null;
         syncControls();
     }
 
     function failWith(key) {
-        step = FIELDS.length - 1;
-        input.value = form.elements['message'].value;
-        finishWith(key);
+        setTyping(false);
+        add({ key });
+        syncControls();
+    }
+
+    function closeChat() {
+        add({ key: 'contact.chatClosed' });
+        closed = true;
+        draft = null;
+        syncControls();
     }
 
     function start() {
         log = [];
         logEl.replaceChildren();
-        step = 0;
+        draft = null;
+        finished = false;
         input.value = '';
         add({ key: 'contact.chatHello' });
+        syncControls();
+    }
+
+    const history = () => log
+        .filter(entry => entry.text)
+        .slice(-MAX_HISTORY)
+        .map(({ role, text }) => ({ role, content: text }));
+
+    async function ask() {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: history() }),
+        });
+        const body = await response.json();
+        if (!response.ok && !CLOSED_ERRORS.includes(body.error)) throw new Error(String(response.status));
+        return body;
+    }
+
+    async function say(text) {
+        add({ role: 'user', text });
+        setTyping(true);
+        try {
+            const { reply, draft: nextDraft, error } = await ask();
+            setTyping(false);
+            if (error) return closeChat();
+            if (reply) add({ role: 'assistant', text: reply });
+            draft = nextDraft;
+            if (draft && !reply) add({ key: 'contact.chatConfirm' });
+        } catch {
+            setTyping(false);
+            add({ key: 'contact.chatOffline' });
+        }
         syncControls();
     }
 
@@ -174,33 +218,38 @@ export function initContact() {
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const value = input.value.trim();
+        const value = input.value.trim().slice(0, MAX_CHARS);
         if (!value || typing) return;
-
-        const current = step;
-        const name = (current === 0 ? value : form.elements['name'].value).split(' ')[0];
-        form.elements[FIELDS[current]].value = value;
-        add({ text: value });
         input.value = '';
-        step += 1;
-        setTyping(true);
-
-        if (step === FIELDS.length) return deliver();
-
-        setTimeout(() => {
-            reply(REPLIES[current], { name });
-            syncControls();
-        }, REPLY_DELAY);
+        say(value);
     });
 
     quick.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', () => {
-            input.value = button.textContent;
-            input.focus();
+            if (!typing) say(button.textContent);
         });
     });
 
+    document.getElementById('chat-send-draft').addEventListener('click', () => {
+        form.elements['name'].value = draft.name;
+        form.elements['email'].value = draft.contact.includes('@') ? draft.contact : '';
+        form.elements['message'].value = `[${purposeLabel()}] ${draft.summary}\n\n${t('contact.chatContact')}: ${draft.contact}`;
+        setTyping(true);
+        deliver();
+    });
+
+    document.getElementById('chat-edit-draft').addEventListener('click', () => {
+        draft = null;
+        syncControls();
+        input.focus();
+    });
+
     restart.addEventListener('click', start);
+
+    fetch('/api/chat')
+        .then(response => response.json())
+        .then(({ blocked }) => { if (blocked) closeChat(); })
+        .catch(() => {});
 
     document.addEventListener('langchange', () => {
         renderLog();

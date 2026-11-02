@@ -2,6 +2,6 @@
 NOTES.md
 .claude/
 node_modules/
-package.json
-package-lock.json
 .impeccable/
+.wrangler/
+.dev.vars

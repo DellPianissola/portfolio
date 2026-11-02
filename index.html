@@ -260,14 +260,20 @@
                 <div class="chat">
                     <div class="chat-head">
                         <span class="chat-avatar"><img src="images/profile/gabriel-avatar.webp" alt="" width="160" height="160" loading="lazy"></span>
-                        <span class="chat-who"><b>Gabriel Pianissola</b><span><i></i><span data-i18n="contact.chatStatus">Responde em até dois dias úteis</span></span></span>
-                        <span class="chat-step" id="chat-step">0 de 3</span>
+                        <span class="chat-who"><b data-i18n="contact.chatName">Assistente do Gabriel</b><span><i></i><span data-i18n="contact.chatStatus">IA, pode errar. Quem responde sua mensagem é ele.</span></span></span>
                     </div>
                     <div class="chat-log" id="chat-log" role="log" aria-live="polite"></div>
                     <div class="chat-quick" id="chat-quick" hidden>
-                        <button type="button" data-i18n="contact.quick1">Tenho uma vaga</button>
-                        <button type="button" data-i18n="contact.quick2">Quero tirar um projeto do papel</button>
-                        <button type="button" data-i18n="contact.quick3">Só passei para dar oi</button>
+                        <button type="button" data-i18n="contact.quick1">Quero contratar para uma empresa</button>
+                        <button type="button" data-i18n="contact.quick2">Quero contratar um projeto</button>
+                        <button type="button" data-i18n="contact.quick3">Tenho uma dúvida sobre o Gabriel</button>
+                    </div>
+                    <div class="chat-confirm" id="chat-confirm" hidden>
+                        <p id="chat-preview"></p>
+                        <div>
+                            <button type="button" id="chat-send-draft" data-i18n="contact.chatSendDraft">Enviar ao Gabriel</button>
+                            <button type="button" id="chat-edit-draft" data-i18n="contact.chatEditDraft">Corrigir</button>
+                        </div>
                     </div>
                     <form id="contact-form">
                         <input id="contact-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
@@ -275,7 +281,7 @@
                         <input type="hidden" name="email">
                         <input type="hidden" name="message">
                         <div id="recaptcha-container"></div>
-                        <input id="chat-input" class="chat-input" type="text" required>
+                        <input id="chat-input" class="chat-input" type="text" maxlength="1000" autocomplete="off" required>
                         <button type="submit" class="chat-send" data-i18n="contact.chatSend">Enviar</button>
                     </form>
                     <div class="chat-done" id="chat-done" hidden>
@@ -283,6 +289,7 @@
                         <button type="button" id="chat-restart" data-i18n="contact.chatRestart">Recomeçar conversa</button>
                     </div>
                 </div>
+                <p class="recaptcha-notice" data-i18n="contact.chatPrivacy">Conversa processada por IA (Claude, da Anthropic). Seus dados só chegam ao Gabriel se você confirmar o envio.</p>
                 <p class="recaptcha-notice" data-i18n-html="contact.recaptchaNotice">Protegido por reCAPTCHA: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacidade</a> e <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Termos</a> do Google.</p>
             </div>
         </section>

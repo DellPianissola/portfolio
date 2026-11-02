@@ -290,7 +290,6 @@ main:focus { outline: none; }
 .chat-who b { display: block; font-weight: 800; line-height: 1.2; }
 .chat-who > span { display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--step-tiny); color: var(--sky); }
 .chat-who i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--sky); }
-.chat-step { font-size: var(--step-tiny); font-weight: 700; color: var(--sky); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .chat-log { display: flex; flex-direction: column; gap: 0.75rem; height: 22rem; overflow: auto; padding: 1.5rem 1.25rem; }
 .chat-row { display: flex; justify-content: flex-start; }
 .chat-row.is-me { justify-content: flex-end; }
@@ -300,6 +299,11 @@ main:focus { outline: none; }
 .chat-typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--navy); }
 .chat-quick { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 1.25rem 1rem; }
 .chat-quick button { padding: 0.4rem 0.75rem; border: 1px solid rgba(169, 195, 251, 0.45); color: var(--sky); font-size: 0.875rem; font-weight: 700; transition: background-color var(--t-hover) ease, color var(--t-hover) ease, border-color var(--t-hover) ease; }
+.chat-confirm { padding: 1rem 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.chat-confirm p { margin-bottom: 0.9rem; font-size: var(--step-small); overflow-wrap: anywhere; }
+.chat-confirm div { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.chat-confirm button { padding: 0.6rem 1.1rem; background: var(--vivid); color: var(--white); font-weight: 700; }
+.chat-confirm #chat-edit-draft { background: none; color: var(--sky); text-decoration: underline; text-underline-offset: 0.2em; }
 #contact-form { position: relative; display: flex; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 #recaptcha-container { display: contents; }
 .chat-input { flex: 1; min-width: 0; min-height: 3.5rem; padding: 0.8rem 1.25rem; border: 0; border-radius: 0; background: var(--white); color: var(--navy); font-size: 1rem; }
