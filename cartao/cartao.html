@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gabriel Pianissola · Cartão de visita</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #12162c; --vivid: #2458e6; --sky: #a9c3fb; --w: 90mm; --h: 50mm; --bleed: 3mm; --safe: calc(var(--bleed) + 5mm); }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: Manrope, sans-serif; color: #fff; background: #fff; }
+
+.side { position: relative; width: calc(var(--w) + 2 * var(--bleed)); height: calc(var(--h) + 2 * var(--bleed)); overflow: hidden; break-after: page; padding: var(--safe); background: var(--bg); }
+.side:last-child { break-after: auto; }
+
+.front { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.front img { width: 14mm; height: auto; margin-bottom: 3mm; }
+.front h1 { font-size: 13pt; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em; }
+.front p { margin-top: 1mm; font-size: 7pt; font-weight: 700; color: var(--sky); }
+
+.back { display: flex; align-items: flex-end; justify-content: space-between; gap: 4mm; }
+.back dl { display: grid; gap: 2mm; }
+.back dt { font-size: 5.5pt; font-weight: 700; color: var(--sky); }
+.back dd { font-size: 8pt; font-weight: 700; }
+.qr { flex: none; padding: 1.6mm; background: #fff; border-radius: 1.2mm; }
+.qr img { display: block; width: 15mm; height: 15mm; }
+
+@media screen {
+    body { background: #e9ecf3; padding: 8mm; display: grid; gap: 6mm; justify-content: start; }
+    .side { clip-path: inset(var(--bleed) round 1mm); }
+}
+</style>
+</head>
+<body>
+<section class="side front">
+    <img src="../images/logo-night.svg" alt="">
+    <h1>Gabriel Pianissola</h1>
+    <p>Desenvolvedor full stack</p>
+</section>
+
+<section class="side back">
+    <dl>
+        <div><dt>Email</dt><dd>dell.pianissola@outlook.com</dd></div>
+        <div><dt>Telefone</dt><dd>(12) 98870-4062</dd></div>
+        <div><dt>Site</dt><dd>pianissola.tech</dd></div>
+    </dl>
+    <div class="qr"><img src="../images/qr-portfolio.svg" alt="QR code para pianissola.tech"></div>
+</section>
+
+<script>
+const [w, h] = (location.hash.slice(1) || '90x50').split('x');
+document.documentElement.style.setProperty('--w', `${w}mm`);
+document.documentElement.style.setProperty('--h', `${h}mm`);
+const page = document.createElement('style');
+page.textContent = `@page { size: ${+w + 6}mm ${+h + 6}mm; margin: 0; }`;
+document.head.append(page);
+</script>
+</body>
+</html>
