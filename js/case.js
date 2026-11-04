@@ -11,6 +11,31 @@ const paragraphs = texts => texts.map(text => `<p>${text}</p>`).join('');
 
 const moves = () => !calm.matches && !navigator.connection?.saveData;
 
+const ARCH_GROUPS = [
+    ['case.groupStructure', 'struct', []],
+    ['case.groupComm', 'comm', ['Protocolo', 'Protocol', 'Autenticação', 'Authentication', 'Multi-tenant', 'Multi-tenancy', 'Arquivos', 'Files']],
+    ['case.groupShip', 'ship', ['Deploy', 'Git', 'CI/CD']],
+];
+
+const groupOf = term => Math.max(0, ARCH_GROUPS.findIndex(([, , terms]) => terms.includes(term)));
+
+function archMarkup(architecture) {
+    return ARCH_GROUPS.map(([key, icon], index) => {
+        const items = architecture.filter(([term]) => groupOf(term) === index);
+        if (!items.length) return '';
+        const rows = items.map(([term, text]) => `<div><dt>${term}</dt><dd>${text}</dd></div>`).join('');
+        const count = items.length === 1 ? t('case.choice') : `${items.length} ${t('case.choices')}`;
+        return `
+            <div class="arch-group">
+                <div class="arch-head">
+                    <span class="arch-icon"><span class="flow-icon" style="--icon: url(images/icons/${icon}.svg)"></span></span>
+                    <div><h3>${t(key)}</h3><span>${count}</span></div>
+                </div>
+                <dl>${rows}</dl>
+            </div>`;
+    }).join('');
+}
+
 function stackMarkup(item, uses) {
     return LAYERS.map(([key, names]) => {
         const tools = item.stack.filter(name => names.includes(name));
@@ -43,6 +68,7 @@ function storyMarkup(slug, item, copy) {
             <div class="story-steps">${steps.map(step => `<section class="story-step">${step}</section>`).join('')}</div>
             <div class="story-stage">
                 <div class="story-frame">
+                    <div class="story-chrome" aria-hidden="true"><i></i><i></i><i></i><span>${new URL(item.url).host}</span></div>
                     <video src="images/projects/video/${slug}.mp4" poster="images/projects/video/${slug}.webp" muted loop playsinline preload="metadata" ${moves() ? 'autoplay' : ''} aria-label="${t('case.video')} ${item.name}"></video>
                 </div>
             </div>
@@ -70,16 +96,15 @@ function render() {
 
     const copy = item[getLang()];
     const decisions = copy.decisions.map(([title, text]) => `<li><strong>${title}</strong><span>${text}</span></li>`).join('');
-    const architecture = copy.architecture.map(([term, text]) => `<div><dt>${term}</dt><dd>${text}</dd></div>`).join('');
 
     document.title = `${item.name} | ${t('case.title')}`;
     document.getElementById('case').innerHTML = `
         <span class="story-bar" aria-hidden="true"></span>
         ${storyMarkup(slug, item, copy)}
         <section class="case-band case-band--night">
-            <div class="case-band-inner">
+            <div>
                 <h2>${t('case.architecture')}</h2>
-                <dl class="case-arch">${architecture}</dl>
+                ${archMarkup(copy.architecture)}
             </div>
         </section>
         <section class="case-band">

@@ -4,6 +4,7 @@ import { initHero }    from './hero.js';
 import { initProjects, renderProjects } from './projects.js';
 import { initExperience, renderExperience } from './experience.js';
 import { initContact } from './contact.js';
+import { initFlow }    from './flow.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     renderProjects();
@@ -14,4 +15,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjects();
     initExperience();
     initContact();
+    initFlow();
 });

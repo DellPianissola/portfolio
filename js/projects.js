@@ -25,8 +25,8 @@ const card = ([slug, item], i) => `
             <p class="proj-desc" data-i18n="projects.${slug}Desc"></p>
             <div class="stack-grid">${stackLogos(item.stack)}</div>
             <div class="proj-cta">
-                <a class="button" href="estudo-de-caso.html#${slug}" data-i18n="projects.case"></a>
-                ${externalButton(item.url, 'projects.visit', true)}
+                ${externalButton(item.url, 'projects.visit')}
+                <a class="button button--line" href="estudo-de-caso.html#${slug}" data-i18n="projects.case"></a>
                 ${item.github ? externalButton(item.github, 'projects.code', true) : ''}
             </div>
         </div>
