@@ -12,23 +12,21 @@ const paragraphs = texts => texts.map(text => `<p>${text}</p>`).join('');
 const moves = () => !calm.matches && !navigator.connection?.saveData;
 
 const ARCH_GROUPS = [
-    ['case.groupStructure', 'struct', []],
-    ['case.groupComm', 'comm', ['Protocolo', 'Protocol', 'Autenticação', 'Authentication', 'Multi-tenant', 'Multi-tenancy', 'Arquivos', 'Files']],
-    ['case.groupShip', 'ship', ['Deploy', 'Git', 'CI/CD']],
+    ['struct', 'case.groupStructure'],
+    ['comm', 'case.groupComm'],
+    ['ship', 'case.groupShip'],
 ];
 
-const groupOf = term => Math.max(0, ARCH_GROUPS.findIndex(([, , terms]) => terms.includes(term)));
-
 function archMarkup(architecture) {
-    return ARCH_GROUPS.map(([key, icon], index) => {
-        const items = architecture.filter(([term]) => groupOf(term) === index);
+    return ARCH_GROUPS.map(([group, key]) => {
+        const items = architecture.filter(([itemGroup]) => itemGroup === group);
         if (!items.length) return '';
-        const rows = items.map(([term, text]) => `<div><dt>${term}</dt><dd>${text}</dd></div>`).join('');
+        const rows = items.map(([, term, text]) => `<div><dt>${term}</dt><dd>${text}</dd></div>`).join('');
         const count = items.length === 1 ? t('case.choice') : `${items.length} ${t('case.choices')}`;
         return `
             <div class="arch-group">
                 <div class="arch-head">
-                    <span class="arch-icon"><span class="flow-icon" style="--icon: url(images/icons/${icon}.svg)"></span></span>
+                    <span class="arch-icon"><span class="flow-icon" style="--icon: url(images/icons/${group}.svg)"></span></span>
                     <div><h3>${t(key)}</h3><span>${count}</span></div>
                 </div>
                 <dl>${rows}</dl>

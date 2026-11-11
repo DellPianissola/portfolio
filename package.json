@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "cv": "node cv/build.js",
-    "cartao": "node cartao/build.js"
+    "cartao": "node --env-file-if-exists=.env cartao/build.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0"

@@ -40,7 +40,7 @@ body { font-family: Manrope, sans-serif; color: #fff; background: #fff; }
 <section class="side back">
     <dl>
         <div><dt>Email</dt><dd>dell.pianissola@outlook.com</dd></div>
-        <div><dt>Telefone</dt><dd>(12) 98870-4062</dd></div>
+        <div><dt>Telefone</dt><dd id="tel"></dd></div>
         <div><dt>Site</dt><dd>pianissola.tech</dd></div>
     </dl>
     <div class="qr"><img src="../images/qr-portfolio.svg" alt="QR code para pianissola.tech"></div>
@@ -48,6 +48,7 @@ body { font-family: Manrope, sans-serif; color: #fff; background: #fff; }
 
 <script>
 const [w, h] = (location.hash.slice(1) || '90x50').split('x');
+document.getElementById('tel').textContent = new URLSearchParams(location.search).get('tel') ?? '';
 document.documentElement.style.setProperty('--w', `${w}mm`);
 document.documentElement.style.setProperty('--h', `${h}mm`);
 const page = document.createElement('style');

@@ -28,6 +28,12 @@ Os PDFs do currículo saem de `cv/cv.html`, com o Microsoft Edge (`EDGE_PATH` tr
 npm run cv
 ```
 
+O cartão de visita sai de `cartao/cartao.html`, em 90x50 mm e 85x55 mm, com 3 mm de sangria. O telefone fica fora do git: defina `CARTAO_TELEFONE` num `.env` na raiz. Os PDFs gerados também ficam fora do git e do deploy:
+
+```bash
+npm run cartao
+```
+
 ## Estrutura
 
 ```
@@ -41,6 +47,11 @@ portfolio/
 ├── cv/
 │   ├── cv.html
 │   └── build.js
+├── cartao/
+│   ├── cartao.html
+│   └── build.js
+├── scripts/
+│   └── print-pdf.js
 ├── worker/
 │   ├── index.js
 │   └── knowledge.md

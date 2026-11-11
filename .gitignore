@@ -5,3 +5,5 @@ node_modules/
 .impeccable/
 .wrangler/
 .dev.vars
+.env
+cartao/*.pdf

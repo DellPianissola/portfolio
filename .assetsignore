@@ -13,3 +13,6 @@ package-lock.json
 .impeccable/
 .gitignore
 cv/
+cartao/
+scripts/
+.env

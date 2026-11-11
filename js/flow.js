@@ -8,6 +8,7 @@ export function initFlow() {
     const root = document.getElementById('flow');
     if (!root) return;
 
+    const view = root.querySelector('.flow-view');
     const track = root.querySelector('.flow-track');
     const slot = root.querySelector('.flow-slot');
     const cards = new Map();
@@ -47,6 +48,7 @@ export function initFlow() {
             card.classList.toggle('is-past', j < pos);
             card.inert = j < pos;
         });
+        syncFocus();
         track.style.transform = `translateX(calc(${-pos} * (var(--card) + var(--gap))))`;
 
         const n = stepOf(pos) + 1;
@@ -56,6 +58,15 @@ export function initFlow() {
             <span class="flow-detail-num" aria-hidden="true">${pad(n)}</span>
             <div><h3>${t(`how.step${n}Title`)}</h3><p>${t(`how.step${n}Text`)}</p></div>`;
         slot.replaceChildren(detail);
+    }
+
+    function syncFocus() {
+        const current = cards.get(pos);
+        const step = cards.get(pos + 1).offsetLeft - current.offsetLeft;
+        const fits = Math.max(1, Math.floor((view.clientWidth + step - current.offsetWidth) / step));
+        cards.forEach((card, j) => {
+            card.tabIndex = j >= pos && j < pos + fits ? 0 : -1;
+        });
     }
 
     function go(j) {
@@ -74,16 +85,24 @@ export function initFlow() {
 
     let visible = false;
     const hold = () => root.classList.toggle('is-held', !visible);
-    const stop = () => root.classList.add('is-stopped');
+    const stop = () => {
+        root.classList.add('is-stopped');
+        slot.setAttribute('aria-live', 'polite');
+    };
+    const resume = () => {
+        root.classList.remove('is-stopped');
+        slot.removeAttribute('aria-live');
+    };
 
     root.addEventListener('click', e => {
         if (e.target.closest('.flow-card, [data-flow]')) stop();
-    });
+    }, true);
     new IntersectionObserver(([entry]) => {
         visible = entry.isIntersecting;
-        if (!visible) root.classList.remove('is-stopped');
+        if (!visible) resume();
         hold();
-    }, { threshold: 0.5 }).observe(root.querySelector('.flow-view'));
+    }, { threshold: 0.5 }).observe(view);
+    addEventListener('resize', syncFocus);
 
     document.addEventListener('langchange', () => {
         cards.forEach(card => card.remove());
